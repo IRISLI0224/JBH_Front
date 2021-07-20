@@ -144,8 +144,8 @@ class Form extends React.Component {
           } else {
             this.getSubmitError('Fail to submit, please try again');
           }
-          // error.response.status === 406 
-          // ? this.getSubmitError(error.response.data) 
+          // error.response.status === 406
+          // ? this.getSubmitError(error.response.data)
           // : this.getSubmitError('Fail to submit, please try again');
         });
     }
