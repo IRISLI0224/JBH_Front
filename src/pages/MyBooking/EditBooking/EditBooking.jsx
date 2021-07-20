@@ -164,7 +164,6 @@ class EditBooking extends React.Component {
     // const { formData } = this.props;
     // console.log(formData);
 
-
     const { data, isSubmitFail, submitError } = this.state;
     // wait for order number from previous page
     // const { formData } = this.props;
