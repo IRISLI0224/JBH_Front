@@ -9,11 +9,13 @@ const Container = styled.div`
   text-align: center;
   padding: 0.6rem;
   padding-right: 1.5rem;
+  font-family: 'Roboto';
 `;
 
 const BookingDate = styled.div`
   display: flex;
   flex-direction: column;
+  margin-right:2.3rem;
 `;
 
 const Day = styled.div`
@@ -22,7 +24,7 @@ const Day = styled.div`
 
 const Month = styled.div`
   font-size: 1rem;
-  margin-top: -0.8rem;
+  margin-top: -0.5rem;
   color: #3f51b5;
 `;
 
