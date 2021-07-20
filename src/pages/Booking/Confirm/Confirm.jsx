@@ -1,11 +1,10 @@
-import React from "react";
-import PropTypes from "prop-types";
-import styled from "styled-components";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCheckCircle } from "@fortawesome/free-regular-svg-icons";
-import BookingInfo from "../../../components/BookingInfo";
-import BookingInfowithButton from '../../../components/BookingInfowithButton'
-import Loading from "./Loading";
+import React from 'react';
+import PropTypes from 'prop-types';
+import styled from 'styled-components';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCheckCircle } from '@fortawesome/free-regular-svg-icons';
+import BookingInfo from '../../../components/BookingInfo';
+import Loading from './Loading';
 
 const Container = styled.div`
   text-align: center;
@@ -48,7 +47,6 @@ const Confirm = ({ formData, ConfirmTitle }) => (
         <BookingInfo date="2021-07-06" id="#12345" guestAmount={1} />
 
         <Line />
-        <BookingInfowithButton/>
       </>
     ) : (
       <Loading />
