@@ -4,8 +4,8 @@ import PropTypes from 'prop-types';
 
 import Input from '../../components/Input';
 import FormItem from '../../components/FormItem';
-import validate from '../../components/Form/validate';
-import ErrorMsg from '../../components/ErrorMsg';
+import validate from '../Booking/Form/validate';
+import InputErrorMsg from '../../components/InputErrorMsg';
 import ButtonContinue from '../../components/ButtonContinue';
 import FormTitle from '../../components/FormTitle';
 import FormSubTitle from '../../components/FormSubTitle';
@@ -148,7 +148,7 @@ class Login extends React.Component {
                 onBlur={this.handleBlurredChange}
                 error={this.getErrorMessage(error, 'email')}
               />
-              <ErrorMsg>{this.getErrorMessage(error, 'email')}</ErrorMsg>
+              <InputErrorMsg>{this.getErrorMessage(error, 'email')}</InputErrorMsg>
             </FormItem>
             <FormItem label="Password" htmlFor="password">
               <Input
@@ -161,7 +161,7 @@ class Login extends React.Component {
                 onBlur={this.handleBlurredChange}
                 error={this.getErrorMessage(error, 'password')}
               />
-              <ErrorMsg>{this.getErrorMessage(error, 'password')}</ErrorMsg>
+              <InputErrorMsg>{this.getErrorMessage(error, 'password')}</InputErrorMsg>
             </FormItem>
             <ButtonContinue onClick={this.login}>LOGIN</ButtonContinue>
             {!!authError && <ErrorMsg>login fail</ErrorMsg>}

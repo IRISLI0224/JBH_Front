@@ -20,11 +20,12 @@ const BookingDate = styled.div`
 
 const Day = styled.div`
   font-size: 2.3rem;
+  margin-right: 1rem;
 `;
 
 const Month = styled.div`
   font-size: 1rem;
-  margin-top: -0.5rem;
+  margin: -0.4rem 1rem 0 0;
   color: #3f51b5;
 `;
 
@@ -39,6 +40,7 @@ const BookingDetails = styled.div`
   justify-content: space-between;
   font-size: 0.88rem;
   color: #838383;
+  margin-top: 0.5rem;
 `;
 
 const BookingId = styled.span``;

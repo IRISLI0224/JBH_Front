@@ -1,16 +1,18 @@
 // Second page of Mybooking part, edit data of chosen booking
 import React from 'react';
+import axios from 'axios';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import Input from '../../../components/Input';
 import FormItem from '../../../components/FormItem';
-import ErrorMsg from '../../../components/ErrorMsg';
-import validate from '../../../components/Form/validate';
+import InputErrorMsg from '../../../components/InputErrorMsg';
+import validate from '../../Booking/Form/validate';
 import ButtonContinue from '../../../components/ButtonContinue';
 import FormTitle from '../../../components/FormTitle';
 import FormSubTitle from '../../../components/FormSubTitle';
 import FormWrapper from '../../../components/FormWrapper';
 import FlexRow from '../../../components/FlexRow';
+import SubmitErrorMsg from '../../../components/SubmitErrorMsg';
 
 const Container = styled.div`
   display: inline-block;
@@ -44,13 +46,15 @@ class EditBooking extends React.Component {
         phoneNumber: initialData(phoneNumber),
       },
       isFormSubmit: false,
+      isSubmitFail: false,
+      submitError: '',
     };
 
     this.handleDataChange = this.handleDataChange.bind(this);
     this.handleIsFormSubmitChange = this.handleIsFormSubmitChange.bind(this);
     this.handleBlurredChange = this.handleBlurredChange.bind(this);
     this.handleContinueClick = this.handleContinueClick.bind(this);
-    // this.handleFormData=this.handleFormData.bind(this);
+    this.getSubmitError = this.getSubmitError.bind(this);
   }
 
   handleDataChange(event) {
@@ -106,10 +110,17 @@ class EditBooking extends React.Component {
     return error;
   }
 
+  getSubmitError(error) {
+    this.setState({
+      isSubmitFail: true,
+      submitError: error,
+    });
+  }
+
   handleContinueClick = (data, hasError) => {
-    // const {
-    //   guestNumber, firstName, lastName, email, phoneNumber,
-    // } = data;
+    const {
+      guestNumber, firstName, lastName, email, phoneNumber,
+    } = data;
     const { handleNextStep } = this.props;
     const { handleFormData } = this.props;
     const formData = this.props;
@@ -120,30 +131,45 @@ class EditBooking extends React.Component {
     // });
 
     if (!hasError) {
-      // axios.put('http://localhost:3333/bookings/1', {
-      //   bookingDate: date,
-      //   numOfGuests: guestNumber.value,
-      //   firstName: firstName.value,
-      //   lastName: lastName.value,
-      //   emailAddress: email.value,
-      //   phoneNumber: phoneNumber.value,
-      // });
-
-      handleFormData(formData);
-      handleNextStep();
+      axios.post('http://localhost:3000/api/bookings/edit', {
+        bookingDate: '2021-08-01',
+        numOfGuests: guestNumber.value,
+        firstName: firstName.value,
+        lastName: lastName.value,
+        emailAddress: email.value,
+        phoneNumber: phoneNumber.value,
+      })
+        .then((response) => {
+          if (response.status === 201) {
+            // handleFormData(formData);
+            handleNextStep();
+          }
+        })
+        .catch((error) => {
+          if (error.response.status === 406) {
+            this.getSubmitError(error.response.data);
+          } else {
+            this.getSubmitError('Fail to submit, please try again');
+          }
+          // error.response.status === 406
+          //   ? this.getSubmitError(error.response.data)
+          //   : this.getSubmitError('Fail to submit, please try again');
+        });
     }
   };
 
   render() {
-    const { data } = this.state;
-    // 数据都在formData里面
-    const { formData } = this.props;
-    console.log(formData);
+    // const { data } = this.state;
+    // // 数据都在formData里面
+    // const { formData } = this.props;
+    // console.log(formData);
 
+
+    const { data, isSubmitFail, submitError } = this.state;
     // wait for order number from previous page
     // const { formData } = this.props;
     const error = this.getError(data);
-    // const hasError = Object.keys(error).length > 0;
+    const hasError = Object.keys(error).length > 0;
 
     return (
       <>
@@ -156,7 +182,7 @@ class EditBooking extends React.Component {
             onSubmit={(e) => {
               e.preventDefault();
               this.handleIsFormSubmitChange(true);
-              // this.handleContinueClick(data, hasError);
+              this.handleContinueClick(data, hasError);
             }}
           >
             <FlexRow>
@@ -182,7 +208,7 @@ class EditBooking extends React.Component {
                   onBlur={this.handleBlurredChange}
                   error={this.getErrorMessage(error, 'guestNumber')}
                 />
-                <ErrorMsg>{this.getErrorMessage(error, 'guestNumber')}</ErrorMsg>
+                <InputErrorMsg>{this.getErrorMessage(error, 'guestNumber')}</InputErrorMsg>
               </FormItem>
             </FlexRow>
             <FlexRow>
@@ -197,7 +223,7 @@ class EditBooking extends React.Component {
                   onBlur={this.handleBlurredChange}
                   error={this.getErrorMessage(error, 'firstName')}
                 />
-                <ErrorMsg>{this.getErrorMessage(error, 'firstName')}</ErrorMsg>
+                <InputErrorMsg>{this.getErrorMessage(error, 'firstName')}</InputErrorMsg>
               </FormItem>
               <FormItem label="Last Name" htmlFor="lastName">
                 <Input
@@ -210,7 +236,7 @@ class EditBooking extends React.Component {
                   onBlur={this.handleBlurredChange}
                   error={this.getErrorMessage(error, 'lastName')}
                 />
-                <ErrorMsg>{this.getErrorMessage(error, 'lastName')}</ErrorMsg>
+                <InputErrorMsg>{this.getErrorMessage(error, 'lastName')}</InputErrorMsg>
               </FormItem>
             </FlexRow>
             <FormItem label="Email" htmlFor="email">
@@ -224,7 +250,7 @@ class EditBooking extends React.Component {
                 onBlur={this.handleBlurredChange}
                 error={this.getErrorMessage(error, 'email')}
               />
-              <ErrorMsg>{this.getErrorMessage(error, 'email')}</ErrorMsg>
+              <InputErrorMsg>{this.getErrorMessage(error, 'email')}</InputErrorMsg>
             </FormItem>
             <FormItem label="Phone number" htmlFor="phoneNumber">
               <Input
@@ -237,9 +263,10 @@ class EditBooking extends React.Component {
                 onBlur={this.handleBlurredChange}
                 error={this.getErrorMessage(error, 'phoneNumber')}
               />
-              <ErrorMsg>{this.getErrorMessage(error, 'phoneNumber')}</ErrorMsg>
+              <InputErrorMsg>{this.getErrorMessage(error, 'phoneNumber')}</InputErrorMsg>
             </FormItem>
-            <ButtonContinue onClick={this.handleContinueClick}>SUBMIT</ButtonContinue>
+            {isSubmitFail && (<SubmitErrorMsg>{submitError}</SubmitErrorMsg>)}
+            <ButtonContinue>SUBMIT</ButtonContinue>
           </FormWrapper>
         </Container>
       </>
