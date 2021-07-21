@@ -6,11 +6,14 @@ import ConfirmPage from '../../../components/ConfirmPage';
 import GoBack from '../../../components/ButtonGoBack';
 
 const Container = styled.div`
-  display: inline-block;
+  font-family: 'Roboto';
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   background-color: white;
-  border-radius: 20px;
   padding: 5rem 12rem;
   margin: 0 auto;
+  border-radius: 20px;
 `;
 
 class ConfirmEdit extends React.Component {
@@ -27,7 +30,7 @@ class ConfirmEdit extends React.Component {
       <Container>
         <ConfirmPage formData={formData} title="Booking changes submitted" />
         <GoBack size="md" onClick={handleNextStep}>
-          My Bookings
+          {'<'} My Bookings
         </GoBack>
       </Container>
     );

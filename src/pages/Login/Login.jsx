@@ -1,7 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
-
 import Input from '../../components/Input';
 import FormItem from '../../components/FormItem';
 import validate from '../Booking/Form/validate';
@@ -126,7 +125,7 @@ class Login extends React.Component {
     return (
       <>
         <Container>
-          <FormTitle variant="primary">Guest Login</FormTitle>
+          <FormTitle variant="primary">Login</FormTitle>
           <FormSubTitle font="special">Log in to manage bookings</FormSubTitle>
           <FormWrapper
             onSubmit={(e) => {
@@ -164,8 +163,8 @@ class Login extends React.Component {
               <InputErrorMsg>{this.getErrorMessage(error, 'password')}</InputErrorMsg>
             </FormItem>
             <ButtonContinue onClick={this.login}>LOGIN</ButtonContinue>
-            {!!authError && <ErrorMsg>login fail</ErrorMsg>}
-            {!!isLoading && <ErrorMsg>Isloading</ErrorMsg>}
+            {!!authError && <InputErrorMsg>login fail</InputErrorMsg>}
+            {!!isLoading && <InputErrorMsg>Isloading</InputErrorMsg>}
           </FormWrapper>
         </Container>
       </>

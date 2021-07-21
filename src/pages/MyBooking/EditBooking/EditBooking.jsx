@@ -34,7 +34,8 @@ class EditBooking extends React.Component {
     const { formData } = this.props;
     const {
       bookingDate, guestAmount, firstName, lastName, emailAddress, phoneNumber,
-    } = formData[0];
+    } = formData;
+
 
     this.state = {
       // wait for value after calling backend api
@@ -120,20 +121,18 @@ class EditBooking extends React.Component {
 
   handleContinueClick = (data, hasError) => {
     const {
-      guestNumber, firstName, lastName, email, phoneNumber,
+      selectedDate, guestNumber, firstName, lastName, email, phoneNumber,
     } = data;
-    const { handleNextStep } = this.props;
-    const { handleFormData } = this.props;
-    const formData = this.props;
-    // console.log("here"+formData)
-    // Object.entries(data).map(([key, value]) => {
-    //   formData[key] = value.value;
-    //   return formData;
-    // });
+    const { handleNextStep, handleFormData } = this.props;
+    const updatedData = {};
+    Object.entries(data).map(([key, value]) => {
+      updatedData[key] = value.value;
+      return updatedData;
+    });
 
     if (!hasError) {
-      axios.post('http://localhost:3000/api/bookings/edit', {
-        bookingDate: '2021-08-01',
+      axios.post('http://localhost:3000/api/bookings/check', {
+        bookingDate: selectedDate.value,
         numOfGuests: guestNumber.value,
         firstName: firstName.value,
         lastName: lastName.value,
@@ -141,8 +140,9 @@ class EditBooking extends React.Component {
         phoneNumber: phoneNumber.value,
       })
         .then((response) => {
-          if (response.status === 201) {
-            // handleFormData(formData);
+          if (response.status === 200) {
+            console.log('success');
+            handleFormData(updatedData);
             handleNextStep();
           }
         })
@@ -152,16 +152,13 @@ class EditBooking extends React.Component {
           } else {
             this.getSubmitError('Fail to submit, please try again');
           }
-          // error.response.status === 406
-          //   ? this.getSubmitError(error.response.data)
-          //   : this.getSubmitError('Fail to submit, please try again');
         });
     }
   };
 
   render() {
     const { formData } = this.props;
-    const { bookingNum } = formData[0];
+    const { bookingNum } = formData;
     const { data, isSubmitFail, submitError } = this.state;
 
     const error = this.getError(data);
