@@ -5,7 +5,6 @@ import ConfirmEdit from './ConfirmEdit';
 import ViewBooking from './ViewBooking';
 import { getUserByPhone } from '../../apis/users';
 
-
 class MyBooking extends React.Component {
   constructor(props) {
     super(props);
@@ -26,7 +25,6 @@ class MyBooking extends React.Component {
     this.setState({
       formData,
     });
- 
   }
 
   handleNextStep() {
@@ -40,19 +38,15 @@ class MyBooking extends React.Component {
     const { phoneNumber } = this.state;
     this.setState({
       allData: await getUserByPhone(phoneNumber),
-    });
-  
-    this.setState({ 
       ready: true,
     });
-
   }
 
   render() {
     const {
       step, formData, BookingDetails, ready, allData,
     } = this.state;
-    {console.log(ready?allData.bookings:'not ready')}
+    // console.log(ready ? allData.bookings : 'not ready');
     return (
       <>
         {step === 1 && ready === true && (
