@@ -4,7 +4,7 @@ import EditBooking from './EditBooking';
 import ConfirmEdit from './ConfirmEdit';
 import ViewBooking from './ViewBooking';
 import { getUserByPhone } from '../../apis/users';
-// import { getBookingbyId } from '../../apis/bookings';
+
 
 class MyBooking extends React.Component {
   constructor(props) {
@@ -23,12 +23,10 @@ class MyBooking extends React.Component {
   }
 
   handleFormData(formData) {
-    // const { BookingDetails } = this.state;
-
     this.setState({
       formData,
     });
-    // console.log(this.state.formData);
+ 
   }
 
   handleNextStep() {
@@ -43,46 +41,22 @@ class MyBooking extends React.Component {
     this.setState({
       allData: await getUserByPhone(phoneNumber),
     });
-    // console.log(this.state.allData.bookings)
-
-    // const Details = [];
-    // const { BookingList } = this.state;
-    // for (var i = 0; i < BookingList.length; i++) {
-    //   Details[i] = await getBookingbyId(BookingList[i]);
-    // }
-    // BookingList.map(async (ID) => {
-    //   Details[ID] = await getBookingbyId(ID);
-    //   console.log(Details[ID])
-    // });
-    // let i = 0;
-    // while (i < BookingList.length) {
-    //   Details[i] = await getBookingbyId(BookingList[i]);
-    //   i += 1;
-    // }
-
-    // Details[0] = await getBookingbyId(BookingList[0]);
-    // const a = Details[0];
-    // for (let i = 0; i < BookingList.length; i += 1) {
-    //   Details[i] = a;
-    // }
-    this.setState({
-      // BookingDetails: Details,
+  
+    this.setState({ 
       ready: true,
     });
 
-    // this.state.BookingDetails = Details;
   }
 
   render() {
     const {
       step, formData, BookingDetails, ready, allData,
     } = this.state;
-    // {console.log(ready?allData.bookings:'not ready')}
+    {console.log(ready?allData.bookings:'not ready')}
     return (
       <>
         {step === 1 && ready === true && (
           <ViewBooking
-            // date={date}
             BookingDetails={allData.bookings}
             handleNextStep={this.handleNextStep}
             handleFormData={this.handleFormData}
