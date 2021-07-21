@@ -3,6 +3,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import moment from 'moment';
 import BookingInfowithButton from '../../../components/BookingInfowithButton';
 
 const BookingCard = styled.div`
@@ -78,7 +79,7 @@ color: #818181;
 margin-top:150px`;
 
 const ViewBooking = ({
-  BookingDetails, BookingList, handleNextStep, ready, handleFormData,
+  BookingDetails, handleNextStep, ready, handleFormData,
 }) => (
   <>
     <BookingCard>
@@ -89,25 +90,19 @@ const ViewBooking = ({
       <UpcomingTitle>Upcoming</UpcomingTitle>
       <Vector1 />
       <Vector2 />
-      {/* {BookingList.map((index) => (
-            <BookingInfowithButton
-              key={index}
-              date={BookingDetails[index - 1][0].bookingDate}
-              id={BookingDetails[index - 1][0].bookingId}
-              guestAmount={ BookingDetails[index - 1][0].guestAmount}
-              handleNextStep ={handleNextStep}
-            />
-          ))} */}
-      {BookingList.length !== 0 && (
-        BookingList.map((index) => (
+      {console.log(BookingDetails)}
+      {BookingDetails.length !== 0 && (
+        BookingDetails.map((bookings, index) => (
           <BookingInfowithButton
-            key={index}
-            date={ready ? BookingDetails[index - 1][0].bookingDate : ''}
-            id={ready ? BookingDetails[index - 1][0].bookingId : '0'}
-            guestAmount={ready ? BookingDetails[index - 1][0].guestAmount : 0}
-            formData={ready ? BookingDetails[index - 1][0] : []}
+            // key={index}
+            date={ready ? (moment)(bookings.bookingDate).format('YYYY-MM-DD') : ''}
+            // id={ready ? bookings._id : '0'}
+            id={ready ? index : '0'}
+            guestAmount={ready ? bookings.numOfGuests : 0}
+            formData={ready ? bookings : []}
             handleNextStep={handleNextStep}
             handleFormData={handleFormData}
+
           />
         ))
       )}
@@ -123,7 +118,6 @@ const ViewBooking = ({
 
 ViewBooking.propTypes = {
   // 下两条type验证有问题
-  BookingList: PropTypes.arrayOf(PropTypes.string),
   BookingDetails: PropTypes.arrayOf(PropTypes.array),
   handleNextStep: PropTypes.func.isRequired,
   handleFormData: PropTypes.func.isRequired,
@@ -131,7 +125,6 @@ ViewBooking.propTypes = {
 };
 
 ViewBooking.defaultProps = {
-  BookingList: [],
   BookingDetails: [],
   ready: false,
 };

@@ -3,8 +3,7 @@ import React from 'react';
 import EditBooking from './EditBooking';
 import ConfirmEdit from './ConfirmEdit';
 import ViewBooking from './ViewBooking';
-import { getUsersBooking } from '../../apis/users';
-import { getBookingbyId } from '../../apis/bookings';
+import { getUserByPhone } from '../../apis/users';
 
 class MyBooking extends React.Component {
   constructor(props) {
@@ -12,10 +11,10 @@ class MyBooking extends React.Component {
     this.state = {
       step: 1,
       formData: [],
-      UserId: 1,
-      BookingList: [],
       BookingDetails: [],
       ready: false,
+      allData: [],
+      phoneNumber: '1234678901',
     };
     this.handleNextStep = this.handleNextStep.bind(this);
     this.handleFormData = this.handleFormData.bind(this);
@@ -23,12 +22,9 @@ class MyBooking extends React.Component {
   }
 
   handleFormData(formData) {
-    // const { BookingDetails } = this.state;
-
     this.setState({
       formData,
     });
-    // console.log(this.state.formData);
   }
 
   handleNextStep() {
@@ -39,50 +35,23 @@ class MyBooking extends React.Component {
   }
 
   async getBookingDetails() {
-    const { UserId } = this.state;
+    const { phoneNumber } = this.state;
     this.setState({
-      BookingList: await getUsersBooking(UserId),
-
-    });
-    const Details = [];
-    const { BookingList } = this.state;
-    // for (var i = 0; i < BookingList.length; i++) {
-    //   Details[i] = await getBookingbyId(BookingList[i]);
-    // }
-    // BookingList.map(async (ID) => {
-    //   Details[ID] = await getBookingbyId(ID);
-    //   console.log(Details[ID])
-    // });
-    // let i = 0;
-    // while (i < BookingList.length) {
-    //   Details[i] = await getBookingbyId(BookingList[i]);
-    //   i += 1;
-    // }
-
-    Details[0] = await getBookingbyId(BookingList[0]);
-    const a = Details[0];
-    for (let i = 0; i < BookingList.length; i += 1) {
-      Details[i] = a;
-    }
-    this.setState({
-      BookingDetails: Details,
+      allData: await getUserByPhone(phoneNumber),
       ready: true,
     });
-    this.state.BookingDetails = Details;
   }
 
   render() {
     const {
-      step, formData, BookingDetails, BookingList, ready,
+      step, formData, BookingDetails, ready, allData,
     } = this.state;
-    // {console.log(ready?this.state.BookingDetails[1][0]:'not')}
+    // console.log(ready ? allData.bookings : 'not ready');
     return (
       <>
         {step === 1 && ready === true && (
           <ViewBooking
-            // date={date}
-            BookingDetails={BookingDetails}
-            BookingList={BookingList}
+            BookingDetails={allData.bookings}
             handleNextStep={this.handleNextStep}
             handleFormData={this.handleFormData}
             ready={ready}

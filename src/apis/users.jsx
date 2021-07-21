@@ -1,15 +1,11 @@
-import axios from 'axios';
+import { get } from './axios';
 
-const UsersURL = 'http://localhost:3333/users/';
+const API_GET_USER_BY_PHONE_URL = '/users/';
 
-export const getUsersBooking = async (Id) => {
-  try {
-    const response = await axios.get(UsersURL + Id);
-    return (response.data.bookingId);
-  } catch (err) {
-    console.log(err);//eslint-disable-line
-  }
-  return ('');
+export const getUserByPhone = (phoneNumber) => {
+  const data = {
+  };
+  return get(API_GET_USER_BY_PHONE_URL + phoneNumber, data).then((res) => res.data);
 };
 
-export default getUsersBooking;
+export default getUserByPhone;
