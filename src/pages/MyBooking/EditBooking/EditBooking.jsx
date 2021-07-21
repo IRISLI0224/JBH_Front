@@ -36,7 +36,6 @@ class EditBooking extends React.Component {
       bookingDate, guestAmount, firstName, lastName, emailAddress, phoneNumber,
     } = formData;
 
-
     this.state = {
       // wait for value after calling backend api
       data: {
@@ -141,7 +140,6 @@ class EditBooking extends React.Component {
       })
         .then((response) => {
           if (response.status === 200) {
-            console.log('success');
             handleFormData(updatedData);
             handleNextStep();
           }
