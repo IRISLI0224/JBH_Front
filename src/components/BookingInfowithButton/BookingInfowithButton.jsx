@@ -15,7 +15,6 @@ const Container = styled.div`
   width: 500px;
   margin-left: 50px;
   margin-top: 1rem;
-  font-family: 'Roboto';
 `;
 
 const EditButton = styled.div`

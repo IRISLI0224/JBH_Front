@@ -37,10 +37,13 @@ const ButtonTo = styled.div`
   }}
 `;
 
-const ButtonGoBack = ({ children, size }) => (
-  <ButtonTo size={size}>{children}</ButtonTo>
+const ButtonGoBack = ({ children, size, onClick }) => (
+  <ButtonTo onClick={onClick} size={size}>
+    {children}
+  </ButtonTo>
 );
 ButtonGoBack.propTypes = {
+  onClick: PropTypes.func.isRequired,
   size: PropTypes.string.isRequired,
   children: PropTypes.string.isRequired,
 };

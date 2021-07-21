@@ -1,8 +1,13 @@
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import styled, { keyframes } from 'styled-components';
 
 const Container = styled.div`
+  text-align: center;
+  padding: 5rem;
+`;
+
+const Wrapper = styled.div`
   display: inline-block;
   position: relative;
   width: 80px;
@@ -36,65 +41,95 @@ const LoadingBall = styled.div`
   }
 `;
 
-const Loading = () => {
-  const loadingBallStateTable = [
-    {
-      key: 1,
-      animationDelay: '-0.036s',
-      position: { top: '63px', left: '63px' },
-    },
-    {
-      key: 2,
-      animationDelay: '-0.072s',
-      position: { top: '68px', left: '56px' },
-    },
-    {
-      key: 3,
-      animationDelay: '-0.108s',
-      position: { top: '71px', left: '48px' },
-    },
-    {
-      key: 4,
-      animationDelay: '-0.144s',
-      position: { top: '72px', left: '40px' },
-    },
-    {
-      key: 5,
-      animationDelay: '-0.18s',
-      position: { top: '71px', left: '32px' },
-    },
-    {
-      key: 6,
-      animationDelay: '-0.216s',
-      position: { top: '68px', left: '24px' },
-    },
-    {
-      key: 7,
-      animationDelay: '-0.252s',
-      position: { top: '63px', left: '17px' },
-    },
-    {
-      key: 8,
-      animationDelay: '-0.288s',
-      position: { top: '56px', left: '12px' },
-    },
-  ];
-  return (
-    <Container>
-      {loadingBallStateTable.map((loadingBall) => {
-        const { key, animationDelay, position } = loadingBall;
-        return (
-          <LoadingBall
-            key={key}
-            animationDelay={animationDelay}
-            top={position.top}
-            left={position.left}
-          />
-        );
-      })}
-    </Container>
-  );
-};
+export default class loading extends Component {
+  constructor(props) {
+    super(props);
+    this.state = { loadingDot: '' };
+  }
+
+  componentDidMount() {
+    this.loading = setInterval(() => {
+      const { loadingDot } = this.state;
+      if (loadingDot === '...') {
+        this.setState({ loadingDot: '' });
+        return false;
+      }
+      this.setState({ loadingDot: `${loadingDot}.` });
+      return false;
+    }, 500);
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.loading);
+  }
+
+  render() {
+    const { loadingDot } = this.state;
+    const loadingBallStateTable = [
+      {
+        key: 1,
+        animationDelay: '-0.036s',
+        position: { top: '63px', left: '63px' },
+      },
+      {
+        key: 2,
+        animationDelay: '-0.072s',
+        position: { top: '68px', left: '56px' },
+      },
+      {
+        key: 3,
+        animationDelay: '-0.108s',
+        position: { top: '71px', left: '48px' },
+      },
+      {
+        key: 4,
+        animationDelay: '-0.144s',
+        position: { top: '72px', left: '40px' },
+      },
+      {
+        key: 5,
+        animationDelay: '-0.18s',
+        position: { top: '71px', left: '32px' },
+      },
+      {
+        key: 6,
+        animationDelay: '-0.216s',
+        position: { top: '68px', left: '24px' },
+      },
+      {
+        key: 7,
+        animationDelay: '-0.252s',
+        position: { top: '63px', left: '17px' },
+      },
+      {
+        key: 8,
+        animationDelay: '-0.288s',
+        position: { top: '56px', left: '12px' },
+      },
+    ];
+    return (
+      <Container>
+        <Wrapper>
+          {loadingBallStateTable.map((loadingBall) => {
+            const { key, animationDelay, position } = loadingBall;
+            return (
+              <LoadingBall
+                key={key}
+                animationDelay={animationDelay}
+                top={position.top}
+                left={position.left}
+              />
+            );
+          })}
+        </Wrapper>
+        <div>
+          Loading
+          {loadingDot}
+        </div>
+      </Container>
+    );
+  }
+}
 
 LoadingBall.propTypes = {
   animation: PropTypes.string,
@@ -103,5 +138,3 @@ LoadingBall.propTypes = {
     left: PropTypes.string,
   }),
 };
-
-export default Loading;
