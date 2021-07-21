@@ -2,42 +2,34 @@
 import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
-import Confirm from '../../Booking/Confirm';
+import ConfirmPage from '../../../components/ConfirmPage';
 import GoBack from '../../../components/ButtonGoBack';
 
 const Container = styled.div`
-display: inline-block;
-background-color: white;
-border-radius: 20px;
-padding: 3rem 12rem;
-margin: 0 auto;
-hight:100px;
-border: 1px solid #C7C7C7;
-box-sizing: border-box;
-border-radius: 20px;`;
+  display: inline-block;
+  background-color: white;
+  border-radius: 20px;
+  padding: 5rem 12rem;
+  margin: 0 auto;
+`;
 
 class ConfirmEdit extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-
-    };
+    this.state = {};
   }
 
   render() {
     const { formData } = this.props;
     const { handleNextStep } = this.props;
-    console.log(formData);
+    console.log(formData, handleNextStep);
     return (
-      <>
-        <Container>
-          <Confirm
-            formData={formData}
-            ConfirmTitle="Booking changes submmitted"
-          />
-          <GoBack onClick={handleNextStep}>My Bookings</GoBack>
-        </Container>
-      </>
+      <Container>
+        <ConfirmPage formData={formData} title="Booking changes submitted" />
+        <GoBack size="md" onClick={handleNextStep}>
+          My Bookings
+        </GoBack>
+      </Container>
     );
   }
 }
