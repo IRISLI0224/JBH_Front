@@ -31,18 +31,19 @@ class EditBooking extends React.Component {
   constructor(props) {
     super(props);
 
+    const { formData } = this.props;
     const {
-      selectedDate, guestNumber, firstName, lastName, email, phoneNumber,
-    } = this.props;
+      bookingDate, guestAmount, firstName, lastName, emailAddress, phoneNumber,
+    } = formData[0];
 
     this.state = {
       // wait for value after calling backend api
       data: {
-        selectedDate: initialData(selectedDate),
-        guestNumber: initialData(guestNumber),
+        selectedDate: initialData(bookingDate),
+        guestNumber: initialData(guestAmount),
         firstName: initialData(firstName),
         lastName: initialData(lastName),
-        email: initialData(email),
+        email: initialData(emailAddress),
         phoneNumber: initialData(phoneNumber),
       },
       isFormSubmit: false,
@@ -159,14 +160,10 @@ class EditBooking extends React.Component {
   };
 
   render() {
-    // const { data } = this.state;
-    // // 数据都在formData里面
-    // const { formData } = this.props;
-    // console.log(formData);
-
+    const { formData } = this.props;
+    const { bookingNum } = formData[0];
     const { data, isSubmitFail, submitError } = this.state;
-    // wait for order number from previous page
-    // const { formData } = this.props;
+
     const error = this.getError(data);
     const hasError = Object.keys(error).length > 0;
 
@@ -176,6 +173,8 @@ class EditBooking extends React.Component {
           <FormTitle variant="primary">Booking Details</FormTitle>
           <FormSubTitle font="normal">
             Order number
+            {' '}
+            {bookingNum}
           </FormSubTitle>
           <FormWrapper
             onSubmit={(e) => {
@@ -190,7 +189,6 @@ class EditBooking extends React.Component {
                   size="smLeft"
                   name="selectedDate"
                   id="selectedDate"
-                  placeholder="06/06/2021"
                   type="text"
                   value={data.selectedDate.value}
                   disabled
@@ -274,11 +272,8 @@ class EditBooking extends React.Component {
 }
 
 EditBooking.propTypes = {
-  selectedDate: PropTypes.string.isRequired,
-  guestNumber: PropTypes.string.isRequired,
   firstName: PropTypes.string.isRequired,
   lastName: PropTypes.string.isRequired,
-  email: PropTypes.string.isRequired,
   phoneNumber: PropTypes.string.isRequired,
   handleNextStep: PropTypes.func.isRequired,
   formData: PropTypes.arrayOf(PropTypes.string),
