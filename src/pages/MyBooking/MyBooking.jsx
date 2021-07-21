@@ -3,8 +3,8 @@ import React from 'react';
 import EditBooking from './EditBooking';
 import ConfirmEdit from './ConfirmEdit';
 import ViewBooking from './ViewBooking';
-import { getUsersBooking } from '../../apis/users';
-import { getBookingbyId } from '../../apis/bookings';
+import { getUserByPhone } from '../../apis/users';
+//import { getBookingbyId } from '../../apis/bookings';
 
 class MyBooking extends React.Component {
   constructor(props) {
@@ -16,6 +16,8 @@ class MyBooking extends React.Component {
       BookingList: [],
       BookingDetails: [],
       ready: false,
+      allData:[],
+      phone:"1234678901"
     };
     this.handleNextStep = this.handleNextStep.bind(this);
     this.handleFormData = this.handleFormData.bind(this);
@@ -39,13 +41,14 @@ class MyBooking extends React.Component {
   }
 
   async getBookingDetails() {
-    const { UserId } = this.state;
+    const { phone } = this.state;
     this.setState({
-      BookingList: await getUsersBooking(UserId),
+      allData: await getUserByPhone(phone),
 
     });
-    const Details = [];
-    const { BookingList } = this.state;
+    console.log(this.state.allData)
+    // const Details = [];
+    // const { BookingList } = this.state;
     // for (var i = 0; i < BookingList.length; i++) {
     //   Details[i] = await getBookingbyId(BookingList[i]);
     // }
@@ -59,16 +62,16 @@ class MyBooking extends React.Component {
     //   i += 1;
     // }
 
-    Details[0] = await getBookingbyId(BookingList[0]);
-    const a = Details[0];
-    for (let i = 0; i < BookingList.length; i += 1) {
-      Details[i] = a;
-    }
-    this.setState({
-      BookingDetails: Details,
-      ready: true,
-    });
-    this.state.BookingDetails = Details;
+    // Details[0] = await getBookingbyId(BookingList[0]);
+    // const a = Details[0];
+    // for (let i = 0; i < BookingList.length; i += 1) {
+    //   Details[i] = a;
+    // }
+    // this.setState({
+    //   BookingDetails: Details,
+    //   ready: true,
+    // });
+    // this.state.BookingDetails = Details;
   }
 
   render() {
