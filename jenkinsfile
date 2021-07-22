@@ -38,6 +38,7 @@ pipeline {
             steps {
                 echo 'Deploying'
                 withAWS(credentials: 'AWS', region: 'ap-southeast-2') {
+                    sh 'aws s3 ls'
                     sh 'aws s3 rm "${BUCKET_NAME}" --recursive'
                     sh 'aws s3 cp "${WORKSPACE_PATH}" "${BUCKET_NAME}" --recursive --acl public-read'
                 }
