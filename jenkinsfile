@@ -21,11 +21,7 @@ pipeline {
         stage('Build') {
             steps {
                 echo 'Building ...'
-                sh 'pwd'
-                sh 'ls'
-                sh 'npm run build'
-                sh 'pwd'
-                sh 'ls'   
+                sh 'npm run build'  
             }
         }
         
@@ -35,21 +31,14 @@ pipeline {
                 sh 'apt-get update'
                 sh 'apt install python3-pip -y'
                 sh 'pip3 install awscli --upgrade'
-                sh 'aws --version'
             }
         }
         
         stage('Deploy to S3') {
             steps {
-                sh 'aws --version'
-                echo 'Deploying'
-                sh 'aws --version'
-               withAWS(credentials: '06b5a459-1c49-47fe-ae48-cbec3c35b6c7', region: 'ap-southeast-2') {
-    
-                    sh 'aws --version'
-                    sh 'aws s3 ls'
-                    //sh 'aws s3 rm "${BUCKET_NAME}" --recursive'
-                    //sh 'aws s3 cp "${WORKSPACE_PATH}" "${BUCKET_NAME}" --recursive --acl public-read'
+            withAWS(credentials: '06b5a459-1c49-47fe-ae48-cbec3c35b6c7', region: 'ap-southeast-2') {
+                    sh 'aws s3 rm "${BUCKET_NAME}" --recursive'
+                    sh 'aws s3 cp "${WORKSPACE_PATH}" "${BUCKET_NAME}" --recursive --acl public-read'
                 }
             }
         }
