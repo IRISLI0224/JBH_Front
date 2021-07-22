@@ -21,7 +21,11 @@ pipeline {
         stage('Build') {
             steps {
                 echo 'Building ...'
+                sh 'pwd'
+                sh 'ls'
                 sh 'npm run build'
+                sh 'pwd'
+                sh 'ls'   
             }
         }
         
