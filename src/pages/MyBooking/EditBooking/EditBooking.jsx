@@ -35,7 +35,7 @@ class EditBooking extends React.Component {
     const { formData } = this.props;
     const {
       bookingDate, numOfGuests, firstName, lastName, emailAddress, phoneNumber,
-    } = formData;
+    } = formData[0];
 
     this.state = {
       data: {
@@ -156,7 +156,8 @@ class EditBooking extends React.Component {
 
   render() {
     const { formData } = this.props;
-    const { bookingNum } = formData;
+    const { bookingNum } = formData[0];
+    console.log(formData[0]);
     const { data, isSubmitFail, submitError } = this.state;
 
     const error = this.getError(data);
