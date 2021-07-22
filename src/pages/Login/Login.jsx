@@ -107,11 +107,11 @@ class Login extends React.Component {
           this.setState({ isLoading: false }, () => {
             setToken(data.token);
             const { history } = this.props;
-            //history.replace('/mybooking');
+            // history.replace('/mybooking');
             history.replace({
               pathname: '/mybooking',
-              email: loginData.email.value
-            })
+              email: loginData.email.value,
+            });
           });
         })
         .catch((error) => this.setState({ error, isLoading: false }));

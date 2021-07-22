@@ -12,19 +12,20 @@ class MyBooking extends React.Component {
     this.state = {
       step: 1,
       formData: [],
-      BookingDetails: [],
       ready: false,
       allData: [],
-      Email: this.props.location.email,
+      Email: '',
       today: '',
     };
     this.handleNextStep = this.handleNextStep.bind(this);
     this.handleFormData = this.handleFormData.bind(this);
+    const history = this.props;
+    this.state.Email = history.location.email; //eslint-disable-line
     this.getBookingDetails();
     const myDate = new Date();
     const currentdate = `${myDate.getFullYear()}-${myDate.getMonth() + 1}-${myDate.getDate()}`;
     this.state.today = (moment)(currentdate).format('YYYY-MM-DD');
-    //console.log(this.props.location.email)
+    // console.log(this.props.location.email)
   }
 
   handleFormData(formData) {
