@@ -15,7 +15,7 @@ class MyBooking extends React.Component {
       BookingDetails: [],
       ready: false,
       allData: [],
-      phoneNumber: '88888888',
+      Email: this.props.location.email,
       today: '',
     };
     this.handleNextStep = this.handleNextStep.bind(this);
@@ -24,6 +24,7 @@ class MyBooking extends React.Component {
     const myDate = new Date();
     const currentdate = `${myDate.getFullYear()}-${myDate.getMonth() + 1}-${myDate.getDate()}`;
     this.state.today = (moment)(currentdate).format('YYYY-MM-DD');
+    //console.log(this.props.location.email)
   }
 
   handleFormData(formData) {
@@ -40,16 +41,16 @@ class MyBooking extends React.Component {
   }
 
   async getBookingDetails() {
-    const { phoneNumber } = this.state;
+    const { Email } = this.state;
     this.setState({
-      allData: await getUserByPhone(phoneNumber),
+      allData: await getUserByPhone(Email),
       ready: true,
     });
   }
 
   render() {
     const {
-      step, formData, BookingDetails, ready, allData, today,
+      step, formData, ready, allData, today,
     } = this.state;
     // console.log(ready ? allData.bookings : 'not ready');
     // console.log(ready +" "+typeof(allData.bookings));
@@ -67,7 +68,6 @@ class MyBooking extends React.Component {
         )}
         {step === 2 && (
           <EditBooking
-            BookingDetails={BookingDetails}
             handleNextStep={this.handleNextStep}
             handleFormData={this.handleFormData}
             formData={formData}
