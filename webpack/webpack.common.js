@@ -1,5 +1,7 @@
 const { resolve } = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
+const NodePolyfillPlugin = require('node-polyfill-webpack-plugin');
 
 module.exports = {
   entry: resolve(__dirname, '..', './src/index.jsx'),
@@ -37,5 +39,7 @@ module.exports = {
       template: resolve(__dirname, '..', './src/assets/index.html'),
       favicon: resolve(__dirname, '..', './src/assets/favicon.ico'),
     }),
+    new ReactRefreshWebpackPlugin(),
+    new NodePolyfillPlugin(),
   ],
 };
