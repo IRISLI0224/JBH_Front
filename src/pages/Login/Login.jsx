@@ -9,9 +9,9 @@ import ButtonContinue from '../../components/ButtonContinue';
 import FormTitle from '../../components/FormTitle';
 import FormSubTitle from '../../components/FormSubTitle';
 import FormWrapper from '../../components/FormWrapper';
-
 import { loginUser } from '../../apis/auth';
 import { setToken } from '../../utils/authentication';
+import ServerMsg from '../../components/ServerMsg';
 
 const Container = styled.div`
   display: inline-block;
@@ -163,8 +163,8 @@ class Login extends React.Component {
               <InputErrorMsg>{this.getErrorMessage(error, 'password')}</InputErrorMsg>
             </FormItem>
             <ButtonContinue onClick={this.login}>LOGIN</ButtonContinue>
-            {!!authError && <InputErrorMsg>login fail</InputErrorMsg>}
-            {!!isLoading && <InputErrorMsg>Isloading</InputErrorMsg>}
+            {!!authError && <ServerMsg status="error">Login failed, Please try again.</ServerMsg>}
+            {!!isLoading && <ServerMsg status="success">Login Success!</ServerMsg>}
           </FormWrapper>
         </Container>
       </>

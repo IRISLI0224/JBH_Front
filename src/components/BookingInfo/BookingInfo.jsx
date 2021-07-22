@@ -8,7 +8,6 @@ const Container = styled.div`
   align-items: center;
   text-align: center;
   padding: 0.6rem;
-  padding-right: 1.5rem;
   font-family: 'Roboto';
 `;
 

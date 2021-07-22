@@ -5,7 +5,7 @@ const validate = (name, data) => {
   const PHONE_REGEXP = /^(?:\+?(61))? ?(?:\((?=.*\)))?(0?[2-57-8])\)? ?(\d\d(?:[- ](?=\d{3})|(?!\d\d[- ]?\d[- ]))\d\d[- ]?\d[- ]?\d{3})$/;
 
   switch (name) {
-    case 'guestNumber': {
+    case 'numOfGuests': {
       if (!value) {
         return 'Please input the number of guest';
       }
@@ -15,7 +15,7 @@ const validate = (name, data) => {
       return '';
     }
 
-    case 'email': {
+    case 'emailAddress': {
       if (!value) {
         return 'Please input your email';
       }

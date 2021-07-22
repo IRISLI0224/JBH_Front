@@ -20,6 +20,7 @@ const Title = styled.h1`
 const ConfirmedMessage = styled.div`
   font-size: 14px;
   margin-bottom: 30px;
+  line-height: 1.5rem;
 `;
 
 const Line = styled.div`
@@ -28,20 +29,27 @@ const Line = styled.div`
   background-color: #c7c7c7;
 `;
 
-const ConfirmPage = ({ title }) => (
+const ConfirmPage = ({
+  formData: {
+    firstName, emailAddress, bookingDate, bookingNum, numOfGuests,
+  }, title,
+}) => (
   <Container>
     <FontAwesomeIcon color="#181b50" size="4x" icon={faCheckCircle} />
     <Title>{title}</Title>
     <ConfirmedMessage>
-      Thank you John, we&apos;re looking forward to see you soon!
+      Thank you
+      {' '}
+      {firstName}
+      , we&apos;re looking forward to see you soon!
       <br />
       Confirmation email send to &nbsp;
-      <a href="www.gmail.com">xxx@gmail.com</a>
+      <a href={emailAddress}>{emailAddress}</a>
     </ConfirmedMessage>
 
     <Line />
 
-    <BookingInfo date="2021-07-06" id="#12345" guestAmount={1} />
+    <BookingInfo date={bookingDate} id={bookingNum} guestAmount={numOfGuests} />
 
     <Line />
   </Container>
@@ -49,6 +57,7 @@ const ConfirmPage = ({ title }) => (
 
 ConfirmPage.propTypes = {
   title: PropTypes.string.isRequired,
+  formData: PropTypes.arrayOf(PropTypes.string).isRequired,
 };
 
 export default ConfirmPage;

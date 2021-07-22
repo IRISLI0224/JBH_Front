@@ -11,7 +11,7 @@ import FormTitle from '../../../components/FormTitle';
 import FormSubTitle from '../../../components/FormSubTitle';
 import FormWrapper from '../../../components/FormWrapper';
 import FlexRow from '../../../components/FlexRow';
-import SubmitErrorMsg from '../../../components/SubmitErrorMsg';
+import ServerMsg from '../../../components/ServerMsg';
 
 const Checkbox = styled.div`
   font-family: 'Raleway';
@@ -29,10 +29,10 @@ class Form extends React.Component {
     this.state = {
 
       data: {
-        guestNumber: initialData,
+        numOfGuests: initialData,
         firstName: initialData,
         lastName: initialData,
-        email: initialData,
+        emailAddress: initialData,
         phoneNumber: initialData,
         birthDate: initialData,
         towelChecked: {
@@ -114,10 +114,10 @@ class Form extends React.Component {
 
   handleContinueClick = (data, hasError) => {
     const {
-      guestNumber, firstName, lastName, email, phoneNumber, birthDate,
+      numOfGuests, firstName, lastName, emailAddress, phoneNumber, birthDate,
     } = data;
     const { date, handleFormData, handleNextStep } = this.props;
-    const formData = { price: 100 * guestNumber.value };
+    const formData = { price: 100 * numOfGuests.value };
     Object.entries(data).map(([key, value]) => {
       formData[key] = value.value;
       return formData;
@@ -125,10 +125,10 @@ class Form extends React.Component {
     if (!hasError) {
       axios.post('http://localhost:3000/api/bookings/check', {
         bookingDate: date,
-        numOfGuests: guestNumber.value,
+        numOfGuests: numOfGuests.value,
         firstName: firstName.value,
         lastName: lastName.value,
-        emailAddress: email.value,
+        emailAddress: emailAddress.value,
         phoneNumber: phoneNumber.value,
         dateOfBirth: birthDate.value,
       })
@@ -177,18 +177,18 @@ class Form extends React.Component {
                 disabled
               />
             </FormItem>
-            <FormItem label="Number of guests" htmlFor="guestNumber">
+            <FormItem label="Number of guests" htmlFor="numOfGuests">
               <Input
                 size="smRight"
-                name="guestNumber"
-                id="guestNumber"
-                value={data.guestNumber.value}
+                name="numOfGuests"
+                id="numOfGuests"
+                value={data.numOfGuests.value}
                 type="number"
                 onChange={this.handleDataChange}
                 onBlur={this.handleBlurredChange}
-                error={this.getErrorMessage(error, 'guestNumber')}
+                error={this.getErrorMessage(error, 'numOfGuests')}
               />
-              <InputErrorMsg>{this.getErrorMessage(error, 'guestNumber')}</InputErrorMsg>
+              <InputErrorMsg>{this.getErrorMessage(error, 'numOfGuests')}</InputErrorMsg>
             </FormItem>
           </FlexRow>
           <FlexRow>
@@ -219,18 +219,18 @@ class Form extends React.Component {
               <InputErrorMsg>{this.getErrorMessage(error, 'lastName')}</InputErrorMsg>
             </FormItem>
           </FlexRow>
-          <FormItem label="Email" htmlFor="email">
+          <FormItem label="Email" htmlFor="emailAddress">
             <Input
               size="lg"
-              name="email"
-              id="email"
-              type="email"
-              value={data.email.value}
+              name="emailAddress"
+              id="emailAddress"
+              type="emailAddress"
+              value={data.emailAddress.value}
               onChange={this.handleDataChange}
               onBlur={this.handleBlurredChange}
-              error={this.getErrorMessage(error, 'email')}
+              error={this.getErrorMessage(error, 'emailAddress')}
             />
-            <InputErrorMsg>{this.getErrorMessage(error, 'email')}</InputErrorMsg>
+            <InputErrorMsg>{this.getErrorMessage(error, 'emailAddress')}</InputErrorMsg>
           </FormItem>
           <FormItem label="Phone number" htmlFor="phoneNumber">
             <Input
@@ -272,7 +272,7 @@ class Form extends React.Component {
             </label>
             <InputErrorMsg>{this.getErrorMessage(error, 'towelChecked')}</InputErrorMsg>
           </Checkbox>
-          {isSubmitFail && (<SubmitErrorMsg>{submitError}</SubmitErrorMsg>)}
+          {isSubmitFail && (<ServerMsg status="error">{submitError}</ServerMsg>)}
           <ButtonContinue>CONTINUE</ButtonContinue>
         </FormWrapper>
       </>

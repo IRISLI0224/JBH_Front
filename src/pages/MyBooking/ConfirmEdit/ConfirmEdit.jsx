@@ -25,12 +25,13 @@ class ConfirmEdit extends React.Component {
   render() {
     const { formData } = this.props;
     const { handleNextStep } = this.props;
-    console.log(formData, handleNextStep);
     return (
       <Container>
         <ConfirmPage formData={formData} title="Booking changes submitted" />
         <GoBack size="md" onClick={handleNextStep}>
-          {'<'} My Bookings
+          {'<'}
+          {' '}
+          My Bookings
         </GoBack>
       </Container>
     );

@@ -3,6 +3,7 @@ import React from 'react';
 import axios from 'axios';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
+import moment from 'moment';
 import Input from '../../../components/Input';
 import FormItem from '../../../components/FormItem';
 import InputErrorMsg from '../../../components/InputErrorMsg';
@@ -12,7 +13,7 @@ import FormTitle from '../../../components/FormTitle';
 import FormSubTitle from '../../../components/FormSubTitle';
 import FormWrapper from '../../../components/FormWrapper';
 import FlexRow from '../../../components/FlexRow';
-import SubmitErrorMsg from '../../../components/SubmitErrorMsg';
+import ServerMsg from '../../../components/ServerMsg';
 
 const Container = styled.div`
   display: inline-block;
@@ -33,17 +34,16 @@ class EditBooking extends React.Component {
 
     const { formData } = this.props;
     const {
-      bookingDate, guestAmount, firstName, lastName, emailAddress, phoneNumber,
+      bookingDate, numOfGuests, firstName, lastName, emailAddress, phoneNumber,
     } = formData;
 
     this.state = {
-      // wait for value after calling backend api
       data: {
-        selectedDate: initialData(bookingDate),
-        guestNumber: initialData(guestAmount),
+        bookingDate: initialData((moment)(bookingDate).format('YYYY-MM-DD')),
+        numOfGuests: initialData(numOfGuests),
         firstName: initialData(firstName),
         lastName: initialData(lastName),
-        email: initialData(emailAddress),
+        emailAddress: initialData(emailAddress),
         phoneNumber: initialData(phoneNumber),
       },
       isFormSubmit: false,
@@ -120,7 +120,7 @@ class EditBooking extends React.Component {
 
   handleContinueClick = (data, hasError) => {
     const {
-      selectedDate, guestNumber, firstName, lastName, email, phoneNumber,
+      bookingDate, numOfGuests, firstName, lastName, emailAddress, phoneNumber,
     } = data;
     const { handleNextStep, handleFormData } = this.props;
     const updatedData = {};
@@ -131,11 +131,11 @@ class EditBooking extends React.Component {
 
     if (!hasError) {
       axios.post('http://localhost:3000/api/bookings/check', {
-        bookingDate: selectedDate.value,
-        numOfGuests: guestNumber.value,
+        bookingDate: bookingDate.value,
+        numOfGuests: numOfGuests.value,
         firstName: firstName.value,
         lastName: lastName.value,
-        emailAddress: email.value,
+        emailAddress: emailAddress.value,
         phoneNumber: phoneNumber.value,
       })
         .then((response) => {
@@ -179,28 +179,28 @@ class EditBooking extends React.Component {
             }}
           >
             <FlexRow>
-              <FormItem label="Date" htmlFor="selectedDate">
+              <FormItem label="Date" htmlFor="bookingDate">
                 <Input
                   size="smLeft"
-                  name="selectedDate"
-                  id="selectedDate"
+                  name="bookingDate"
+                  id="bookingDate"
                   type="text"
-                  value={data.selectedDate.value}
+                  value={data.bookingDate.value}
                   disabled
                 />
               </FormItem>
-              <FormItem label="Number of guests" htmlFor="guestNumber">
+              <FormItem label="Number of guests" htmlFor="numOfGuests">
                 <Input
                   size="smRight"
-                  name="guestNumber"
-                  id="guestNumber"
-                  value={data.guestNumber.value}
+                  name="numOfGuests"
+                  id="numOfGuests"
+                  value={data.numOfGuests.value}
                   type="number"
                   onChange={this.handleDataChange}
                   onBlur={this.handleBlurredChange}
-                  error={this.getErrorMessage(error, 'guestNumber')}
+                  error={this.getErrorMessage(error, 'numOfGuests')}
                 />
-                <InputErrorMsg>{this.getErrorMessage(error, 'guestNumber')}</InputErrorMsg>
+                <InputErrorMsg>{this.getErrorMessage(error, 'numOfGuests')}</InputErrorMsg>
               </FormItem>
             </FlexRow>
             <FlexRow>
@@ -231,18 +231,18 @@ class EditBooking extends React.Component {
                 <InputErrorMsg>{this.getErrorMessage(error, 'lastName')}</InputErrorMsg>
               </FormItem>
             </FlexRow>
-            <FormItem label="Email" htmlFor="email">
+            <FormItem label="Email" htmlFor="emailAddress">
               <Input
                 size="lg"
-                name="email"
-                id="email"
-                type="email"
-                value={data.email.value}
+                name="emailAddress"
+                id="emailAddress"
+                type="emailAddress"
+                value={data.emailAddress.value}
                 onChange={this.handleDataChange}
                 onBlur={this.handleBlurredChange}
-                error={this.getErrorMessage(error, 'email')}
+                error={this.getErrorMessage(error, 'emailAddress')}
               />
-              <InputErrorMsg>{this.getErrorMessage(error, 'email')}</InputErrorMsg>
+              <InputErrorMsg>{this.getErrorMessage(error, 'emailAddress')}</InputErrorMsg>
             </FormItem>
             <FormItem label="Phone number" htmlFor="phoneNumber">
               <Input
@@ -257,7 +257,7 @@ class EditBooking extends React.Component {
               />
               <InputErrorMsg>{this.getErrorMessage(error, 'phoneNumber')}</InputErrorMsg>
             </FormItem>
-            {isSubmitFail && (<SubmitErrorMsg>{submitError}</SubmitErrorMsg>)}
+            {isSubmitFail && (<ServerMsg status="error">{submitError}</ServerMsg>)}
             <ButtonContinue>SUBMIT</ButtonContinue>
           </FormWrapper>
         </Container>

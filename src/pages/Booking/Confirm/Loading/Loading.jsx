@@ -5,6 +5,7 @@ import styled, { keyframes } from 'styled-components';
 const Container = styled.div`
   text-align: center;
   padding: 5rem;
+  font-family: 'Roboto';
 `;
 
 const Wrapper = styled.div`
