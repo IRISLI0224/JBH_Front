@@ -87,7 +87,7 @@ class Booking extends React.Component {
             handleFormData={this.handleFormData}
           />
         )}
-        {step === 3 && (
+        {step === 3 && formData !== undefined && (
         <Confirm
           paid={paid}
           formData={formData}

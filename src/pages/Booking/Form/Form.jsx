@@ -117,7 +117,7 @@ class Form extends React.Component {
       numOfGuests, firstName, lastName, emailAddress, phoneNumber, birthDate,
     } = data;
     const { date, handleFormData, handleNextStep } = this.props;
-    const formData = { price: 100 * numOfGuests.value };
+    const formData = { price: 100 * numOfGuests.value, bookingDate: date };
     Object.entries(data).map(([key, value]) => {
       formData[key] = value.value;
       return formData;

@@ -122,6 +122,7 @@ class EditBooking extends React.Component {
     const {
       bookingDate, numOfGuests, firstName, lastName, emailAddress, phoneNumber,
     } = data;
+    console.log(data);
     const { handleNextStep, handleFormData } = this.props;
     const updatedData = {};
     Object.entries(data).map(([key, value]) => {
@@ -156,8 +157,11 @@ class EditBooking extends React.Component {
 
   render() {
     const { formData } = this.props;
-    const { bookingNum } = formData[0];
-    console.log(formData[0]);
+    let { bookingNum } = '';
+    if ((formData[0]) !== undefined) {
+      bookingNum = formData[0].bookingNum;
+    }
+    // console.log(formData[0]);
     const { data, isSubmitFail, submitError } = this.state;
 
     const error = this.getError(data);

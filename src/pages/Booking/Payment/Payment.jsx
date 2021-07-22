@@ -29,10 +29,10 @@ const Payment = ({
 }) => {
   const newFormData = {
     bookingDate: date,
-    numOfGuests: formData.guestNumber,
+    numOfGuests: formData.numOfGuests,
     firstName: formData.firstName,
     lastName: formData.lastName,
-    emailAddress: formData.email,
+    emailAddress: formData.emailAddress,
     phoneNumber: formData.phoneNumber,
     dateOfBirth: formData.birthDate,
     paymentAmount: formData.price * 0.5,
@@ -46,6 +46,7 @@ const Payment = ({
       <Elements stripe={stripeTestPromise}>
         <CheckoutForm
           formData={newFormData}
+          oldformData={formData}
           handlePaidStatus={handlePaidStatus}
           handleFormData={handleFormData}
           handleNextStep={handleNextStep}
