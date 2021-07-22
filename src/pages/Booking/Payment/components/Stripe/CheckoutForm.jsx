@@ -156,10 +156,21 @@ class CheckoutForm extends React.Component {
     }
   };
 
-  handleClick = (bookingRes) => {
-    const { handlePaidStatus, handleNextStep, handleFormData } = this.props;
+  handleClick = () => {
+    const { handlePaidStatus, handleNextStep } = this.props;
     handlePaidStatus();
-    handleFormData(bookingRes);
+    // const newFormData = {
+    //   bookingDate: bookingRes.date,
+    //   numOfGuests: bookingRes.numOfGuests,
+    //   firstName: formData.firstName,
+    //   lastName: formData.lastName,
+    //   emailAddress: formData.emailAddress,
+    //   phoneNumber: formData.phoneNumber,
+    //   dateOfBirth: formData.birthDate,
+    //   paymentAmount: formData.price * 0.5,
+    // };
+    // handleFormData(bookingRes);
+    // 暂时删了bookingRes
     handleNextStep();
   };
 
@@ -212,14 +223,14 @@ CheckoutForm.propTypes = {
   // eslint-disable-next-line react/forbid-prop-types
   formData: PropTypes.object.isRequired,
   handlePaidStatus: PropTypes.func.isRequired,
-  handleFormData: PropTypes.func.isRequired,
+  // handleFormData: PropTypes.func.isRequired,
   handleNextStep: PropTypes.func.isRequired,
 };
 
 const InjectedCheckoutForm = ({
   formData,
   handlePaidStatus,
-  handleFormData,
+  // handleFormData,
   handleNextStep,
 }) => (
   <ElementsConsumer>
@@ -229,7 +240,7 @@ const InjectedCheckoutForm = ({
         stripe={stripe}
         formData={formData}
         handlePaidStatus={handlePaidStatus}
-        handleFormData={handleFormData}
+        // handleFormData={handleFormData}
         handleNextStep={handleNextStep}
       />
     )}
@@ -240,7 +251,7 @@ InjectedCheckoutForm.propTypes = {
   // eslint-disable-next-line react/forbid-prop-types
   formData: PropTypes.object.isRequired,
   handlePaidStatus: PropTypes.func.isRequired,
-  handleFormData: PropTypes.func.isRequired,
+  // handleFormData: PropTypes.func.isRequired,
   handleNextStep: PropTypes.func.isRequired,
 };
 export default InjectedCheckoutForm;

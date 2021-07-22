@@ -74,9 +74,8 @@ line-height: 26px;
 /* identical to box height, or 162% */
 letter-spacing: 0.46px;
 text-transform: uppercase;
-Margin-top: 250px;
 color: #818181;
-margin-top:150px`;
+margin-top: 4rem;`;
 
 const ViewBooking = ({
   BookingDetails, handleNextStep, ready, handleFormData, today,

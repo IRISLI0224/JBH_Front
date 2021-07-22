@@ -4,7 +4,11 @@ import Loading from './Loading';
 import ConfirmPage from '../../../components/ConfirmPage';
 
 const Confirm = ({ formData }) => (Object.keys(formData).length > 0 ? (
-  <ConfirmPage title="Booking Confirmed" />
+
+  <ConfirmPage
+    formData={formData}
+    title="Booking Confirmed"
+  />
 ) : (
   <Loading />
 ));

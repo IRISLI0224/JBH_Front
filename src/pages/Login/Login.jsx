@@ -1,18 +1,17 @@
 import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
-
 import Input from '../../components/Input';
 import FormItem from '../../components/FormItem';
-import validate from '../../components/Form/validate';
-import ErrorMsg from '../../components/ErrorMsg';
+import validate from '../Booking/Form/validate';
+import InputErrorMsg from '../../components/InputErrorMsg';
 import ButtonContinue from '../../components/ButtonContinue';
 import FormTitle from '../../components/FormTitle';
 import FormSubTitle from '../../components/FormSubTitle';
 import FormWrapper from '../../components/FormWrapper';
-
 import { loginUser } from '../../apis/auth';
 import { setToken } from '../../utils/authentication';
+import ServerMsg from '../../components/ServerMsg';
 
 const Container = styled.div`
   display: inline-block;
@@ -126,7 +125,7 @@ class Login extends React.Component {
     return (
       <>
         <Container>
-          <FormTitle variant="primary">Guest Login</FormTitle>
+          <FormTitle variant="primary">Login</FormTitle>
           <FormSubTitle font="special">Log in to manage bookings</FormSubTitle>
           <FormWrapper
             onSubmit={(e) => {
@@ -148,7 +147,7 @@ class Login extends React.Component {
                 onBlur={this.handleBlurredChange}
                 error={this.getErrorMessage(error, 'email')}
               />
-              <ErrorMsg>{this.getErrorMessage(error, 'email')}</ErrorMsg>
+              <InputErrorMsg>{this.getErrorMessage(error, 'email')}</InputErrorMsg>
             </FormItem>
             <FormItem label="Password" htmlFor="password">
               <Input
@@ -161,11 +160,11 @@ class Login extends React.Component {
                 onBlur={this.handleBlurredChange}
                 error={this.getErrorMessage(error, 'password')}
               />
-              <ErrorMsg>{this.getErrorMessage(error, 'password')}</ErrorMsg>
+              <InputErrorMsg>{this.getErrorMessage(error, 'password')}</InputErrorMsg>
             </FormItem>
             <ButtonContinue onClick={this.login}>LOGIN</ButtonContinue>
-            {!!authError && <ErrorMsg>login fail</ErrorMsg>}
-            {!!isLoading && <ErrorMsg>Isloading</ErrorMsg>}
+            {!!authError && <ServerMsg status="error">Login failed, Please try again.</ServerMsg>}
+            {!!isLoading && <ServerMsg status="success">Login Success!</ServerMsg>}
           </FormWrapper>
         </Container>
       </>

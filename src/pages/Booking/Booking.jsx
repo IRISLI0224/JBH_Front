@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import Form from '../../components/Form';
+import Form from './Form';
 import Payment from './Payment';
 import Confirm from './Confirm';
 import ProgressionBar from './ProgressionBar';
@@ -87,7 +87,7 @@ class Booking extends React.Component {
             handleFormData={this.handleFormData}
           />
         )}
-        {step === 3 && (
+        {step === 3 && formData !== undefined && (
         <Confirm
           paid={paid}
           formData={formData}

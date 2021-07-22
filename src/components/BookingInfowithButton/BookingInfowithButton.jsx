@@ -22,17 +22,14 @@ const EditButton = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 15px;
+  padding: 0.6rem 1.2rem;
   background: #181B50;
   box-shadow: 0px 3px 1px -2px rgba(0, 0, 0, 0.2), 0px 2px 2px rgba(0, 0, 0, 0.14), 0px 1px 5px rgba(0, 0, 0, 0.12);
   border-radius: 4px;
   font-family: Roboto;
-  font-style: normal;
-  font-weight: 500;
   font-size: 13px;
   line-height: 22px;
   letter-spacing: 0.46px;
-  text-transform: uppercase;
   color: #FFFFFF;
   flex: none;
   order: 0;
@@ -58,7 +55,7 @@ const BookingInfowithButton = ({
       <EditButton
         onClick={handleClick}
       >
-        Edit
+        EDIT
       </EditButton>
     </Container>
   );

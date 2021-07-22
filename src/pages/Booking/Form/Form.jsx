@@ -1,16 +1,17 @@
 import React from 'react';
-// import axios from 'axios';
+import axios from 'axios';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
-import Input from '../Input';
-import FormItem from '../FormItem';
+import Input from '../../../components/Input';
+import FormItem from '../../../components/FormItem';
 import validate from './validate';
-import ErrorMsg from '../ErrorMsg';
-import ButtonContinue from '../ButtonContinue';
-import FormTitle from '../FormTitle';
-import FormSubTitle from '../FormSubTitle';
-import FormWrapper from '../FormWrapper';
-import FlexRow from '../FlexRow';
+import InputErrorMsg from '../../../components/InputErrorMsg';
+import ButtonContinue from '../../../components/ButtonContinue';
+import FormTitle from '../../../components/FormTitle';
+import FormSubTitle from '../../../components/FormSubTitle';
+import FormWrapper from '../../../components/FormWrapper';
+import FlexRow from '../../../components/FlexRow';
+import ServerMsg from '../../../components/ServerMsg';
 
 const Checkbox = styled.div`
   font-family: 'Raleway';
@@ -28,26 +29,26 @@ class Form extends React.Component {
     this.state = {
 
       data: {
-        guestNumber: initialData,
+        numOfGuests: initialData,
         firstName: initialData,
         lastName: initialData,
-        email: initialData,
+        emailAddress: initialData,
         phoneNumber: initialData,
         birthDate: initialData,
         towelChecked: {
           value: false,
         },
-        price: {
-          value: 200,
-        },
       },
       isFormSubmit: false,
+      isSubmitFail: false,
+      submitError: '',
     };
 
     this.handleDataChange = this.handleDataChange.bind(this);
     this.handleIsFormSubmitChange = this.handleIsFormSubmitChange.bind(this);
     this.handleBlurredChange = this.handleBlurredChange.bind(this);
     this.handleContinueClick = this.handleContinueClick.bind(this);
+    this.getSubmitError = this.getSubmitError.bind(this);
   }
 
   handleDataChange(event) {
@@ -104,33 +105,51 @@ class Form extends React.Component {
     return error;
   }
 
+  getSubmitError(error) {
+    this.setState({
+      isSubmitFail: true,
+      submitError: error,
+    });
+  }
+
   handleContinueClick = (data, hasError) => {
-    // const { guestNumber, firstName, lastName, email, phoneNumber, birthDate } = data;
-    const { handleFormData, handleNextStep } = this.props;
-    const formData = {};
+    const {
+      numOfGuests, firstName, lastName, emailAddress, phoneNumber, birthDate,
+    } = data;
+    const { date, handleFormData, handleNextStep } = this.props;
+    const formData = { price: 100 * numOfGuests.value, bookingDate: date };
     Object.entries(data).map(([key, value]) => {
       formData[key] = value.value;
       return formData;
     });
-
     if (!hasError) {
-      // axios.post(``, {
-      //   bookingDate: date,
-      //   numOfGuests: guestNumber.value,
-      //   firstName: firstName.value,
-      //   lastName: lastName.value,
-      //   emailAddress: email.value,
-      //   phoneNumber: phoneNumber.value,
-      //   dateOfBirth: birthDate.value,
-      // })
-
-      handleFormData(formData);
-      handleNextStep();
+      axios.post('http://localhost:3000/api/bookings/check', {
+        bookingDate: date,
+        numOfGuests: numOfGuests.value,
+        firstName: firstName.value,
+        lastName: lastName.value,
+        emailAddress: emailAddress.value,
+        phoneNumber: phoneNumber.value,
+        dateOfBirth: birthDate.value,
+      })
+        .then((response) => {
+          if (response.status === 200) {
+            handleFormData(formData);
+            handleNextStep();
+          }
+        })
+        .catch((error) => {
+          if (error.response.status === 406) {
+            this.getSubmitError(error.response.data);
+          } else {
+            this.getSubmitError('Fail to submit, please try again');
+          }
+        });
     }
   };
 
   render() {
-    const { data } = this.state;
+    const { data, isSubmitFail, submitError } = this.state;
     const { date } = this.props;
     const error = this.getError(data);
     const hasError = Object.keys(error).length > 0;
@@ -158,18 +177,18 @@ class Form extends React.Component {
                 disabled
               />
             </FormItem>
-            <FormItem label="Number of guests" htmlFor="guestNumber">
+            <FormItem label="Number of guests" htmlFor="numOfGuests">
               <Input
                 size="smRight"
-                name="guestNumber"
-                id="guestNumber"
-                value={data.guestNumber.value}
+                name="numOfGuests"
+                id="numOfGuests"
+                value={data.numOfGuests.value}
                 type="number"
                 onChange={this.handleDataChange}
                 onBlur={this.handleBlurredChange}
-                error={this.getErrorMessage(error, 'guestNumber')}
+                error={this.getErrorMessage(error, 'numOfGuests')}
               />
-              <ErrorMsg>{this.getErrorMessage(error, 'guestNumber')}</ErrorMsg>
+              <InputErrorMsg>{this.getErrorMessage(error, 'numOfGuests')}</InputErrorMsg>
             </FormItem>
           </FlexRow>
           <FlexRow>
@@ -184,7 +203,7 @@ class Form extends React.Component {
                 onBlur={this.handleBlurredChange}
                 error={this.getErrorMessage(error, 'firstName')}
               />
-              <ErrorMsg>{this.getErrorMessage(error, 'firstName')}</ErrorMsg>
+              <InputErrorMsg>{this.getErrorMessage(error, 'firstName')}</InputErrorMsg>
             </FormItem>
             <FormItem label="Last Name" htmlFor="lastName">
               <Input
@@ -197,21 +216,21 @@ class Form extends React.Component {
                 onBlur={this.handleBlurredChange}
                 error={this.getErrorMessage(error, 'lastName')}
               />
-              <ErrorMsg>{this.getErrorMessage(error, 'lastName')}</ErrorMsg>
+              <InputErrorMsg>{this.getErrorMessage(error, 'lastName')}</InputErrorMsg>
             </FormItem>
           </FlexRow>
-          <FormItem label="Email" htmlFor="email">
+          <FormItem label="Email" htmlFor="emailAddress">
             <Input
               size="lg"
-              name="email"
-              id="email"
-              type="email"
-              value={data.email.value}
+              name="emailAddress"
+              id="emailAddress"
+              type="emailAddress"
+              value={data.emailAddress.value}
               onChange={this.handleDataChange}
               onBlur={this.handleBlurredChange}
-              error={this.getErrorMessage(error, 'email')}
+              error={this.getErrorMessage(error, 'emailAddress')}
             />
-            <ErrorMsg>{this.getErrorMessage(error, 'email')}</ErrorMsg>
+            <InputErrorMsg>{this.getErrorMessage(error, 'emailAddress')}</InputErrorMsg>
           </FormItem>
           <FormItem label="Phone number" htmlFor="phoneNumber">
             <Input
@@ -224,7 +243,7 @@ class Form extends React.Component {
               onBlur={this.handleBlurredChange}
               error={this.getErrorMessage(error, 'phoneNumber')}
             />
-            <ErrorMsg>{this.getErrorMessage(error, 'phoneNumber')}</ErrorMsg>
+            <InputErrorMsg>{this.getErrorMessage(error, 'phoneNumber')}</InputErrorMsg>
           </FormItem>
           <FormItem label="Date of birth" htmlFor="birthDate">
             <Input
@@ -237,7 +256,7 @@ class Form extends React.Component {
               onBlur={this.handleBlurredChange}
               error={this.getErrorMessage(error, 'birthDate')}
             />
-            <ErrorMsg>{this.getErrorMessage(error, 'birthDate')}</ErrorMsg>
+            <InputErrorMsg>{this.getErrorMessage(error, 'birthDate')}</InputErrorMsg>
           </FormItem>
           <FormTitle variant="secondary">Please read and select before the payment</FormTitle>
           <Checkbox>
@@ -251,8 +270,9 @@ class Form extends React.Component {
               />
               I will either bring my own large bath towel or purchase one on the day
             </label>
-            <ErrorMsg>{this.getErrorMessage(error, 'towelChecked')}</ErrorMsg>
+            <InputErrorMsg>{this.getErrorMessage(error, 'towelChecked')}</InputErrorMsg>
           </Checkbox>
+          {isSubmitFail && (<ServerMsg status="error">{submitError}</ServerMsg>)}
           <ButtonContinue>CONTINUE</ButtonContinue>
         </FormWrapper>
       </>

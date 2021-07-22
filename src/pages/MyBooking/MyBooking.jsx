@@ -14,13 +14,13 @@ class MyBooking extends React.Component {
       formData: [],
       ready: false,
       allData: [],
-      Email: '',
+      email: '',
       today: '',
     };
     this.handleNextStep = this.handleNextStep.bind(this);
     this.handleFormData = this.handleFormData.bind(this);
     const history = this.props;
-    this.state.Email = history.location.email; //eslint-disable-line
+    this.state.email = history.location.email; //eslint-disable-line
     this.getBookingDetails();
     const myDate = new Date();
     const currentdate = `${myDate.getFullYear()}-${myDate.getMonth() + 1}-${myDate.getDate()}`;
@@ -42,9 +42,9 @@ class MyBooking extends React.Component {
   }
 
   async getBookingDetails() {
-    const { Email } = this.state;
+    const { email } = this.state;
     this.setState({
-      allData: await getUserByPhone(Email),
+      allData: await getUserByPhone(email),
       ready: true,
     });
   }
