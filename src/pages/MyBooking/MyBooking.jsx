@@ -52,10 +52,10 @@ class MyBooking extends React.Component {
       step, formData, BookingDetails, ready, allData, today,
     } = this.state;
     // console.log(ready ? allData.bookings : 'not ready');
-    console.log(today);
+    // console.log(ready +" "+typeof(allData.bookings));
     return (
       <>
-        {step === 1 && ready === true && (
+        {step === 1 && ready === true && typeof (allData.bookings) !== 'undefined' && (
           <ViewBooking
             BookingDetails={allData.bookings}
             handleNextStep={this.handleNextStep}

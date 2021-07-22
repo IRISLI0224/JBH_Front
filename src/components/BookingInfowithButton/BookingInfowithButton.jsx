@@ -48,7 +48,6 @@ const BookingInfowithButton = ({
     handleFormData(formData);
     handleNextStep();
   };
-
   return (
     <Container>
       <BookingInfo
@@ -71,7 +70,10 @@ BookingInfowithButton.propTypes = {
   guestAmount: PropTypes.number.isRequired,
   handleNextStep: PropTypes.func.isRequired,
   handleFormData: PropTypes.func.isRequired,
-  formData: PropTypes.arrayOf(PropTypes.string).isRequired,
+  formData: PropTypes.arrayOf(PropTypes.object),
 };
 
+BookingInfowithButton.defaultProps = {
+  formData: [],
+};
 export default BookingInfowithButton;

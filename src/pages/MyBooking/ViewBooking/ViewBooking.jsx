@@ -95,10 +95,11 @@ const ViewBooking = ({
         BookingDetails.map((bookings) => (
           (moment)(bookings.bookingDate).format('YYYY-MM-DD') >= today && (
           <BookingInfowithButton
+            key={bookings.bookingNum}
             date={ready ? (moment)(bookings.bookingDate).format('YYYY-MM-DD') : ''}
             id={ready ? bookings.bookingNum : '0'}
             guestAmount={ready ? bookings.numOfGuests : 0}
-            formData={ready ? bookings : []}
+            formData={ready ? (Array)(bookings) : []}
             handleNextStep={handleNextStep}
             handleFormData={handleFormData}
           />
@@ -117,7 +118,7 @@ const ViewBooking = ({
 
 ViewBooking.propTypes = {
   // 下两条type验证有问题
-  BookingDetails: PropTypes.arrayOf(PropTypes.array),
+  BookingDetails: PropTypes.arrayOf(PropTypes.object),
   handleNextStep: PropTypes.func.isRequired,
   handleFormData: PropTypes.func.isRequired,
   ready: PropTypes.bool,
