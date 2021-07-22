@@ -79,7 +79,7 @@ color: #818181;
 margin-top:150px`;
 
 const ViewBooking = ({
-  BookingDetails, handleNextStep, ready, handleFormData,
+  BookingDetails, handleNextStep, ready, handleFormData, today,
 }) => (
   <>
     <BookingCard>
@@ -90,20 +90,20 @@ const ViewBooking = ({
       <UpcomingTitle>Upcoming</UpcomingTitle>
       <Vector1 />
       <Vector2 />
-      {console.log(BookingDetails)}
+      {/* {console.log(ready)} */}
       {BookingDetails.length !== 0 && (
-        BookingDetails.map((bookings, index) => (
+        BookingDetails.map((bookings) => (
+          (moment)(bookings.bookingDate).format('YYYY-MM-DD') >= today && (
           <BookingInfowithButton
-            // key={index}
+            key={bookings.bookingNum}
             date={ready ? (moment)(bookings.bookingDate).format('YYYY-MM-DD') : ''}
-            // id={ready ? bookings._id : '0'}
-            id={ready ? index : '0'}
+            id={ready ? bookings.bookingNum : '0'}
             guestAmount={ready ? bookings.numOfGuests : 0}
-            formData={ready ? bookings : []}
+            formData={ready ? (Array)(bookings) : []}
             handleNextStep={handleNextStep}
             handleFormData={handleFormData}
-
           />
+          )
         ))
       )}
       <BacktoAvailability>
@@ -118,14 +118,16 @@ const ViewBooking = ({
 
 ViewBooking.propTypes = {
   // 下两条type验证有问题
-  BookingDetails: PropTypes.arrayOf(PropTypes.array),
+  BookingDetails: PropTypes.arrayOf(PropTypes.object),
   handleNextStep: PropTypes.func.isRequired,
   handleFormData: PropTypes.func.isRequired,
   ready: PropTypes.bool,
+  today: PropTypes.string,
 };
 
 ViewBooking.defaultProps = {
   BookingDetails: [],
   ready: false,
+  today: '',
 };
 export default ViewBooking;
