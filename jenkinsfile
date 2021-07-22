@@ -7,7 +7,7 @@ pipeline {
 
     environment {
         BUCKET_NAME = 's3://jrproject3web'
-        WORKSPACE_PATH = '/var/jenkins_home/workspace/project3-fronted/dist' // pipeline project name
+        WORKSPACE_PATH = '/var/jenkins_home/workspace/project3-fronted/build' // pipeline project name
     }
 
     stages {
