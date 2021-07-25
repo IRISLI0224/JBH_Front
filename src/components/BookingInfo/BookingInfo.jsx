@@ -14,7 +14,7 @@ const Container = styled.div`
 const BookingDate = styled.div`
   display: flex;
   flex-direction: column;
-  margin-right:2.3rem;
+  margin-right: 2.3rem;
 `;
 
 const Day = styled.div`
@@ -48,7 +48,7 @@ const GuestAmount = styled.span``;
 
 //= =================== BOOKINGINFO COMPONENT ====================
 const BookingInfo = ({ date, id, guestAmount }) => {
-  const day = date.split('-')[2];
+  const day = date.split('-')[2].substring(0, 2);
 
   const monthIndex = parseInt(date.split('-')[1], 10);
   const monthTable = [

@@ -31,8 +31,9 @@ const Line = styled.div`
 
 const ConfirmPage = ({
   formData: {
-    firstName, emailAddress, bookingDate, bookingNum, numOfGuests,
-  }, title,
+    firstName, email, bookingDate, bookingNum, numOfGuests,
+  },
+  title,
 }) => (
   <Container>
     <FontAwesomeIcon color="#181b50" size="4x" icon={faCheckCircle} />
@@ -44,7 +45,7 @@ const ConfirmPage = ({
       , we&apos;re looking forward to see you soon!
       <br />
       Confirmation email send to &nbsp;
-      <a href={emailAddress}>{emailAddress}</a>
+      <a href={email}>{email}</a>
     </ConfirmedMessage>
 
     <Line />

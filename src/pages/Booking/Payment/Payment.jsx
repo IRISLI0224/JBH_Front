@@ -20,23 +20,36 @@ const PUBLIC_KEY = 'pk_test_51JAT9YC8FjBDUp9B7ovNxTZYvGyOeuWnLvddN3VrH0I5sfleL0e
 
 const stripeTestPromise = loadStripe(PUBLIC_KEY);
 
+const formatFormData = (formData) => {
+  // check if the data has already been formatted.
+  // eslint-disable-next-line no-prototype-builtins
+  if (formData.hasOwnProperty('emailAddress')) {
+    // add new keys
+    const newFormData = {
+      ...formData,
+      paidAmount: formData.price * 0.5,
+      gender: formData.gender ? formData.gender : true,
+      email: formData.emailAddress,
+      phone: formData.phoneNumber,
+      dateOfBirth: formData.birthDate,
+    };
+    delete newFormData.price;
+    delete newFormData.towelChecked;
+    delete newFormData.emailAddress;
+    delete newFormData.phoneNumber;
+    delete newFormData.birthDate;
+    return newFormData;
+  }
+  return formData;
+};
+
 const Payment = ({
-  date,
   formData,
   handlePaidStatus,
   handleFormData,
   handleNextStep,
 }) => {
-  const newFormData = {
-    bookingDate: date,
-    numOfGuests: formData.numOfGuests,
-    firstName: formData.firstName,
-    lastName: formData.lastName,
-    emailAddress: formData.emailAddress,
-    phoneNumber: formData.phoneNumber,
-    dateOfBirth: formData.birthDate,
-    paymentAmount: formData.price * 0.5,
-  };
+  const newFormData = formatFormData(formData);
   return (
     <PaymentContainer>
       <PaymentTitle>Payment</PaymentTitle>
@@ -46,7 +59,6 @@ const Payment = ({
       <Elements stripe={stripeTestPromise}>
         <CheckoutForm
           formData={newFormData}
-          oldformData={formData}
           handlePaidStatus={handlePaidStatus}
           handleFormData={handleFormData}
           handleNextStep={handleNextStep}
@@ -57,7 +69,6 @@ const Payment = ({
 };
 
 Payment.propTypes = {
-  date: PropTypes.string.isRequired,
   // eslint-disable-next-line react/forbid-prop-types
   formData: PropTypes.object.isRequired,
   handlePaidStatus: PropTypes.func.isRequired,

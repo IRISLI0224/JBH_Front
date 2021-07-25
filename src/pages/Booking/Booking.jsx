@@ -80,7 +80,6 @@ class Booking extends React.Component {
         )}
         {step === 2 && (
           <Payment
-            date={date}
             formData={formData}
             handlePaidStatus={this.handlePaidStatus}
             handleNextStep={this.handleNextStep}
@@ -88,11 +87,11 @@ class Booking extends React.Component {
           />
         )}
         {step === 3 && formData !== undefined && (
-        <Confirm
-          paid={paid}
-          formData={formData}
-          ConfirmTitle="Booking Confirmed"
-        />
+          <Confirm
+            paid={paid}
+            formData={formData}
+            ConfirmTitle="Booking Confirmed"
+          />
         )}
         <GoBackButton onClick={this.handlePreStep}>
           {'<'}
