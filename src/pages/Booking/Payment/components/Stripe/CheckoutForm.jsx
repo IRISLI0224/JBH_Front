@@ -1,11 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { CardElement, ElementsConsumer } from '@stripe/react-stripe-js';
-// import axios from 'axios';
 import styled, { css } from 'styled-components';
 
-// import { BASE_URL } from '../../constant';
 import addBooking from '../../../../../apis/addBooking';
+import createPayment from '../../../../../apis/createPayment';
 
 const Form = styled.form`
   margin: 1.25rem auto;
@@ -87,6 +86,24 @@ class CheckoutForm extends React.Component {
     });
   };
 
+  // eslint-disable-next-line consistent-return
+  addBooking = async () => {
+    const { formData } = this.props;
+    try {
+      const response = await addBooking(formData);
+      return response.data;
+    } catch (error) {
+      if (error.response) {
+        error.message = error.response.data.message;
+      } else if (error.request) {
+        // The request was made but no response was received
+        error.message = 'The request was made but no response was received, try again later';
+      }
+      this.setErrorMessage(error);
+      this.setConfirmMessageAndButton(undefined, false);
+    }
+  };
+
   setPayment = async () => {
     const { stripe, elements } = this.props; // eslint-disable-line
 
@@ -103,7 +120,7 @@ class CheckoutForm extends React.Component {
     });
 
     if (error) {
-      // when the card details are not valid.
+      // when the card details are invalid.
       this.setErrorMessage(error);
       this.setConfirmMessageAndButton(undefined, false);
     } else {
@@ -116,19 +133,26 @@ class CheckoutForm extends React.Component {
 
       try {
         const { id } = paymentMethod;
-        const { formData } = this.props;
-        const bookingAndPayment = { ...formData, id };
-
+        const {
+          formData: { paidAmount, email },
+        } = this.props;
+        const paymentInfo = {
+          amount: paidAmount * 100,
+          id,
+          receipt_email: email,
+        };
         // send booking info (and payment id) to backend
-        const response = await addBooking(bookingAndPayment);
-
+        const response = await createPayment(paymentInfo);
         // when payment was successful
-        this.setConfirmMessageAndButton('payment successful!', true);
-        return response.data; // eslint-disable-line
-
-        // eslint-disable-next-line
+        if (response.data.success) {
+          // this.setConfirmMessageAndButton(response.data.message, true);
+          return response.data; // eslint-disable-line
+        }
+        // when payment was unsuccessful
+        this.setConfirmMessageAndButton(response.data.message, false);
+        // eslint-disable-next-line no-shadow
       } catch (error) {
-        // when payment/addBooking was unsuccessful
+        // when an exception was caught during payment transaction.
         if (error.response) {
           error.message = error.response.data.message;
         } else if (error.request) {
@@ -147,39 +171,33 @@ class CheckoutForm extends React.Component {
 
     const { error } = this.state;
 
-    let paymentResponse = {};
+    let paymentResponse = null;
+    let bookingResponse = null;
     // eslint-disable-next-line no-unused-expressions
     !error && (paymentResponse = await this.setPayment());
     // eslint-disable-next-line no-unused-expressions
     if (paymentResponse) {
-      !!paymentResponse.success && this.handleClick(paymentResponse); // eslint-disable-line
+      // !!paymentResponse.success && this.handleClick(paymentResponse); // eslint-disable-line
+      bookingResponse = await this.addBooking(); // eslint-disable-line
+    }
+    if (bookingResponse) {
+      !!bookingResponse.bookingNum && this.handleClick(bookingResponse); // eslint-disable-line
     }
   };
 
-  handleClick = () => {
-    const { handlePaidStatus, handleNextStep } = this.props;
+  handleClick = (bookingResponse) => {
+    const { handlePaidStatus, handleNextStep, handleFormData } = this.props;
     handlePaidStatus();
-    // const newFormData = {
-    //   bookingDate: bookingRes.date,
-    //   numOfGuests: bookingRes.numOfGuests,
-    //   firstName: formData.firstName,
-    //   lastName: formData.lastName,
-    //   emailAddress: formData.emailAddress,
-    //   phoneNumber: formData.phoneNumber,
-    //   dateOfBirth: formData.birthDate,
-    //   paymentAmount: formData.price * 0.5,
-    // };
-    // handleFormData(bookingRes);
-    // 暂时删了bookingRes
+    handleFormData(bookingResponse);
     handleNextStep();
   };
 
   render() {
     const { error, confirmMessage, isButtonDisabled } = this.state;
     const {
-      formData: { paymentAmount },
+      formData: { paidAmount },
     } = this.props;
-    const price = paymentAmount * 2;
+    const price = paidAmount * 2;
     return (
       <>
         <Form onSubmit={this.handleSubmit}>
@@ -201,7 +219,7 @@ class CheckoutForm extends React.Component {
             <br />
             <b>
               Payment total (50%): AU$
-              {paymentAmount}
+              {paidAmount}
             </b>
           </div>
           <FormStatement>
@@ -210,7 +228,7 @@ class CheckoutForm extends React.Component {
           </FormStatement>
           <Button type="submit" disabled={isButtonDisabled}>
             Pay AU$
-            {paymentAmount}
+            {paidAmount}
           </Button>
           <br />
         </Form>
@@ -223,14 +241,14 @@ CheckoutForm.propTypes = {
   // eslint-disable-next-line react/forbid-prop-types
   formData: PropTypes.object.isRequired,
   handlePaidStatus: PropTypes.func.isRequired,
-  // handleFormData: PropTypes.func.isRequired,
+  handleFormData: PropTypes.func.isRequired,
   handleNextStep: PropTypes.func.isRequired,
 };
 
 const InjectedCheckoutForm = ({
   formData,
   handlePaidStatus,
-  // handleFormData,
+  handleFormData,
   handleNextStep,
 }) => (
   <ElementsConsumer>
@@ -240,7 +258,7 @@ const InjectedCheckoutForm = ({
         stripe={stripe}
         formData={formData}
         handlePaidStatus={handlePaidStatus}
-        // handleFormData={handleFormData}
+        handleFormData={handleFormData}
         handleNextStep={handleNextStep}
       />
     )}
@@ -251,7 +269,7 @@ InjectedCheckoutForm.propTypes = {
   // eslint-disable-next-line react/forbid-prop-types
   formData: PropTypes.object.isRequired,
   handlePaidStatus: PropTypes.func.isRequired,
-  // handleFormData: PropTypes.func.isRequired,
+  handleFormData: PropTypes.func.isRequired,
   handleNextStep: PropTypes.func.isRequired,
 };
 export default InjectedCheckoutForm;
