@@ -54,8 +54,8 @@ const Error = styled.div`
   border-radius: 4px;
   background-color: #fdecea;
   color: red;
-  margin: 0 auto 0.625rem auto;
-  max-width: 22rem;
+  margin: 0 auto 1.25rem;
+  max-width: max-content;
 `;
 
 const Transaction = styled(Error)`
