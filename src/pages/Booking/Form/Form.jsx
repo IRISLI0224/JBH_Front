@@ -1,5 +1,4 @@
 import React from 'react';
-import axios from 'axios';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import Input from '../../../components/Input';
@@ -32,9 +31,9 @@ class Form extends React.Component {
         numOfGuests: initialData,
         firstName: initialData,
         lastName: initialData,
-        emailAddress: initialData,
-        phoneNumber: initialData,
-        birthDate: initialData,
+        email: initialData,
+        phone: initialData,
+        dateOfBirth: initialData,
         towelChecked: {
           value: false,
         },
@@ -197,44 +196,44 @@ class Form extends React.Component {
               <InputErrorMsg>{this.getErrorMessage(error, 'lastName')}</InputErrorMsg>
             </FormItem>
           </FlexRow>
-          <FormItem label="Email" htmlFor="emailAddress">
+          <FormItem label="Email" htmlFor="email">
             <Input
               size="lg"
-              name="emailAddress"
-              id="emailAddress"
-              type="emailAddress"
-              value={data.emailAddress.value}
+              name="email"
+              id="email"
+              type="email"
+              value={data.email.value}
               onChange={this.handleDataChange}
               onBlur={this.handleBlurredChange}
-              error={this.getErrorMessage(error, 'emailAddress')}
+              error={this.getErrorMessage(error, 'email')}
             />
-            <InputErrorMsg>{this.getErrorMessage(error, 'emailAddress')}</InputErrorMsg>
+            <InputErrorMsg>{this.getErrorMessage(error, 'email')}</InputErrorMsg>
           </FormItem>
-          <FormItem label="Phone number" htmlFor="phoneNumber">
+          <FormItem label="Phone number" htmlFor="phone">
             <Input
               size="lg"
-              name="phoneNumber"
-              id="phoneNumber"
+              name="phone"
+              id="phone"
               type="text"
-              value={data.phoneNumber.value}
+              value={data.phone.value}
               onChange={this.handleDataChange}
               onBlur={this.handleBlurredChange}
-              error={this.getErrorMessage(error, 'phoneNumber')}
+              error={this.getErrorMessage(error, 'phone')}
             />
-            <InputErrorMsg>{this.getErrorMessage(error, 'phoneNumber')}</InputErrorMsg>
+            <InputErrorMsg>{this.getErrorMessage(error, 'phone')}</InputErrorMsg>
           </FormItem>
-          <FormItem label="Date of birth" htmlFor="birthDate">
+          <FormItem label="Date of birth" htmlFor="dateOfBirth">
             <Input
               size="lg"
-              name="birthDate"
-              id="birthDate"
+              name="dateOfBirth"
+              id="dateOfBirth"
               type="date"
-              value={data.birthDate.value}
+              value={data.dateOfBirth.value}
               onChange={this.handleDataChange}
               onBlur={this.handleBlurredChange}
-              error={this.getErrorMessage(error, 'birthDate')}
+              error={this.getErrorMessage(error, 'dateOfBirth')}
             />
-            <InputErrorMsg>{this.getErrorMessage(error, 'birthDate')}</InputErrorMsg>
+            <InputErrorMsg>{this.getErrorMessage(error, 'dateOfBirth')}</InputErrorMsg>
           </FormItem>
           <FormTitle variant="secondary">Please read and select before the payment</FormTitle>
           <Checkbox>

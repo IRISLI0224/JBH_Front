@@ -55,7 +55,7 @@ const validate = (name, data) => {
       return '';
     }
 
-    case 'birthDate': {
+    case 'dateOfBirth': {
       const currentYear = new Date().getFullYear();
       const birthDate = value.split('-');
       const birthYear = birthDate[0];
