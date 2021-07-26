@@ -10,7 +10,6 @@ const BookingCard = styled.div`
 text-align: center;
 margin: 0 auto;
 width: 580px;
-height: 674px;
 background: #FFFFFF;
 box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
 border-radius: 50px;`;
