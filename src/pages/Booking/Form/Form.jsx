@@ -113,9 +113,7 @@ class Form extends React.Component {
   }
 
   handleContinueClick = (data, hasError) => {
-    const {
-      numOfGuests, firstName, lastName, emailAddress, phoneNumber, birthDate,
-    } = data;
+    const { numOfGuests } = data;
     const { date, handleFormData, handleNextStep } = this.props;
     const formData = { price: 100 * numOfGuests.value, bookingDate: date };
     Object.entries(data).map(([key, value]) => {
@@ -123,28 +121,8 @@ class Form extends React.Component {
       return formData;
     });
     if (!hasError) {
-      axios.post('http://localhost:3000/api/bookings/check', {
-        bookingDate: date,
-        numOfGuests: numOfGuests.value,
-        firstName: firstName.value,
-        lastName: lastName.value,
-        emailAddress: emailAddress.value,
-        phoneNumber: phoneNumber.value,
-        dateOfBirth: birthDate.value,
-      })
-        .then((response) => {
-          if (response.status === 200) {
-            handleFormData(formData);
-            handleNextStep();
-          }
-        })
-        .catch((error) => {
-          if (error.response.status === 406) {
-            this.getSubmitError(error.response.data);
-          } else {
-            this.getSubmitError('Fail to submit, please try again');
-          }
-        });
+      handleFormData(formData);
+      handleNextStep();
     }
   };
 
