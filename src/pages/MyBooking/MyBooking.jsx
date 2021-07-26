@@ -47,6 +47,7 @@ class MyBooking extends React.Component {
       allData: await getUserByPhone(email),
       ready: true,
     });
+    // console.log(this.state.allData[0]);
   }
 
   render() {
@@ -54,12 +55,12 @@ class MyBooking extends React.Component {
       step, formData, ready, allData, today,
     } = this.state;
     // console.log(ready ? allData.bookings : 'not ready');
-    // console.log(ready +" "+typeof(allData.bookings));
+    // console.log(ready +" "+typeof(allData[0]));
     return (
       <>
-        {step === 1 && ready === true && typeof (allData.bookings) !== 'undefined' && (
+        {step === 1 && ready === true && typeof (allData) !== 'undefined' && (
           <ViewBooking
-            BookingDetails={allData.bookings}
+            BookingDetails={allData}
             handleNextStep={this.handleNextStep}
             handleFormData={this.handleFormData}
             ready={ready}

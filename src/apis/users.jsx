@@ -1,6 +1,6 @@
 import { get } from './axios';
 
-const API_GET_USER_BY_PHONE_URL = '/users/';
+const API_GET_USER_BY_PHONE_URL = '/bookings/email/';
 
 export const getUserByPhone = (phoneNumber) => {
   const data = {

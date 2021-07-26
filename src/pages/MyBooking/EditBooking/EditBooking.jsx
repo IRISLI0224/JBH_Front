@@ -34,7 +34,7 @@ class EditBooking extends React.Component {
 
     const { formData } = this.props;
     const {
-      bookingDate, numOfGuests, firstName, lastName, emailAddress, phoneNumber,
+      bookingDate, numOfGuests, firstName, lastName, email, phone,
     } = formData[0];
 
     this.state = {
@@ -43,8 +43,8 @@ class EditBooking extends React.Component {
         numOfGuests: initialData(numOfGuests),
         firstName: initialData(firstName),
         lastName: initialData(lastName),
-        emailAddress: initialData(emailAddress),
-        phoneNumber: initialData(phoneNumber),
+        emailAddress: initialData(email),
+        phoneNumber: initialData(phone),
       },
       isFormSubmit: false,
       isSubmitFail: false,
@@ -274,7 +274,7 @@ class EditBooking extends React.Component {
 EditBooking.propTypes = {
   firstName: PropTypes.string.isRequired,
   lastName: PropTypes.string.isRequired,
-  phoneNumber: PropTypes.string.isRequired,
+  phone: PropTypes.string.isRequired,
   handleNextStep: PropTypes.func.isRequired,
   formData: PropTypes.arrayOf(PropTypes.string),
   handleFormData: PropTypes.func.isRequired,
