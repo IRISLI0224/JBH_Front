@@ -257,12 +257,11 @@ EditBooking.propTypes = {
   lastName: PropTypes.string,
   phone: PropTypes.string,
   handleNextStep: PropTypes.func.isRequired,
-  formData: PropTypes.arrayOf(PropTypes.object),
+  formData: PropTypes.object.isRequired, //eslint-disable-line
   handleFormData: PropTypes.func.isRequired,
 };
 
 EditBooking.defaultProps = {
-  formData: [],
   firstName: '',
   lastName: '',
   phone: '',
