@@ -35,9 +35,6 @@ const formatFormData = (formData) => {
     };
     delete newFormData.price;
     delete newFormData.towelChecked;
-    delete newFormData.email;
-    delete newFormData.phone;
-    delete newFormData.dateOfBirth;
     return newFormData;
   }
   return formData;
