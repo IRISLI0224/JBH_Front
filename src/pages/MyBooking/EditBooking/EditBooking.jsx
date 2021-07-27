@@ -1,6 +1,5 @@
 // Second page of Mybooking part, edit data of chosen booking
 import React from 'react';
-import axios from 'axios';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import moment from 'moment';
@@ -14,6 +13,7 @@ import FormSubTitle from '../../../components/FormSubTitle';
 import FormWrapper from '../../../components/FormWrapper';
 import FlexRow from '../../../components/FlexRow';
 import ServerMsg from '../../../components/ServerMsg';
+import updateBooking from '../../../apis/updateBooking';
 
 const Container = styled.div`
   display: inline-block;
@@ -34,7 +34,7 @@ class EditBooking extends React.Component {
 
     const { formData } = this.props;
     const {
-      bookingDate, numOfGuests, firstName, lastName, email, phone,
+      bookingNum, bookingDate, numOfGuests, firstName, lastName, email, phone,
     } = formData[0];
 
     this.state = {
@@ -43,8 +43,9 @@ class EditBooking extends React.Component {
         numOfGuests: initialData(numOfGuests),
         firstName: initialData(firstName),
         lastName: initialData(lastName),
-        emailAddress: initialData(email),
-        phoneNumber: initialData(phone),
+        email: initialData(email),
+        phone: initialData(phone),
+        bookingNum: initialData(bookingNum),
       },
       isFormSubmit: false,
       isSubmitFail: false,
@@ -119,51 +120,31 @@ class EditBooking extends React.Component {
   }
 
   handleContinueClick = (data, hasError) => {
+    const { formData, handleNextStep, handleFormData } = this.props;
     const {
-      bookingDate, numOfGuests, firstName, lastName, emailAddress, phoneNumber,
-    } = data;
-    console.log(data);
-    const { handleNextStep, handleFormData } = this.props;
-    const updatedData = {};
+      bookingNum, dateOfBirth, gender, paidAmount,
+    } = formData[0];
+    const updatedData = { paidAmount, gender, dateOfBirth };
     Object.entries(data).map(([key, value]) => {
       updatedData[key] = value.value;
       return updatedData;
     });
 
     if (!hasError) {
-      axios.post('http://localhost:3000/api/bookings/check', {
-        bookingDate: bookingDate.value,
-        numOfGuests: numOfGuests.value,
-        firstName: firstName.value,
-        lastName: lastName.value,
-        emailAddress: emailAddress.value,
-        phoneNumber: phoneNumber.value,
-      })
-        .then((response) => {
-          if (response.status === 200) {
+      updateBooking(updatedData, bookingNum)
+        .then((value) => {
+          if (value === 201) {
             handleFormData(updatedData);
             handleNextStep();
-          }
-        })
-        .catch((error) => {
-          if (error.response.status === 406) {
-            this.getSubmitError(error.response.data);
           } else {
-            this.getSubmitError('Fail to submit, please try again');
+            this.getSubmitError(value);
           }
         });
     }
   };
 
   render() {
-    const { formData } = this.props;
-    let { bookingNum } = '';
-    if ((formData[0]) !== undefined) {
-      bookingNum = formData[0].bookingNum;
-    }
-    // console.log(formData[0]);
     const { data, isSubmitFail, submitError } = this.state;
-
     const error = this.getError(data);
     const hasError = Object.keys(error).length > 0;
 
@@ -174,7 +155,7 @@ class EditBooking extends React.Component {
           <FormSubTitle font="normal">
             Order number
             {' '}
-            {bookingNum}
+            { data.bookingNum.value }
           </FormSubTitle>
           <FormWrapper
             onSubmit={(e) => {
@@ -236,31 +217,31 @@ class EditBooking extends React.Component {
                 <InputErrorMsg>{this.getErrorMessage(error, 'lastName')}</InputErrorMsg>
               </FormItem>
             </FlexRow>
-            <FormItem label="Email" htmlFor="emailAddress">
+            <FormItem label="Email" htmlFor="email">
               <Input
                 size="lg"
-                name="emailAddress"
-                id="emailAddress"
-                type="emailAddress"
-                value={data.emailAddress.value}
+                name="email"
+                id="email"
+                type="email"
+                value={data.email.value}
                 onChange={this.handleDataChange}
                 onBlur={this.handleBlurredChange}
-                error={this.getErrorMessage(error, 'emailAddress')}
+                error={this.getErrorMessage(error, 'email')}
               />
-              <InputErrorMsg>{this.getErrorMessage(error, 'emailAddress')}</InputErrorMsg>
+              <InputErrorMsg>{this.getErrorMessage(error, 'email')}</InputErrorMsg>
             </FormItem>
-            <FormItem label="Phone number" htmlFor="phoneNumber">
+            <FormItem label="Phone number" htmlFor="phone">
               <Input
                 size="lg"
-                name="phoneNumber"
-                id="phoneNumber"
+                name="phone"
+                id="phone"
                 type="text"
-                value={data.phoneNumber.value}
+                value={data.phone.value}
                 onChange={this.handleDataChange}
                 onBlur={this.handleBlurredChange}
-                error={this.getErrorMessage(error, 'phoneNumber')}
+                error={this.getErrorMessage(error, 'phone')}
               />
-              <InputErrorMsg>{this.getErrorMessage(error, 'phoneNumber')}</InputErrorMsg>
+              <InputErrorMsg>{this.getErrorMessage(error, 'phone')}</InputErrorMsg>
             </FormItem>
             {isSubmitFail && (<ServerMsg status="error">{submitError}</ServerMsg>)}
             <ButtonContinue>SUBMIT</ButtonContinue>
@@ -272,15 +253,18 @@ class EditBooking extends React.Component {
 }
 
 EditBooking.propTypes = {
-  firstName: PropTypes.string.isRequired,
-  lastName: PropTypes.string.isRequired,
-  phone: PropTypes.string.isRequired,
+  firstName: PropTypes.string,
+  lastName: PropTypes.string,
+  phone: PropTypes.string,
   handleNextStep: PropTypes.func.isRequired,
-  formData: PropTypes.arrayOf(PropTypes.string),
+  formData: PropTypes.arrayOf(PropTypes.object),
   handleFormData: PropTypes.func.isRequired,
 };
 
 EditBooking.defaultProps = {
   formData: [],
+  firstName: '',
+  lastName: '',
+  phone: '',
 };
 export default EditBooking;

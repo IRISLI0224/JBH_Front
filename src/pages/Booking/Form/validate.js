@@ -15,7 +15,7 @@ const validate = (name, data) => {
       return '';
     }
 
-    case 'emailAddress': {
+    case 'email': {
       if (!value) {
         return 'Please input your email';
       }
@@ -45,7 +45,7 @@ const validate = (name, data) => {
       return '';
     }
 
-    case 'phoneNumber': {
+    case 'phone': {
       if (!value) {
         return 'Please input your phone number';
       }
@@ -55,7 +55,7 @@ const validate = (name, data) => {
       return '';
     }
 
-    case 'birthDate': {
+    case 'dateOfBirth': {
       const currentYear = new Date().getFullYear();
       const birthDate = value.split('-');
       const birthYear = birthDate[0];

@@ -9,6 +9,7 @@ const Container = styled.div`
   text-align: center;
   width: 380px;
   margin: 0 auto;
+  font-family: 'Roboto';
 `;
 
 const Title = styled.h1`

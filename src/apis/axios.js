@@ -11,4 +11,6 @@ const appendAuthToken = (config) => {
 
 export const post = (url, data, config = {}) => axios.post(url, data, appendAuthToken(config));
 
+export const put = (url, data, config = {}) => axios.put(url, data, appendAuthToken(config));
+
 export const get = (url, config = {}) => axios.get(url, appendAuthToken(config));

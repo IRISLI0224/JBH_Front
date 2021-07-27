@@ -7,7 +7,7 @@ import { Elements } from '@stripe/react-stripe-js';
 import CheckoutForm from './components/Stripe';
 
 const PaymentContainer = styled.div`
-  font-family: Roboto;
+  font-family: 'Roboto';
   text-align: center;
 `;
 
@@ -23,21 +23,18 @@ const stripeTestPromise = loadStripe(PUBLIC_KEY);
 const formatFormData = (formData) => {
   // check if the data has already been formatted.
   // eslint-disable-next-line no-prototype-builtins
-  if (formData.hasOwnProperty('emailAddress')) {
+  if (formData.hasOwnProperty('email')) {
     // add new keys
     const newFormData = {
       ...formData,
       paidAmount: formData.price * 0.5,
       gender: formData.gender ? formData.gender : true,
-      email: formData.emailAddress,
-      phone: formData.phoneNumber,
-      dateOfBirth: formData.birthDate,
+      email: formData.email,
+      phone: formData.phone,
+      dateOfBirth: formData.dateOfBirth,
     };
     delete newFormData.price;
     delete newFormData.towelChecked;
-    delete newFormData.emailAddress;
-    delete newFormData.phoneNumber;
-    delete newFormData.birthDate;
     return newFormData;
   }
   return formData;
