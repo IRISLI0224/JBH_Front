@@ -19,6 +19,7 @@ class MyBooking extends React.Component {
     };
     this.handleNextStep = this.handleNextStep.bind(this);
     this.handleFormData = this.handleFormData.bind(this);
+    this.getBookingDetails = this.getBookingDetails.bind(this);
     const history = this.props;
     this.state.email = history.location.email; //eslint-disable-line
     this.getBookingDetails();
@@ -47,7 +48,6 @@ class MyBooking extends React.Component {
       allData: await getUserByPhone(email),
       ready: true,
     });
-    // console.log(this.state.allData[0]);
   }
 
   render() {
@@ -55,7 +55,7 @@ class MyBooking extends React.Component {
       step, formData, ready, allData, today,
     } = this.state;
     // console.log(ready ? allData.bookings : 'not ready');
-    // console.log(ready +" "+typeof(allData[0]));
+    // console.log(ready +" "+typeof(formData));
     return (
       <>
         {step === 1 && ready === true && typeof (allData) !== 'undefined' && (
@@ -80,6 +80,7 @@ class MyBooking extends React.Component {
         <ConfirmEdit
           formData={formData}
           handleNextStep={this.handleNextStep}
+          updateData={this.getBookingDetails}
         />
         )}
       </>

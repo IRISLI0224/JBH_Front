@@ -3,7 +3,6 @@ import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import ConfirmPage from '../../../components/ConfirmPage';
-import GoBack from '../../../components/ButtonGoBack';
 
 const Container = styled.div`
   font-family: 'Roboto';
@@ -16,23 +15,44 @@ const Container = styled.div`
   border-radius: 20px;
 `;
 
+const Button = styled.div`
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.63;
+  letter-spacing: 0.46px;
+  margin: 5rem 0 1rem 0;
+  color: #818181;
+  &:hover {
+    color: red;
+    cursor: pointer;
+  }
+`;
+
 class ConfirmEdit extends React.Component {
   constructor(props) {
     super(props);
     this.state = {};
+    this.DataUpdata = this.DataUpdata.bind(this);
+  }
+
+  DataUpdata() {
+    const { updateData, handleNextStep } = this.props;
+    updateData();
+    handleNextStep();
   }
 
   render() {
     const { formData } = this.props;
-    const { handleNextStep } = this.props;
+
     return (
       <Container>
         <ConfirmPage formData={formData} title="Booking changes submitted" />
-        <GoBack size="md" onClick={handleNextStep}>
+        <Button size="md" onClick={this.DataUpdata}>
           {'<'}
           {' '}
           My Bookings
-        </GoBack>
+        </Button>
       </Container>
     );
   }
@@ -40,10 +60,8 @@ class ConfirmEdit extends React.Component {
 
 ConfirmEdit.propTypes = {
   handleNextStep: PropTypes.func.isRequired,
-  formData: PropTypes.arrayOf(PropTypes.string),
+  formData: PropTypes.object,//eslint-disable-line
+  updateData: PropTypes.func.isRequired,
 };
 
-ConfirmEdit.defaultProps = {
-  formData: [],
-};
 export default ConfirmEdit;
