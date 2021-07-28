@@ -1,5 +1,5 @@
 import React from 'react';
-import withRouter, { BrowserRouter, Switch } from 'react-router-dom';
+import { BrowserRouter, Switch } from 'react-router-dom';
 import { createGlobalStyle } from 'styled-components';
 import Layout from './components/Layout';
 
@@ -11,6 +11,7 @@ import Raleway from './assets/fonts/Raleway/Raleway-VariableFont_wght.ttf';
 import Baloo from './assets/fonts/Baloo/Baloo2-Bold.ttf';
 import AdminHeader from './components/Layout/components/AdminHeader';
 import AdminSidebar from './components/Layout/components/AdminSidebar';
+import Admin from './pages/Admin';
 
 const GlobalStyle = createGlobalStyle`
   @font-face {
@@ -44,6 +45,7 @@ const App = () => (
     {window.location.pathname === '/admin' ? (
       <>
         <AdminHeader />
+        <Admin />
         <AdminSidebar />
       </>
     ) : (
@@ -75,4 +77,4 @@ const App = () => (
   </BrowserRouter>
 );
 
-export default withRouter(App);
+export default App;
