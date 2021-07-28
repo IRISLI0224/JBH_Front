@@ -52,7 +52,7 @@ const AdminSidebar = () => (
       <GuestIconImg src={GuestImg} alt="GuestIcon" />
     </NavButton>
   </Wrapper>
-  
+
 );
 
 export default AdminSidebar;
