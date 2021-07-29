@@ -7,6 +7,7 @@ import './style.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import { faFileAlt } from '@fortawesome/free-regular-svg-icons';
+import getBookingByDate from '../../../apis/getBookingByDate';
 
 const NavBar = styled.div`
   display: flex;
@@ -48,6 +49,7 @@ const TabMenu = styled.div`
   font-weight: bold;
   display: flex;
   align-items: center;
+  font-family: 'Poppins';
 `;
 const EmployeeNum = styled.div`
   border-bottom: 2px solid darkslateblue;
@@ -118,7 +120,7 @@ class GuestList extends React.Component {
         },
         {
           headerName: 'Booking Number',
-          field: 'bookingNumber',
+          field: 'bookingNum',
           sortable: true,
         },
         {
@@ -135,53 +137,30 @@ class GuestList extends React.Component {
         },
       ],
       rowData: [
-        {
-          guest: '👤', firstName: 'vv', lastName: 'Chen', phone: '0422000000', email: '999@gmail.com', bookingNumber: 'DBJ618343181', ticketType: 'Day Pass',
-        },
-        {
-          guest: '👤', firstName: 'Iris', lastName: 'Liang', phone: '0411000000', email: '000@gmail.com', bookingNumber: 'DBJ368813182', ticketType: 'Day Pass',
-        },
-        {
-          guest: '👤', firstName: 'Jason', lastName: 'Zhang', phone: '0433000000', email: '111@gmail.com', bookingNumber: 'DBJ318843185', ticketType: 'Day Pass',
-        },
-        {
-          guest: '👤', firstName: 'Kevin', lastName: 'Li', phone: '0455000000', email: '222@gmail.com', bookingNumber: 'DBJ318243185', ticketType: 'Day Pass',
-        },
-        {
-          guest: '👤', firstName: 'Sunny', lastName: 'S', phone: '0413000000', email: '123@gmail.com', bookingNumber: 'DBJ678343181', ticketType: 'Day Pass',
-        },
-        {
-          guest: '👤', firstName: 'Ted', lastName: 'T', phone: '0424000000', email: '357@gmail.com', bookingNumber: 'DBJ368813152', ticketType: 'Day Pass',
-        },
-        {
-          guest: '👤', firstName: 'Jessie', lastName: 'Hou', phone: '0439000000', email: '285@gmail.com', bookingNumber: 'DBJ383843185', ticketType: 'Day Pass',
-        },
-        {
-          guest: '👤', firstName: 'DeDe', lastName: 'Guo', phone: '0485000000', email: '952@gmail.com', bookingNumber: 'DBJ318849785', ticketType: 'Day Pass',
-        },
-        {
-          guest: '👤', firstName: 'Gary', lastName: 'G', phone: '0439007640', email: '293@gmail.com', bookingNumber: 'DBJ389253185', ticketType: 'Day Pass',
-        },
-        {
-          guest: '👤', firstName: 'Camilla', lastName: 'Wan', phone: '0485232009', email: '379@gmail.com', bookingNumber: 'DBJ318896585', ticketType: 'Day Pass',
-        },
+        // {
+        //   guest: '👤',
+        // },
       ],
     };
     this.actionButton = this.actionButton.bind(this);
   }
 
-  onGridReady = (params) => {
-    this.gridApi = params.api;
-    this.columnApi = params.columnApi;
-    this.gridApi.sizeColumnsToFit();
+  componentDidMount() {
+    getBookingByDate('2022-06-10').then((rowData) => this.setState({ rowData }));
+  }
+  
+  handleSearch = (event) => {
+    this.gridApi.setQuickFilter(event.target.value);
   }
 
   actionButton = (params) => {
     console.log(params.data);
   }
 
-  handleSearch = (event) => {
-    this.gridApi.setQuickFilter(event.target.value);
+  onGridReady = (params) => {
+    this.gridApi = params.api;
+    this.columnApi = params.columnApi;
+    this.gridApi.sizeColumnsToFit();
   }
 
   render() {
