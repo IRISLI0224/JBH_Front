@@ -1,8 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faThLarge } from '@fortawesome/free-solid-svg-icons';
+import { faUser } from '@fortawesome/free-regular-svg-icons';
 import LogoImg from '../../../../assets/images/logo.png';
-import DashboardImg from '../../../../assets/images/dashboard.png';
-import GuestImg from '../../../../assets/images/guest.png';
 
 const Wrapper = styled.div`
   background-color: #ffffff;
@@ -22,16 +23,17 @@ const LogoIconImg = styled.img`
   height: 60px;
 `;
 
-const DashboardIconImg = styled.img`
+const IconTitleWrap = styled.div`
   margin-top: 50px;
-  width: 90px;
-  height: 70px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 `;
 
-const GuestIconImg = styled.img`
-  margin-top: 25px;
-  width: 80px;
-  height: 60px;
+const Title = styled.div`
+  margin-top: 5px;
+  font-family: Poppins;
+  font-size: 12px;
 `;
 
 const NavButton = styled.button`
@@ -46,10 +48,16 @@ const AdminSidebar = () => (
   <Wrapper>
     <LogoIconImg src={LogoImg} alt="Avatar" />
     <NavButton>
-      <DashboardIconImg src={DashboardImg} alt="DashboardIcon" />
+      <IconTitleWrap>
+        <FontAwesomeIcon color="#8f8f8f" size="2x" icon={faThLarge} />
+        <Title>Dashboard</Title>
+      </IconTitleWrap>
     </NavButton>
     <NavButton>
-      <GuestIconImg src={GuestImg} alt="GuestIcon" />
+      <IconTitleWrap>
+        <FontAwesomeIcon color="#8f8f8f" size="2x" icon={faUser} />
+        <Title>User</Title>
+      </IconTitleWrap>
     </NavButton>
   </Wrapper>
 

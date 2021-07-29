@@ -1,8 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import Input from '../../../Input';
-import SearchImg from '../../../../assets/images/search.svg';
-import AvatarImg from '../../../../assets/images/account.svg';
 
 const Wrapper = styled.div`
   background-color: #ffffff;
@@ -50,12 +50,8 @@ const SearchButton = styled.button`
   padding: 0;
   background: transparent;
   cursor: pointer;
-`;
-const SearchIconImg = styled.img`
+  margin-top: 3px;
   margin-left: -40px;
-  padding-top: 5px;
-  width: 30px;
-  height: 30px;
 `;
 
 const AvatarIconImg = styled.img`
@@ -63,6 +59,8 @@ const AvatarIconImg = styled.img`
   width: 50px;
   height: 50px;
   margin-top: -10px;
+  border: 2px solid #8f8f8f;
+  border-radius:50%;
 `;
 
 const AdminName = styled.div`
@@ -70,6 +68,7 @@ const AdminName = styled.div`
   font-family: Poppins;
   font-weight: bold;
   color: #2e2e2e;
+  margin-left: 10px;
 `;
 const AdminHeader = () => (
   <Wrapper>
@@ -85,11 +84,11 @@ const AdminHeader = () => (
         placeholder="Search here"
       />
       <SearchButton>
-        <SearchIconImg src={SearchImg} alt="Logo" />
+        <FontAwesomeIcon color="#181b50" size="2x" icon={faSearch} />
       </SearchButton>
     </NavMiddle>
     <NavRight>
-      <AvatarIconImg src={AvatarImg} alt="Avatar" />
+      <AvatarIconImg src="http://s3.amazonaws.com/37assets/svn/765-default-avatar.png" alt="Avatar" />
       <AdminName>Name</AdminName>
     </NavRight>
 

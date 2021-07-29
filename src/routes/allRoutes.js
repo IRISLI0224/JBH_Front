@@ -12,6 +12,7 @@ export const commonRoutes = [
   { path: '/login', component: Login },
   { path: '/booking', component: Booking },
   { path: '/index.html', component: Home },
+  { path: '/admin', component: AdminLogin },
 ];
 
 // 需要登录访问的路由
@@ -19,5 +20,4 @@ export const authRoutes = [
   { path: '/mybooking', component: MyBooking },
   // { path: '/admin', component: Admin },
   { path: '/guestlist', component: GuestList },
-  { path: '/admin', component: AdminLogin },
 ];
