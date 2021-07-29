@@ -9,6 +9,7 @@ export const commonRoutes = [
   { path: '/', component: Home },
   { path: '/login', component: Login },
   { path: '/booking', component: Booking },
+  { path: '/index.html', component: Home },
 ];
 
 // 需要登录访问的路由
