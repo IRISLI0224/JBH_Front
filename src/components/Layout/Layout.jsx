@@ -20,7 +20,7 @@ const Main = styled.div`
 
 const Layout = ({ children, location }) => (
   <>
-    {location.pathname === '/' || location.pathname === '/index.html'? (
+    {location.pathname === '/' || location.pathname === '/index.html' ? (
       <>
         <Header />
         <Main img={bgImg}>{children}</Main>
