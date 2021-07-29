@@ -9,6 +9,8 @@ import RouteMiddleware from './routes/RouteMiddleware';
 import Roboto from './assets/fonts/Roboto/Roboto-Regular.ttf';
 import Raleway from './assets/fonts/Raleway/Raleway-VariableFont_wght.ttf';
 import Baloo from './assets/fonts/Baloo/Baloo2-Bold.ttf';
+import Poppins from './assets/fonts/Poppins/Poppins-Regular.ttf';
+import PoppinsBold from './assets/fonts/Poppins/Poppins-Bold.ttf';
 import AdminHeader from './components/Layout/components/AdminHeader';
 import AdminSidebar from './components/Layout/components/AdminSidebar';
 import Admin from './pages/Admin';
@@ -27,6 +29,16 @@ const GlobalStyle = createGlobalStyle`
   @font-face {
     font-family: 'Baloo';
     src: url(${Baloo}) format('truetype');
+  }
+
+  @font-face {
+    font-family: 'Poppins';
+    src: url(${Poppins}) format('truetype');
+  }
+
+  @font-face {
+    font-family: 'PoppinsBold';
+    src: url(${PoppinsBold}) format('truetype');
   }
 
   body {
