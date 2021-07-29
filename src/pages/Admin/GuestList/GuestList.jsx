@@ -148,7 +148,7 @@ class GuestList extends React.Component {
   componentDidMount() {
     getBookingByDate('2022-06-10').then((rowData) => this.setState({ rowData }));
   }
-  
+
   handleSearch = (event) => {
     this.gridApi.setQuickFilter(event.target.value);
   }
