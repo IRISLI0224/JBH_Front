@@ -11,9 +11,8 @@ import Raleway from './assets/fonts/Raleway/Raleway-VariableFont_wght.ttf';
 import Baloo from './assets/fonts/Baloo/Baloo2-Bold.ttf';
 import Poppins from './assets/fonts/Poppins/Poppins-Regular.ttf';
 import PoppinsBold from './assets/fonts/Poppins/Poppins-Bold.ttf';
-import AdminHeader from './components/Layout/components/AdminHeader';
-import AdminSidebar from './components/Layout/components/AdminSidebar';
-import Admin from './pages/Admin';
+// import AdminHeader from './components/Layout/components/AdminHeader';
+// import AdminSidebar from './components/Layout/components/AdminSidebar';
 
 const GlobalStyle = createGlobalStyle`
   @font-face {
@@ -54,38 +53,30 @@ const GlobalStyle = createGlobalStyle`
 const App = () => (
   <BrowserRouter>
     <GlobalStyle />
-    {window.location.pathname === '/admin' ? (
-      <>
-        <AdminHeader />
-        <Admin />
-        <AdminSidebar />
-      </>
-    ) : (
-      <Layout>
-        <Switch>
-          {commonRoutes.map((route) => (
-            <RouteMiddleware
-              path={route.path}
-              component={route.component}
-              key={route.path}
-              isAuthProtected={false}
-              exact
-            />
-          ))}
+    <Layout>
+      <Switch>
+        {commonRoutes.map((route) => (
+          <RouteMiddleware
+            path={route.path}
+            component={route.component}
+            key={route.path}
+            isAuthProtected={false}
+            exact
+          />
+        ))}
 
-          {authRoutes.map((route) => (
-            <RouteMiddleware
-              path={route.path}
-              layout={Layout}
-              component={route.component}
-              key={route.path}
-              isAuthProtected
-              exact
-            />
-          ))}
-        </Switch>
-      </Layout>
-    )}
+        {authRoutes.map((route) => (
+          <RouteMiddleware
+            path={route.path}
+            layout={Layout}
+            component={route.component}
+            key={route.path}
+            isAuthProtected
+            exact
+          />
+        ))}
+      </Switch>
+    </Layout>
   </BrowserRouter>
 );
 

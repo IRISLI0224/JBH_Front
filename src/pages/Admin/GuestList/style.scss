@@ -2,7 +2,7 @@
 @import "~ag-grid-community/src/styles/ag-theme-material/sass/ag-theme-material-mixin";
 
 .ag-theme-material {
-  width: 80%;
+  width: 100%;
   font-family: 'Poppins';
   .ag-root-wrapper {
     border-radius: 10px !important;
@@ -18,10 +18,12 @@
     }
     .ag-row {
       transition: transform 0.5s;
+    
     }
     .ag-row-hover {
       background-color: white !important;
       box-shadow: 0px 0px 15px 5px #cacacab2 !important;
+      z-index: 100;
     }
     .ag-row-group {
       padding: 0 !important;

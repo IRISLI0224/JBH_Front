@@ -7,12 +7,24 @@ import './style.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import { faFileAlt } from '@fortawesome/free-regular-svg-icons';
+import getBookingByDate from '../../../apis/getBookingByDate';
+
+const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1.5rem 2rem;
+  width: 70%;
+  /* background-color: #e8f0f8; */
+  font-family: 'Poppins';
+  margin-left: 11rem;
+`;
 
 const NavBar = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  width: 80%;
+  width: 100%;
 `;
 
 const SearchBox = styled.div`
@@ -48,6 +60,7 @@ const TabMenu = styled.div`
   font-weight: bold;
   display: flex;
   align-items: center;
+  font-family: 'Poppins';
 `;
 const EmployeeNum = styled.div`
   border-bottom: 2px solid darkslateblue;
@@ -118,7 +131,7 @@ class GuestList extends React.Component {
         },
         {
           headerName: 'Booking Number',
-          field: 'bookingNumber',
+          field: 'bookingNum',
           sortable: true,
         },
         {
@@ -135,39 +148,24 @@ class GuestList extends React.Component {
         },
       ],
       rowData: [
-        {
-          guest: '👤', firstName: 'vv', lastName: 'Chen', phone: '0422000000', email: '999@gmail.com', bookingNumber: 'DBJ618343181', ticketType: 'Day Pass',
-        },
-        {
-          guest: '👤', firstName: 'Iris', lastName: 'Liang', phone: '0411000000', email: '000@gmail.com', bookingNumber: 'DBJ368813182', ticketType: 'Day Pass',
-        },
-        {
-          guest: '👤', firstName: 'Jason', lastName: 'Zhang', phone: '0433000000', email: '111@gmail.com', bookingNumber: 'DBJ318843185', ticketType: 'Day Pass',
-        },
-        {
-          guest: '👤', firstName: 'Kevin', lastName: 'Li', phone: '0455000000', email: '222@gmail.com', bookingNumber: 'DBJ318243185', ticketType: 'Day Pass',
-        },
-        {
-          guest: '👤', firstName: 'Sunny', lastName: 'S', phone: '0413000000', email: '123@gmail.com', bookingNumber: 'DBJ678343181', ticketType: 'Day Pass',
-        },
-        {
-          guest: '👤', firstName: 'Ted', lastName: 'T', phone: '0424000000', email: '357@gmail.com', bookingNumber: 'DBJ368813152', ticketType: 'Day Pass',
-        },
-        {
-          guest: '👤', firstName: 'Jessie', lastName: 'Hou', phone: '0439000000', email: '285@gmail.com', bookingNumber: 'DBJ383843185', ticketType: 'Day Pass',
-        },
-        {
-          guest: '👤', firstName: 'DeDe', lastName: 'Guo', phone: '0485000000', email: '952@gmail.com', bookingNumber: 'DBJ318849785', ticketType: 'Day Pass',
-        },
-        {
-          guest: '👤', firstName: 'Gary', lastName: 'G', phone: '0439007640', email: '293@gmail.com', bookingNumber: 'DBJ389253185', ticketType: 'Day Pass',
-        },
-        {
-          guest: '👤', firstName: 'Camilla', lastName: 'Wan', phone: '0485232009', email: '379@gmail.com', bookingNumber: 'DBJ318896585', ticketType: 'Day Pass',
-        },
+        // {
+        //   guest: '👤',
+        // },
       ],
     };
     this.actionButton = this.actionButton.bind(this);
+  }
+
+  componentDidMount() {
+    getBookingByDate('2022-06-10').then((rowData) => this.setState({ rowData }));
+  }
+
+  handleSearch = (event) => {
+    this.gridApi.setQuickFilter(event.target.value);
+  }
+
+  actionButton = (params) => {
+    console.log(params.data);
   }
 
   onGridReady = (params) => {
@@ -176,40 +174,34 @@ class GuestList extends React.Component {
     this.gridApi.sizeColumnsToFit();
   }
 
-  actionButton = (params) => {
-    console.log(params.data);
-  }
-
-  handleSearch = (event) => {
-    this.gridApi.setQuickFilter(event.target.value);
-  }
-
   render() {
     return (
       <>
-        <NavBar>
-          <TabMenu>
-            <EmployeeNum>All Employee (216)</EmployeeNum>
-          </TabMenu>
-          <SearchBox>
-            <Input type="search" onChange={this.handleSearch} placeholder="Search here" />
-            <FontAwesomeIcon color="darkslateblue" size="0.2rem" icon={faSearch} />
-          </SearchBox>
-          <Button variant="nav">
-            <FontAwesomeIcon color="white" size="0.2rem" icon={faFileAlt} />
-            Generate Report
-          </Button>
-        </NavBar>
-        <div className="ag-theme-material" style={{ height: 600 }}>
-          <AgGridReact
-            onGridReady={this.onGridReady}
-            defaultColDef
-            pagination
-            paginationPageSize={5}
-            columnDefs={this.state.columnDefs} //eslint-disable-line
-            rowData={this.state.rowData} //eslint-disable-line
-          />
-        </div>
+        <Container>
+          <NavBar>
+            <TabMenu>
+              <EmployeeNum>All Employee (216)</EmployeeNum>
+            </TabMenu>
+            <SearchBox>
+              <Input type="search" onChange={this.handleSearch} placeholder="Search here" />
+              <FontAwesomeIcon color="darkslateblue" size="0.2rem" icon={faSearch} />
+            </SearchBox>
+            <Button variant="nav">
+              <FontAwesomeIcon color="white" size="0.2rem" icon={faFileAlt} />
+              Generate Report
+            </Button>
+          </NavBar>
+          <div className="ag-theme-material" style={{ height: 600 }}>
+            <AgGridReact
+              onGridReady={this.onGridReady}
+              defaultColDef
+              pagination
+              paginationPageSize={5}
+              columnDefs={this.state.columnDefs} //eslint-disable-line
+              rowData={this.state.rowData} //eslint-disable-line
+            />
+          </div>
+        </Container>
       </>
     );
   }
