@@ -20,7 +20,8 @@ const Main = styled.div`
 
 const Layout = ({ children, location }) => (
   <>
-    {location.pathname === '/' ? (
+  // this one have been modified to fit DevOps router /index.html 
+    {location.pathname === '/' || location.pathname === '/index.html'? (
       <>
         <Header />
         <Main img={bgImg}>{children}</Main>
