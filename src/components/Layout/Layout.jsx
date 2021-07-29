@@ -20,7 +20,6 @@ const Main = styled.div`
 
 const Layout = ({ children, location }) => (
   <>
-  // this one have been modified to fit DevOps router /index.html 
     {location.pathname === '/' || location.pathname === '/index.html'? (
       <>
         <Header />
