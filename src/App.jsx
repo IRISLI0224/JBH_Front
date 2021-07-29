@@ -4,6 +4,7 @@ import { createGlobalStyle } from 'styled-components';
 import Layout from './components/Layout';
 
 import { commonRoutes, authRoutes } from './routes/allRoutes';
+import adminRoutes from './routes/AdminRoutes';
 import RouteMiddleware from './routes/RouteMiddleware';
 
 import Roboto from './assets/fonts/Roboto/Roboto-Regular.ttf';
@@ -13,6 +14,7 @@ import Poppins from './assets/fonts/Poppins/Poppins-Regular.ttf';
 import PoppinsBold from './assets/fonts/Poppins/Poppins-Bold.ttf';
 // import AdminHeader from './components/Layout/components/AdminHeader';
 // import AdminSidebar from './components/Layout/components/AdminSidebar';
+import AdminLayout from './components/AdminLayout';
 
 const GlobalStyle = createGlobalStyle`
   @font-face {
@@ -53,17 +55,35 @@ const GlobalStyle = createGlobalStyle`
 const App = () => (
   <BrowserRouter>
     <GlobalStyle />
-    <Layout>
-      <Switch>
-        {commonRoutes.map((route) => (
-          <RouteMiddleware
-            path={route.path}
-            component={route.component}
-            key={route.path}
-            isAuthProtected={false}
-            exact
-          />
-        ))}
+    {(window.location.pathname === '/admin/bookingdetail')  ? (
+
+      <AdminLayout>
+        <Switch>
+          {adminRoutes.map((route) => (
+            <RouteMiddleware
+              path={route.path}
+              component={route.component}
+              key={route.path}
+              isAuthProtected={false}
+              exact
+            />
+          ))}
+
+        </Switch>
+      </AdminLayout>
+
+    ) : (
+      <Layout>
+        <Switch>
+          {commonRoutes.map((route) => (
+            <RouteMiddleware
+              path={route.path}
+              component={route.component}
+              key={route.path}
+              isAuthProtected={false}
+              exact
+            />
+          ))}
 
         {authRoutes.map((route) => (
           <RouteMiddleware
@@ -77,6 +97,7 @@ const App = () => (
         ))}
       </Switch>
     </Layout>
+    )}
   </BrowserRouter>
 );
 
