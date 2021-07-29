@@ -9,11 +9,22 @@ import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import { faFileAlt } from '@fortawesome/free-regular-svg-icons';
 import getBookingByDate from '../../../apis/getBookingByDate';
 
+const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1.5rem 2rem;
+  width: 70%;
+  /* background-color: #e8f0f8; */
+  font-family: 'Poppins';
+  margin-left: 11rem;
+`;
+
 const NavBar = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  width: 80%;
+  width: 100%;
 `;
 
 const SearchBox = styled.div`
@@ -166,29 +177,31 @@ class GuestList extends React.Component {
   render() {
     return (
       <>
-        <NavBar>
-          <TabMenu>
-            <EmployeeNum>All Employee (216)</EmployeeNum>
-          </TabMenu>
-          <SearchBox>
-            <Input type="search" onChange={this.handleSearch} placeholder="Search here" />
-            <FontAwesomeIcon color="darkslateblue" size="0.2rem" icon={faSearch} />
-          </SearchBox>
-          <Button variant="nav">
-            <FontAwesomeIcon color="white" size="0.2rem" icon={faFileAlt} />
-            Generate Report
-          </Button>
-        </NavBar>
-        <div className="ag-theme-material" style={{ height: 600 }}>
-          <AgGridReact
-            onGridReady={this.onGridReady}
-            defaultColDef
-            pagination
-            paginationPageSize={5}
-            columnDefs={this.state.columnDefs} //eslint-disable-line
-            rowData={this.state.rowData} //eslint-disable-line
-          />
-        </div>
+        <Container>
+          <NavBar>
+            <TabMenu>
+              <EmployeeNum>All Employee (216)</EmployeeNum>
+            </TabMenu>
+            <SearchBox>
+              <Input type="search" onChange={this.handleSearch} placeholder="Search here" />
+              <FontAwesomeIcon color="darkslateblue" size="0.2rem" icon={faSearch} />
+            </SearchBox>
+            <Button variant="nav">
+              <FontAwesomeIcon color="white" size="0.2rem" icon={faFileAlt} />
+              Generate Report
+            </Button>
+          </NavBar>
+          <div className="ag-theme-material" style={{ height: 600 }}>
+            <AgGridReact
+              onGridReady={this.onGridReady}
+              defaultColDef
+              pagination
+              paginationPageSize={5}
+              columnDefs={this.state.columnDefs} //eslint-disable-line
+              rowData={this.state.rowData} //eslint-disable-line
+            />
+          </div>
+        </Container>
       </>
     );
   }
