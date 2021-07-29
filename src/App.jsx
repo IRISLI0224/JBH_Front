@@ -4,7 +4,7 @@ import { createGlobalStyle } from 'styled-components';
 import Layout from './components/Layout';
 
 import { commonRoutes, authRoutes } from './routes/allRoutes';
-import  adminRoutes  from './routes/AdminRoutes';
+import adminRoutes from './routes/AdminRoutes';
 import RouteMiddleware from './routes/RouteMiddleware';
 
 import Roboto from './assets/fonts/Roboto/Roboto-Regular.ttf';
