@@ -18,6 +18,6 @@ export const commonRoutes = [
 // 需要登录访问的路由
 export const authRoutes = [
   { path: '/mybooking', component: MyBooking },
-  { path: '/guestlist', component: GuestList },
-  { path: '/admin/bookingdetail', component: AdminBookingDetail },
+  // { path: '/admin', component: Admin },
+  { path: '/admin/guestlist', component: GuestList },
 ];

@@ -50,27 +50,30 @@ const GlobalStyle = createGlobalStyle`
 const App = () => (
   <BrowserRouter>
     <GlobalStyle />
-    <Switch>
-      {commonRoutes.map((route) => (
-        <RouteMiddleware
-          path={route.path}
-          component={route.component}
-          key={route.path}
-          isAuthProtected={false}
-          exact
-        />
-      ))}
-      {authRoutes.map((route) => (
-        <RouteMiddleware
-          path={route.path}
-          layout={Layout}
-          component={route.component}
-          key={route.path}
-          isAuthProtected
-          exact
-        />
-      ))}
-    </Switch>
+    <Layout>
+      <Switch>
+        {commonRoutes.map((route) => (
+          <RouteMiddleware
+            path={route.path}
+            component={route.component}
+            key={route.path}
+            isAuthProtected={false}
+            exact
+          />
+        ))}
+
+        {authRoutes.map((route) => (
+          <RouteMiddleware
+            path={route.path}
+            layout={Layout}
+            component={route.component}
+            key={route.path}
+            isAuthProtected
+            exact
+          />
+        ))}
+      </Switch>
+    </Layout>
   </BrowserRouter>
 );
 
