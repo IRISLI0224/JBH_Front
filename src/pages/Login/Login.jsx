@@ -108,7 +108,7 @@ class Login extends React.Component {
             const { history } = this.props;
             // history.replace('/mybooking');
             history.replace({
-              pathname: '/mybooking',
+              pathname: '/admin',
               email: loginData.email.value,
             });
           });

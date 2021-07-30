@@ -4,7 +4,7 @@ import moment from 'moment';
 import EditBooking from './EditBooking';
 import ConfirmEdit from './ConfirmEdit';
 import ViewBooking from './ViewBooking';
-import { getUserByPhone } from '../../apis/users';
+import { getUserByPhone } from '../../apis/getBookingByEmail';
 
 class MyBooking extends React.Component {
   constructor(props) {

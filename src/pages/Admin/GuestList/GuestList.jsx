@@ -7,7 +7,7 @@ import './style.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import { faFileAlt } from '@fortawesome/free-regular-svg-icons';
-import getBookingByDate from '../../../apis/getBookingByDate';
+import getBookingByDate from '../../../apis/getBookingByDate';//eslint-disable-line
 
 const Container = styled.div`
   display: flex;
