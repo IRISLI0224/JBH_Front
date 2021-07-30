@@ -5,6 +5,7 @@ import Home from '../pages/Home';
 import Login from '../pages/Login';
 import MyBooking from '../pages/MyBooking';
 import AdminLogin from '../pages/Admin/AdminLogin';
+import AdminBookingDetail from '../pages/AdminBookingDetail';
 
 // 不需要登录即可访问的路由
 export const commonRoutes = [
@@ -20,4 +21,5 @@ export const authRoutes = [
   { path: '/mybooking', component: MyBooking },
   // { path: '/admin', component: Admin },
   { path: '/guestlist', component: GuestList },
+  { path: '/admin/bookingdetail', component: AdminBookingDetail },
 ];
