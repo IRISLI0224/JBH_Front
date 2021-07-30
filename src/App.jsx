@@ -10,7 +10,6 @@ import Baloo from './assets/fonts/Baloo/Baloo2-Bold.ttf';
 import Poppins from './assets/fonts/Poppins/Poppins-Regular.ttf';
 import PoppinsBold from './assets/fonts/Poppins/Poppins-Bold.ttf';
 
-
 const GlobalStyle = createGlobalStyle`
   @font-face {
     font-family: 'Roboto';
@@ -50,27 +49,27 @@ const GlobalStyle = createGlobalStyle`
 const App = () => (
   <BrowserRouter>
     <GlobalStyle />
-        <Switch>
-          {commonRoutes.map((route) => (
-            <RouteMiddleware
-              path={route.path}
-              component={route.component}
-              key={route.path}
-              isAuthProtected={false}
-              exact
-            />
-          ))}
-          {authRoutes.map((route) => (
-            <RouteMiddleware
-              path={route.path}
-              layout={Layout}
-              component={route.component}
-              key={route.path}
-              isAuthProtected
-              exact
-            />
-          ))}
-        </Switch>
+      <Switch>
+        {commonRoutes.map((route) => (
+          <RouteMiddleware
+            path={route.path}
+            component={route.component}
+            key={route.path}
+            isAuthProtected={false}
+            exact
+          />
+        ))}
+        {authRoutes.map((route) => (
+          <RouteMiddleware
+            path={route.path}
+            layout={Layout}
+            component={route.component}
+            key={route.path}
+            isAuthProtected
+            exact
+          />
+        ))}
+      </Switch>
   </BrowserRouter>
 );
 
