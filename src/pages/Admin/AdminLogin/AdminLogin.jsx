@@ -107,7 +107,7 @@ class AdminLogin extends React.Component {
           this.setState({ isLoading: false }, () => {
             setToken(data.token);
             const { history } = this.props;
-            history.push('/guestlist');
+            history.push('/admin/guestlist');
           });
         })
         .catch((error) => this.setState({ error, isLoading: false }));

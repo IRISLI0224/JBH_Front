@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import AdminLogin from './AdminLogin';
-import { OtherHeader } from '../../components/Layout/components/Header';
+
 
 const Container = styled.div`
   display: flex;
@@ -10,7 +10,6 @@ const Container = styled.div`
 `;
 const Admin = () => (
   <>
-    <OtherHeader />
     <Container>
       <AdminLogin />
     </Container>

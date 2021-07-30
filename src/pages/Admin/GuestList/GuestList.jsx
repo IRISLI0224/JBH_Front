@@ -9,7 +9,6 @@ import { AgGridReact } from 'ag-grid-react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import { faFileAlt } from '@fortawesome/free-regular-svg-icons';
-import AdminLayout from '../../../components/AdminLayout';
 import { getBookingByDate } from '../../../apis/getBookingByDate';
 import Calendar from '../components/Calendar';
 
@@ -211,7 +210,6 @@ class GuestList extends React.Component {
 
   render() {
     return (
-      <AdminLayout>
         <Container>
           <FormContainer>
             <NavBar>
@@ -244,8 +242,6 @@ class GuestList extends React.Component {
             />
           </RightPanel>
         </Container>
-
-      </AdminLayout>
     );
   }
 }
