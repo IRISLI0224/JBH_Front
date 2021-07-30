@@ -2,19 +2,13 @@ import React from 'react';
 import { BrowserRouter, Switch } from 'react-router-dom';
 import { createGlobalStyle } from 'styled-components';
 import Layout from './components/Layout';
-
 import { commonRoutes, authRoutes } from './routes/allRoutes';
-import adminRoutes from './routes/AdminRoutes';
 import RouteMiddleware from './routes/RouteMiddleware';
-
 import Roboto from './assets/fonts/Roboto/Roboto-Regular.ttf';
 import Raleway from './assets/fonts/Raleway/Raleway-VariableFont_wght.ttf';
 import Baloo from './assets/fonts/Baloo/Baloo2-Bold.ttf';
 import Poppins from './assets/fonts/Poppins/Poppins-Regular.ttf';
 import PoppinsBold from './assets/fonts/Poppins/Poppins-Bold.ttf';
-// import AdminHeader from './components/Layout/components/AdminHeader';
-// import AdminSidebar from './components/Layout/components/AdminSidebar';
-import AdminLayout from './components/AdminLayout';
 
 const GlobalStyle = createGlobalStyle`
   @font-face {
@@ -45,7 +39,8 @@ const GlobalStyle = createGlobalStyle`
   body {
     margin: 0;
     padding: 0;
-    background-color: #cacaca;
+    background-color: #e8f0f8;
+    width: 100%;
   }
   * {
     box-sizing: border-box;
@@ -55,49 +50,27 @@ const GlobalStyle = createGlobalStyle`
 const App = () => (
   <BrowserRouter>
     <GlobalStyle />
-    {(window.location.pathname === '/admin/bookingdetail') ? (
-
-      <AdminLayout>
-        <Switch>
-          {adminRoutes.map((route) => (
-            <RouteMiddleware
-              path={route.path}
-              component={route.component}
-              key={route.path}
-              isAuthProtected={false}
-              exact
-            />
-          ))}
-
-        </Switch>
-      </AdminLayout>
-
-    ) : (
-      <Layout>
-        <Switch>
-          {commonRoutes.map((route) => (
-            <RouteMiddleware
-              path={route.path}
-              component={route.component}
-              key={route.path}
-              isAuthProtected={false}
-              exact
-            />
-          ))}
-
-          {authRoutes.map((route) => (
-            <RouteMiddleware
-              path={route.path}
-              layout={Layout}
-              component={route.component}
-              key={route.path}
-              isAuthProtected
-              exact
-            />
-          ))}
-        </Switch>
-      </Layout>
-    )}
+    <Switch>
+      {commonRoutes.map((route) => (
+        <RouteMiddleware
+          path={route.path}
+          component={route.component}
+          key={route.path}
+          isAuthProtected={false}
+          exact
+        />
+      ))}
+      {authRoutes.map((route) => (
+        <RouteMiddleware
+          path={route.path}
+          layout={Layout}
+          component={route.component}
+          key={route.path}
+          isAuthProtected
+          exact
+        />
+      ))}
+    </Switch>
   </BrowserRouter>
 );
 

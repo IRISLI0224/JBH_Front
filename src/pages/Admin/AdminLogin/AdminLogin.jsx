@@ -109,7 +109,6 @@ class AdminLogin extends React.Component {
             const { history } = this.props;
             history.push('/guestlist');
           });
-          // return <Redirect to='/guestlist' />
         })
         .catch((error) => this.setState({ error, isLoading: false }));
     });

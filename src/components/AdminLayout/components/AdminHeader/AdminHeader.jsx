@@ -6,9 +6,9 @@ import Input from '../../../Input';
 
 const Wrapper = styled.div`
   background-color: #ffffff;
-  width: 1900px;
+  width: 100%;
   margin: auto;
-  height: 100px;
+  padding: 1.5rem 0;
   display: flex;
   align-items: center;
   align-content: space-between;
@@ -56,9 +56,9 @@ const SearchButton = styled.button`
 
 const AvatarIconImg = styled.img`
   margin-left: 80px;
-  width: 50px;
-  height: 50px;
-  margin-top: -10px;
+  width: 40px;
+  height: 40px;
+  margin-top: -5px;
   border: 2px solid #8f8f8f;
   border-radius:50%;
 `;
@@ -84,7 +84,7 @@ const AdminHeader = () => (
         placeholder="Search here"
       />
       <SearchButton>
-        <FontAwesomeIcon color="#181b50" size="2x" icon={faSearch} />
+        <FontAwesomeIcon color="#181b50" size="1x" icon={faSearch} />
       </SearchButton>
     </NavMiddle>
     <NavRight>

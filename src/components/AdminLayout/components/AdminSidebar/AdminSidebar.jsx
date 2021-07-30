@@ -32,7 +32,7 @@ const IconTitleWrap = styled.div`
 
 const Title = styled.div`
   margin-top: 5px;
-  font-family: Poppins;
+  font-family: 'Poppins';
   font-size: 12px;
 `;
 
