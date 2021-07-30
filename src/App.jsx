@@ -39,7 +39,8 @@ const GlobalStyle = createGlobalStyle`
   body {
     margin: 0;
     padding: 0;
-    background-color: #cacaca;
+    background-color: #e8f0f8;
+    width: 100%;
   }
   * {
     box-sizing: border-box;
@@ -49,27 +50,27 @@ const GlobalStyle = createGlobalStyle`
 const App = () => (
   <BrowserRouter>
     <GlobalStyle />
-      <Switch>
-        {commonRoutes.map((route) => (
-          <RouteMiddleware
-            path={route.path}
-            component={route.component}
-            key={route.path}
-            isAuthProtected={false}
-            exact
-          />
-        ))}
-        {authRoutes.map((route) => (
-          <RouteMiddleware
-            path={route.path}
-            layout={Layout}
-            component={route.component}
-            key={route.path}
-            isAuthProtected
-            exact
-          />
-        ))}
-      </Switch>
+    <Switch>
+      {commonRoutes.map((route) => (
+        <RouteMiddleware
+          path={route.path}
+          component={route.component}
+          key={route.path}
+          isAuthProtected={false}
+          exact
+        />
+      ))}
+      {authRoutes.map((route) => (
+        <RouteMiddleware
+          path={route.path}
+          layout={Layout}
+          component={route.component}
+          key={route.path}
+          isAuthProtected
+          exact
+        />
+      ))}
+    </Switch>
   </BrowserRouter>
 );
 

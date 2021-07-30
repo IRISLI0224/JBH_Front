@@ -9,31 +9,20 @@ import AdminLayout from '../../components/AdminLayout';
 const Container = styled.div`
   display: flex;
   align-items: flex-start;
-  min-height: 100vh;
-  padding: 1.5rem 3rem 0 0;
-  width: 85%;
+  padding: 1rem 0 0 0;
   /* background-color: #e8f0f8; */
   font-family: 'Poppins';
-  margin-left: 11rem;
 `;
 
 const LeftPanel = styled.div`
   flex-direction: column;
-  min-height: 100vh;
+  /* min-height: 100vh; */
   width: 365px;
   background:white;
   font-family: 'Poppins';
-  margin-left: 2rem;
-  padding: 1rem 1rem 0;
-`;
-
-const Center = styled.div`
-  flex-direction: column;
-  min-height: 100vh;
-  padding: 1.5rem 3rem 0 0;
-  width: 2800px;
-  background:white;
-  font-family: 'Poppins';
+  margin: 0 1rem;
+  padding: 1rem 1rem;
+  border-radius: 10px;
 `;
 
 class Admin extends React.Component {
@@ -79,11 +68,9 @@ class Admin extends React.Component {
     return (
       <AdminLayout>
         <Container>
-          <Center>
-            <GuestList
-              allData={allData} //eslint-disable-line
-            />
-          </Center>
+          <GuestList
+            allData={allData}
+          />
           <LeftPanel>
             <Calendar
               handleDate={this.handleDate}

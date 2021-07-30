@@ -13,9 +13,7 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 1.5rem 2rem;
-  width: 70%;
-  /* background-color: #e8f0f8; */
+  width: 100%;
   font-family: 'Poppins';
   margin-left: 11rem;
 `;
