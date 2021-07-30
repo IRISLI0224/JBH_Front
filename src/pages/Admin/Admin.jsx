@@ -15,6 +15,6 @@ const Admin = () => (
       <AdminLogin />
     </Container>
   </>
-)
+);
 
 export default Admin;
