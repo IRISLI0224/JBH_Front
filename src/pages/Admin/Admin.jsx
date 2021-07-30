@@ -61,20 +61,27 @@ class Admin extends React.Component {
   }
 
   async getBookingDetails(chosenDate) {
-    // const { chosenDate } = this.state;
     this.setState({
       allData: await getBookingByDate(chosenDate),//eslint-disable-line
     });
+    const { allData } = this.state;
+    // console.log(typeof(allData));
+    if (typeof (allData) === 'string') {
+      this.setState({
+        allData: [],
+      });
+    }
     // console.log(this.state.allData);
   }
 
   render() {
+    const { allData } = this.state;
     return (
       <AdminLayout>
         <Container>
           <Center>
             <GuestList
-              allData={this.state.allData} //eslint-disable-line
+              allData={allData} //eslint-disable-line
             />
           </Center>
           <LeftPanel>
