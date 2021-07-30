@@ -55,7 +55,7 @@ const GlobalStyle = createGlobalStyle`
 const App = () => (
   <BrowserRouter>
     <GlobalStyle />
-    {(window.location.pathname === '/admin/bookingdetail')  ? (
+    {(window.location.pathname === '/admin/bookingdetail') ? (
 
       <AdminLayout>
         <Switch>
@@ -85,18 +85,18 @@ const App = () => (
             />
           ))}
 
-        {authRoutes.map((route) => (
-          <RouteMiddleware
-            path={route.path}
-            layout={Layout}
-            component={route.component}
-            key={route.path}
-            isAuthProtected
-            exact
-          />
-        ))}
-      </Switch>
-    </Layout>
+          {authRoutes.map((route) => (
+            <RouteMiddleware
+              path={route.path}
+              layout={Layout}
+              component={route.component}
+              key={route.path}
+              isAuthProtected
+              exact
+            />
+          ))}
+        </Switch>
+      </Layout>
     )}
   </BrowserRouter>
 );

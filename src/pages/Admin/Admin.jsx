@@ -4,6 +4,7 @@ import moment from 'moment';
 import GuestList from './GuestList';
 import Calendar from './components/Calendar';
 import { getBookingByDate } from '../../apis/getBookingByDate';
+import AdminLayout from '../../components/AdminLayout';
 
 const Container = styled.div`
   display: flex;
@@ -69,15 +70,21 @@ class Admin extends React.Component {
 
   render() {
     return (
-      <Container>
-        <Center><GuestList /></Center>
-        <LeftPanel>
-          <Calendar
-            handleDate={this.handleDate}
-            getBookings={this.getBookingDetails}
-          />
-        </LeftPanel>
-      </Container>
+      <AdminLayout>
+        <Container>
+          <Center>
+            <GuestList
+              allData={this.state.allData} //eslint-disable-line
+            />
+          </Center>
+          <LeftPanel>
+            <Calendar
+              handleDate={this.handleDate}
+              getBookings={this.getBookingDetails} //eslint-disable-line
+            />
+          </LeftPanel>
+        </Container>
+      </AdminLayout>
     );
   }
 }

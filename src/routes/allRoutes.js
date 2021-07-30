@@ -1,5 +1,5 @@
 // import Admin from '../pages/Admin';
-import GuestList from '../pages/Admin/GuestList';
+import GuestList from '../pages/Admin/Admin';
 import Booking from '../pages/Booking';
 import Home from '../pages/Home';
 import Login from '../pages/Login';
