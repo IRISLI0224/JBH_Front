@@ -23,11 +23,10 @@ const DayItem = styled.span`
 `;
 
 const CalendarDay = ({
-  day, value, monthlySessions, handleDate, getBookings,
+  day, value, monthlySessions, getBookings,
 }) => {
   const colorStyles = setDayStyles(day, value, monthlySessions);
   const handleDayClick = (date) => {
-    handleDate(date.format('YYYY-MM-DD').toString());
     getBookings(date.format('YYYY-MM-DD').toString());
   };
 
@@ -47,7 +46,6 @@ CalendarDay.propTypes = {
   day: PropTypes.instanceOf(moment).isRequired,
   value: PropTypes.instanceOf(moment).isRequired,
   monthlySessions: PropTypes.arrayOf(PropTypes.string).isRequired,
-  handleDate: PropTypes.func.isRequired,
   getBookings: PropTypes.func.isRequired,
 };
 

@@ -1,15 +1,19 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
-import { AgGridReact } from 'ag-grid-react';
+import PropTypes from 'prop-types';
+import moment from 'moment';
 import 'ag-grid-community/dist/styles/ag-grid.css';
 import 'ag-grid-community/dist/styles/ag-theme-material.css';
 import './style.scss';
+import { AgGridReact } from 'ag-grid-react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import { faFileAlt } from '@fortawesome/free-regular-svg-icons';
-import getBookingByDate from '../../../apis/getBookingByDate';//eslint-disable-line
+import AdminLayout from '../../../components/AdminLayout';
+import { getBookingByDate } from '../../../apis/getBookingByDate';
+import Calendar from '../components/Calendar';
 
-const Container = styled.div`
+const FormContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -98,15 +102,33 @@ const Button = styled.button`
   }[props.variant])}
 `;
 
+const Container = styled.div`
+  display: flex;
+  align-items: flex-start;
+  padding: 1rem 0 0 0;
+  /* background-color: #e8f0f8; */
+  font-family: 'Poppins';
+`;
+
+const RightPanel = styled.div`
+  flex-direction: column;
+  /* min-height: 100vh; */
+  width: 365px;
+  background:white;
+  font-family: 'Poppins';
+  margin: 0 1rem;
+  padding: 1rem 1rem;
+  border-radius: 10px;
+`;
+
 class GuestList extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      chosenDate: '2021-07-29',//eslint-disable-line
+      today: '',
+
       columnDefs: [
-        {
-          headerName: 'Guest',
-          field: 'guest',
-        },
         {
           headerName: 'FirstName',
           field: 'firstName',
@@ -133,29 +155,44 @@ class GuestList extends React.Component {
           sortable: true,
         },
         {
-          headerName: 'Ticket Type',
-          field: 'ticketType',
-          sortable: true,
-        },
-        {
           cellRendererFramework: (params) => (
             <div>
-              <Button variant="form" onClick={() => this.actionButton(params)}>Detail</Button>
+              <Button
+                variant="form"
+                onClick={() => {
+                  this.actionButton(params);
+                  const { history } = this.props;
+                  history.push('/admin/bookingdetail');
+                }}
+              >
+                Detail
+              </Button>
             </div>
           ),
         },
       ],
-      rowData: [
-        // {
-        //   guest: '👤',
-        // },
-      ],
+      rowData: [],
     };
+    this.getBookingDetails = this.getBookingDetails.bind(this);
+    const myDate = new Date();
+    const currentdate = `${myDate.getFullYear()}-${myDate.getMonth() + 1}-${myDate.getDate()}`;
+    this.state.today = (moment)(currentdate).format('YYYY-MM-DD');
+    // console.log(this.props.location.email)
+    this.getBookingDetails(this.state.today);//eslint-disable-line
     this.actionButton = this.actionButton.bind(this);
   }
 
-  componentDidMount() {
-    // getBookingByDate('2022-06-10').then((rowData) => this.setState({ rowData }));
+  async getBookingDetails(chosenDate) {
+    const response = await getBookingByDate(chosenDate);
+    if (typeof (response) !== 'string') {
+      this.setState({
+        rowData: response,//eslint-disable-line
+      });
+    } else {
+      this.setState({
+        rowData: [],//eslint-disable-line
+      });
+    }
   }
 
   handleSearch = (event) => {
@@ -174,35 +211,49 @@ class GuestList extends React.Component {
 
   render() {
     return (
-      <>
+      <AdminLayout>
         <Container>
-          <NavBar>
-            <TabMenu>
-              <EmployeeNum>All Employee (216)</EmployeeNum>
-            </TabMenu>
-            <SearchBox>
-              <Input type="search" onChange={this.handleSearch} placeholder="Search here" />
-              <FontAwesomeIcon color="darkslateblue" size="0.2rem" icon={faSearch} />
-            </SearchBox>
-            <Button variant="nav">
-              <FontAwesomeIcon color="white" size="0.2rem" icon={faFileAlt} />
-              Generate Report
-            </Button>
-          </NavBar>
-          <div className="ag-theme-material" style={{ height: 600 }}>
-            <AgGridReact
-              onGridReady={this.onGridReady}
-              defaultColDef
-              pagination
-              paginationPageSize={5}
-              columnDefs={this.state.columnDefs} //eslint-disable-line
-              rowData={this.state.rowData} //eslint-disable-line
+          <FormContainer>
+            <NavBar>
+              <TabMenu>
+                <EmployeeNum>All Employee (216)</EmployeeNum>
+              </TabMenu>
+              <SearchBox>
+                <Input type="search" onChange={this.handleSearch} placeholder="Search here" />
+                <FontAwesomeIcon color="darkslateblue" size="1x" icon={faSearch} />
+              </SearchBox>
+              <Button variant="nav">
+                <FontAwesomeIcon color="white" size="lg" icon={faFileAlt} />
+                Generate Report
+              </Button>
+            </NavBar>
+            <div className="ag-theme-material" style={{ height: 600 }}>
+              <AgGridReact
+                onGridReady={this.onGridReady}
+                defaultColDef
+                pagination
+                paginationPageSize={5}
+                columnDefs={this.state.columnDefs} //eslint-disable-line
+                rowData={this.state.rowData} //eslint-disable-line
+              />
+            </div>
+          </FormContainer>
+          <RightPanel>
+            <Calendar
+              getBookings={this.getBookingDetails} //eslint-disable-line
             />
-          </div>
+          </RightPanel>
         </Container>
-      </>
+
+      </AdminLayout>
     );
   }
 }
+
+GuestList.propTypes = {
+  history: PropTypes.shape({
+    push: PropTypes.func,
+  }).isRequired,
+};
 
 export default GuestList;

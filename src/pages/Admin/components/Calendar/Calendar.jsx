@@ -86,7 +86,7 @@ class Calendar extends React.Component {
 
   render() {
     const { calendar, value, monthlySessions } = this.state;
-    const { handleDate, getBookings } = this.props;
+    const { getBookings } = this.props;
     return (
       <Container>
         <CalendarHeader>
@@ -115,7 +115,6 @@ class Calendar extends React.Component {
             day={day}
             value={value}
             monthlySessions={monthlySessions}
-            handleDate={handleDate}
             getBookings={getBookings}
           />
         )))}
@@ -125,7 +124,6 @@ class Calendar extends React.Component {
 }
 
 Calendar.propTypes = {
-  handleDate: PropTypes.func.isRequired,
   getBookings: PropTypes.func.isRequired,
 };
 
