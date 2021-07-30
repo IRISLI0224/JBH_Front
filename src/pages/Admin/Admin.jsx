@@ -1,10 +1,12 @@
 import React from 'react';
 import styled from 'styled-components';
+import moment from 'moment';
 import GuestList from './GuestList';
+import Calendar from './components/Calendar';
+import { getBookingByDate } from '../../apis/getBookingByDate';
 
 const Container = styled.div`
   display: flex;
-  flex-direction: column;
   align-items: flex-start;
   min-height: 100vh;
   padding: 1.5rem 3rem 0 0;
@@ -14,9 +16,70 @@ const Container = styled.div`
   margin-left: 11rem;
 `;
 
-const Admin = () => (
-  <Container>
-    <GuestList />
-  </Container>
-);
+const LeftPanel = styled.div`
+  flex-direction: column;
+  min-height: 100vh;
+  width: 365px;
+  background:white;
+  font-family: 'Poppins';
+  margin-left: 2rem;
+  padding: 1rem 1rem 0;
+`;
+
+const Center = styled.div`
+  flex-direction: column;
+  min-height: 100vh;
+  padding: 1.5rem 3rem 0 0;
+  width: 2800px;
+  background:white;
+  font-family: 'Poppins';
+`;
+
+class Admin extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      chosenDate: '2021-07-29',//eslint-disable-line
+      today: '',
+      allData: [],//eslint-disable-line
+    };
+    this.handleDate = this.handleDate.bind(this);
+    this.getBookingDetails = this.getBookingDetails.bind(this);
+    const myDate = new Date();
+    const currentdate = `${myDate.getFullYear()}-${myDate.getMonth() + 1}-${myDate.getDate()}`;
+    this.state.today = (moment)(currentdate).format('YYYY-MM-DD');
+    // console.log(this.props.location.email)
+    this.getBookingDetails(this.state.today);//eslint-disable-line
+  }
+
+  handleDate(chosenDate) {
+    this.setState({
+      chosenDate,//eslint-disable-line
+    });
+    // console.log(this.state.chosenDate);
+  }
+
+  async getBookingDetails(chosenDate) {
+    // const { chosenDate } = this.state;
+    this.setState({
+      allData: await getBookingByDate(chosenDate),//eslint-disable-line
+    });
+    // console.log(this.state.allData);
+  }
+
+  render() {
+    return (
+      <Container>
+        <Center><GuestList /></Center>
+        <LeftPanel>
+          <Calendar
+            handleDate={this.handleDate}
+            getBookings={this.getBookingDetails}
+          />
+        </LeftPanel>
+      </Container>
+    );
+  }
+}
+
 export default Admin;

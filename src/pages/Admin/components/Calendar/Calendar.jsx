@@ -1,13 +1,14 @@
 import React from 'react';
 import styled from 'styled-components';
 import moment from 'moment';
+import PropTypes from 'prop-types';
 import CalendarDay from './components/CalendarDay';
 import buildCalendar from './buildCalendar';
 import getSessionData from '../../../../apis/getSessionData';
 
 const Container = styled.div`
   margin: 0 auto;
-  width: 20rem;
+  width: 15rem;
   border-top: solid 1px #c7c7c7;
   border-left: solid 1px #c7c7c7;
 `;
@@ -19,14 +20,14 @@ const CalendarHeader = styled.div`
   height: 6rem;
   border-right: solid 1px #c7c7c7;
   color: #181b50;
-  font: bold 2.2rem 'Baloo';
+  font: bold 1.8rem 'Baloo';
   
 `;
 
 const CalendarButton = styled.button`
   border: none;
   background-color: #fff;
-  font: 2rem 'Baloo';
+  font: 1.5rem 'Baloo';
   &:hover {
     cursor: pointer;
   }
@@ -85,6 +86,7 @@ class Calendar extends React.Component {
 
   render() {
     const { calendar, value, monthlySessions } = this.state;
+    const { handleDate, getBookings } = this.props;
     return (
       <Container>
         <CalendarHeader>
@@ -113,12 +115,18 @@ class Calendar extends React.Component {
             day={day}
             value={value}
             monthlySessions={monthlySessions}
-            
+            handleDate={handleDate}
+            getBookings={getBookings}
           />
         )))}
       </Container>
     );
   }
 }
+
+Calendar.propTypes = {
+  handleDate: PropTypes.func.isRequired,
+  getBookings: PropTypes.func.isRequired,
+};
 
 export default Calendar;
