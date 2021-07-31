@@ -20,4 +20,5 @@ export const authRoutes = [
   { path: '/mybooking', component: MyBooking },
   // { path: '/admin', component: Admin },
   { path: '/admin/guestlist', component: GuestList },
+  { path: '/admin/bookingdetail', component: AdminBookingDetail },
 ];

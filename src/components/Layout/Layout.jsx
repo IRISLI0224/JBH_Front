@@ -20,34 +20,45 @@ const Main = styled.div`
 `;
 
 // location.pathname.indexOf("admin") != -1
+const Layout = ({ children, location }) => {
+  const url = location.pathname;
+  const specialCases = {
+    '/': 'A',
+    '/index.html': 'A',
+    '/admin/guestlist': 'B',
+    '/admin/bookingdetail': 'B',
+  };
 
-const Layout = ({ children, location }) => (
-  <>
-    {location.pathname === '/' || location.pathname === '/index.html' ? (  //eslint-disable-line
+  const specialCase = specialCases[url];
+  if (specialCase === 'A') {
+    return (
       <>
         <Header />
         <Main img={bgImg}>{children}</Main>
         <Footer />
       </>
-    )
-      : location.pathname.indexOf('guestlist') !== -1 ? (
-        <>
-          <>
-            <AdminHeader />
-            <Main>{children}</Main>
-            <AdminSidebar />
-          </>
-        </>
-      ) : (
-        <>
-          <OtherHeader />
-          <Main img={otherBgImg}>{children}</Main>
-          <Footer />
-        </>
-      )}
+    );
+  }
+  if (specialCase === 'B') {
+    return (
 
-  </>
-);
+      <>
+        <AdminHeader />
+        <Main>{children}</Main>
+        <AdminSidebar />
+      </>
+
+    );
+  }
+
+  return (
+    <>
+      <OtherHeader />
+      <Main img={otherBgImg}>{children}</Main>
+      <Footer />
+    </>
+  );
+};
 
 Layout.propTypes = {
   children: PropTypes.node.isRequired,

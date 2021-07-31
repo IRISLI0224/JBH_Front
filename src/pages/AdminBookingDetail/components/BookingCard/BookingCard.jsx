@@ -1,9 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
+import moment from 'moment';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faShapes, faBed } from '@fortawesome/free-solid-svg-icons';
 import { faUser } from '@fortawesome/free-regular-svg-icons';
-
+import PropTypes from 'prop-types';
 import SlideOne from '../../../../assets/images/slide1.png';
 import SlideTwo from '../../../../assets/images/slide2.jpeg';
 import SlideThree from '../../../../assets/images/slide3.jpeg';
@@ -83,6 +84,7 @@ const BottomTitle = styled.div`
 const DetailName = styled.div`
   font-family: Poppins;
   font-size: 18px;
+  display: flex;
 `;
 
 const BookingNum = styled.div`
@@ -104,50 +106,68 @@ const ImgContainer = styled.div`
   justify-content: space-between;
 `;
 
-const BookingCard = () => (
-  <Wrapper>
-    <TopWrapper>
+const PersonWrap = styled.div`
+  margin-left: 10px;
+`;
 
-      <ProductName>Title</ProductName>
-      <TopDetail>
-        <IconWrapperLarge>
-          <FontAwesomeIcon color="#181b50" size="4x" icon={faShapes} />
-        </IconWrapperLarge>
-        <BookingGeneral>
-          <BookingId>BookingID</BookingId>
-          <ProductName>Product Name</ProductName>
-        </BookingGeneral>
-        <TopSub>
-          <TopSubUp>
-            <IconWrapperSmall>
-              <FontAwesomeIcon color="#8f8f8f" size="x" icon={faUser} />
-            </IconWrapperSmall>
-            <BookingNum>Book Capacity</BookingNum>
-          </TopSubUp>
-          <DetailName>8 Person</DetailName>
-        </TopSub>
-        <TopSub>
-          <TopSubUp>
-            <IconWrapperSmall>
-              <FontAwesomeIcon color="#8f8f8f" size="x" icon={faBed} />
-            </IconWrapperSmall>
-            <BookingNum>Booking Date</BookingNum>
-          </TopSubUp>
-          <DetailName>Oct 25th 2020</DetailName>
-        </TopSub>
-      </TopDetail>
+const BookingCard = ({
+  bookingDetail,
+}) => (
+  <>
+    {bookingDetail && (
+      <Wrapper>
+        <TopWrapper>
+          <ProductName>Current Booking</ProductName>
+          <TopDetail>
+            <IconWrapperLarge>
+              <FontAwesomeIcon color="#181b50" size="4x" icon={faShapes} />
+            </IconWrapperLarge>
+            <BookingGeneral>
+              <BookingId>Booking Number</BookingId>
+              <ProductName>{bookingDetail[0].bookingNum}</ProductName>
+            </BookingGeneral>
+            <TopSub>
+              <TopSubUp>
+                <IconWrapperSmall>
+                  <FontAwesomeIcon color="#8f8f8f" size="x" icon={faUser} />
+                </IconWrapperSmall>
+                <BookingNum>Book Capacity</BookingNum>
+              </TopSubUp>
+              <DetailName>
+                {bookingDetail[0].numOfGuests}
+                <PersonWrap>Person</PersonWrap>
+              </DetailName>
+            </TopSub>
+            <TopSub>
+              <TopSubUp>
+                <IconWrapperSmall>
+                  <FontAwesomeIcon color="#8f8f8f" size="x" icon={faBed} />
+                </IconWrapperSmall>
+                <BookingNum>Booking Date</BookingNum>
+              </TopSubUp>
+              <DetailName>{(moment)(bookingDetail[0].bookingDate).format('YYYY-MM-DD')}</DetailName>
+            </TopSub>
+          </TopDetail>
 
-    </TopWrapper>
-    <TopWrapper>
-      <BottomTitle>Title</BottomTitle>
-      <ImgContainer>
-        <ImgWrapper src={SlideOne} alt="Avatar" />
-        <ImgWrapper src={SlideTwo} alt="Avatar" />
-        <ImgWrapper src={SlideThree} alt="Avatar" />
-        <ImgWrapper src={SlideThree} alt="Avatar" />
-      </ImgContainer>
-    </TopWrapper>
-  </Wrapper>
+        </TopWrapper>
+        <TopWrapper>
+          <BottomTitle>Room Facilities</BottomTitle>
+          <ImgContainer>
+            <ImgWrapper src={SlideOne} alt="Avatar" />
+            <ImgWrapper src={SlideTwo} alt="Avatar" />
+            <ImgWrapper src={SlideThree} alt="Avatar" />
+            <ImgWrapper src={SlideThree} alt="Avatar" />
+          </ImgContainer>
+        </TopWrapper>
+      </Wrapper>
+    )}
+  </>
+
 );
+
+BookingCard.propTypes = {
+  bookingDetail: PropTypes.shape([]).isRequired,
+
+};
 
 export default BookingCard;

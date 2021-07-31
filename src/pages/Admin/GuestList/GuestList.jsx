@@ -126,7 +126,6 @@ class GuestList extends React.Component {
     this.state = {
       chosenDate: '2021-07-29',//eslint-disable-line
       today: '',
-
       columnDefs: [
         {
           headerName: 'FirstName',
@@ -159,9 +158,11 @@ class GuestList extends React.Component {
               <Button
                 variant="form"
                 onClick={() => {
-                  this.actionButton(params);
                   const { history } = this.props;
-                  history.push('/admin/bookingdetail');
+                  history.push({
+                    pathname: '/admin/bookingdetail',
+                    id: params.data._id,//eslint-disable-line
+                  });
                 }}
               >
                 Detail
@@ -176,9 +177,7 @@ class GuestList extends React.Component {
     const myDate = new Date();
     const currentdate = `${myDate.getFullYear()}-${myDate.getMonth() + 1}-${myDate.getDate()}`;
     this.state.today = (moment)(currentdate).format('YYYY-MM-DD');
-    // console.log(this.props.location.email)
     this.getBookingDetails(this.state.today);//eslint-disable-line
-    this.actionButton = this.actionButton.bind(this);
   }
 
   async getBookingDetails(chosenDate) {
@@ -198,10 +197,6 @@ class GuestList extends React.Component {
     this.gridApi.setQuickFilter(event.target.value);
   }
 
-  actionButton = (params) => {
-    console.log(params.data);
-  }
-
   onGridReady = (params) => {
     this.gridApi = params.api;
     this.columnApi = params.columnApi;
@@ -210,38 +205,38 @@ class GuestList extends React.Component {
 
   render() {
     return (
-        <Container>
-          <FormContainer>
-            <NavBar>
-              <TabMenu>
-                <EmployeeNum>All Employee (216)</EmployeeNum>
-              </TabMenu>
-              <SearchBox>
-                <Input type="search" onChange={this.handleSearch} placeholder="Search here" />
-                <FontAwesomeIcon color="darkslateblue" size="1x" icon={faSearch} />
-              </SearchBox>
-              <Button variant="nav">
-                <FontAwesomeIcon color="white" size="lg" icon={faFileAlt} />
-                Generate Report
-              </Button>
-            </NavBar>
-            <div className="ag-theme-material" style={{ height: 600 }}>
-              <AgGridReact
-                onGridReady={this.onGridReady}
-                defaultColDef
-                pagination
-                paginationPageSize={5}
+      <Container>
+        <FormContainer>
+          <NavBar>
+            <TabMenu>
+              <EmployeeNum>All Employee (216)</EmployeeNum>
+            </TabMenu>
+            <SearchBox>
+              <Input type="search" onChange={this.handleSearch} placeholder="Search here" />
+              <FontAwesomeIcon color="darkslateblue" size="1x" icon={faSearch} />
+            </SearchBox>
+            <Button variant="nav">
+              <FontAwesomeIcon color="white" size="lg" icon={faFileAlt} />
+              Generate Report
+            </Button>
+          </NavBar>
+          <div className="ag-theme-material" style={{ height: 600 }}>
+            <AgGridReact
+              onGridReady={this.onGridReady}
+              defaultColDef
+              pagination
+              paginationPageSize={5}
                 columnDefs={this.state.columnDefs} //eslint-disable-line
-                rowData={this.state.rowData} //eslint-disable-line
-              />
-            </div>
-          </FormContainer>
-          <RightPanel>
-            <Calendar
-              getBookings={this.getBookingDetails} //eslint-disable-line
+              rowData={this.state.rowData}//eslint-disable-line
             />
-          </RightPanel>
-        </Container>
+          </div>
+        </FormContainer>
+        <RightPanel>
+          <Calendar
+            getBookings={this.getBookingDetails}
+          />
+        </RightPanel>
+      </Container>
     );
   }
 }

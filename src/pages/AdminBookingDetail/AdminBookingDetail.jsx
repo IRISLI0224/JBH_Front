@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import GuestCard from './components/GuestCard';
 import BookingCard from './components/BookingCard';
+import { getBookingById } from '../../apis/getBookingById';
 
 const Wrapper = styled.div`
   height: 100%;
@@ -11,12 +12,43 @@ const Wrapper = styled.div`
   display: flex;
 `;
 
-const AdminBookingDetail = () => (
+class AdminBookingDetail extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      bookingDetail: undefined,
+      id: '',
+    };
+    const history = this.props;//eslint-disable-line
+    this.state.id = history.location.id;//eslint-disable-line
+    this.getBookingDetail();
+  }
 
-  <Wrapper>
-    <GuestCard />
-    <BookingCard />
-  </Wrapper>
-);
+  async getBookingDetail() {
+    const { id } = this.state;
+    this.setState({
+      bookingDetail: await getBookingById(id),
+    });
+  }
+
+  render() {
+    const { bookingDetail } = this.state;
+    return (
+      <>
+        {bookingDetail && (
+        <Wrapper>
+
+          <GuestCard
+            bookingDetail={bookingDetail}
+          />
+          <BookingCard
+            bookingDetail={bookingDetail}
+          />
+        </Wrapper>
+        )}
+      </>
+    );
+  }
+}
 
 export default AdminBookingDetail;
