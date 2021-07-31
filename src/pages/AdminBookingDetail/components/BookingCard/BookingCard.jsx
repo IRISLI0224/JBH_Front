@@ -84,6 +84,7 @@ const BottomTitle = styled.div`
 const DetailName = styled.div`
   font-family: Poppins;
   font-size: 18px;
+  display: flex;
 `;
 
 const BookingNum = styled.div`
@@ -103,6 +104,10 @@ const ImgWrapper = styled.img`
 const ImgContainer = styled.div`
   display: flex;
   justify-content: space-between;
+`;
+
+const PersonWrap = styled.div`
+  margin-left: 10px;
 `;
 
 const BookingCard = ({
@@ -130,7 +135,7 @@ const BookingCard = ({
               </TopSubUp>
               <DetailName>
                 {bookingDetail[0].numOfGuests}
-                Person
+                <PersonWrap>Person</PersonWrap>
               </DetailName>
             </TopSub>
             <TopSub>
