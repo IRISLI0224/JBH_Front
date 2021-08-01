@@ -9,13 +9,13 @@ import setDayStyles from './setDayStyles';
 const DayItem = styled.span`
   display: inline-block;
   width: calc(100% / 7);
-  height: 3rem;
+  height: 5rem;
   padding: 0.2rem 0.5rem;
   border-bottom: solid 1px #c7c7c7;
   border-right: solid 1px #c7c7c7;
   background-color: ${({ colorStyles }) => colorStyles.bgColor};
   color: ${({ colorStyles }) => colorStyles.numColor};
-  font: bold 1rem 'Roboto';
+  font: bold 1.2rem 'Roboto';
   text-align: left;
   ${({ colorStyles }) => (colorStyles.bgColor === '#bcff2e' || colorStyles.bgColor === '#ffab2e'
     ? '&:hover {cursor: pointer;}'
@@ -23,11 +23,11 @@ const DayItem = styled.span`
 `;
 
 const CalendarDay = ({
-  day, value, monthlySessions, getBookings,
+  day, value, monthlySessions, history,
 }) => {
-  const colorStyles = setDayStyles(day, value, monthlySessions, (new Date(), 'day'));
+  const colorStyles = setDayStyles(day, value, monthlySessions);
   const handleDayClick = (date) => {
-    getBookings(date.format('YYYY-MM-DD').toString());
+    history.push('/admin/editsession', { date: date.format('YYYY-MM-DD').toString() });
   };
 
   return (
@@ -45,8 +45,10 @@ const CalendarDay = ({
 CalendarDay.propTypes = {
   day: PropTypes.instanceOf(moment).isRequired,
   value: PropTypes.instanceOf(moment).isRequired,
-  monthlySessions: PropTypes.object.isRequired,//eslint-disable-line
-  getBookings: PropTypes.func.isRequired,
+  monthlySessions: PropTypes.arrayOf(PropTypes.string).isRequired,
+  history: PropTypes.shape({
+    push: PropTypes.func,
+  }).isRequired,
 };
 
 export default withRouter(CalendarDay);
