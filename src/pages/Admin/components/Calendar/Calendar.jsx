@@ -55,6 +55,7 @@ class Calendar extends React.Component {
     };
     this.handleClick = this.handleClick.bind(this);
     this.setMonthlySessions = this.setMonthlySessions.bind(this);
+    // console.log(this.state.value);
   }
 
   componentDidMount() {
@@ -88,7 +89,7 @@ class Calendar extends React.Component {
     // this.state.monthlySessions = await getBookingByMonth(monthValue);
     this.state.monthlySessions = this.state.monthlySessions.bookingsExistenceArr; //eslint-disable-line
 
-    // console.log(this.state.monthlySessions)
+    // console.log(this.state.monthlySessions);
   }
 
   render() {
