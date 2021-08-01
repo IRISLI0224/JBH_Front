@@ -1,11 +1,11 @@
 import { get } from './axios';
 
-const API_GET_USER_BY_PHONE_URL = '/bookings/email/';
+const API_GET_USER_BY_EMAIL_URL = '/bookings/email/';
 
-export const getUserByPhone = (phoneNumber) => {
+export const getUserByEmail = (email) => {
   const data = {
   };
-  return get(API_GET_USER_BY_PHONE_URL + phoneNumber, data).then((res) => res.data);
+  return get(API_GET_USER_BY_EMAIL_URL + email, data).then((res) => res.data);
 };
 
-export default getUserByPhone;
+export default getUserByEmail;

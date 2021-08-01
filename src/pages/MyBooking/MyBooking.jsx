@@ -4,7 +4,7 @@ import moment from 'moment';
 import EditBooking from './EditBooking';
 import ConfirmEdit from './ConfirmEdit';
 import ViewBooking from './ViewBooking';
-import { getUserByPhone } from '../../apis/getBookingByEmail';
+import { getUserByEmail } from '../../apis/getBookingByEmail';
 
 class MyBooking extends React.Component {
   constructor(props) {
@@ -44,7 +44,7 @@ class MyBooking extends React.Component {
   async getBookingDetails() {
     const { email } = this.state;
     this.setState({
-      allData: await getUserByPhone(email),
+      allData: await getUserByEmail(email),
       ready: true,
     });
   }
