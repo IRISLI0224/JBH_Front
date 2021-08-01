@@ -10,6 +10,8 @@ const Wrapper = styled.div`
   margin-right: 20px;
   margin-top: 20px;
   display: flex;
+  justify-content: center;
+  font-family: 'Poppins';
 `;
 
 class AdminBookingDetail extends React.Component {

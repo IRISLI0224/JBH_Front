@@ -125,7 +125,7 @@ class Login extends React.Component {
     return (
       <>
         <Container>
-          <FormTitle variant="primary">Login</FormTitle>
+          <FormTitle variant="primary">Guest Login</FormTitle>
           <FormSubTitle font="special">Log in to manage bookings</FormSubTitle>
           <FormWrapper
             onSubmit={(e) => {

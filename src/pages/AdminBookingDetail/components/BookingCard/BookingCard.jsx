@@ -10,20 +10,17 @@ import SlideTwo from '../../../../assets/images/slide2.jpeg';
 import SlideThree from '../../../../assets/images/slide3.jpeg';
 
 const Wrapper = styled.div`
-  width: 1000px;
-  height: 400px;
+  width: 50%;
   background: #ffffff;
   display: flex;
   flex-direction: column;
-  padding-top: 30px;
-  margin-left:20px;
-  padding-left: 20px;
-  padding-right: 20px;
+  padding: 1.5rem;
+  margin-left: 2rem;
+  border-radius:10px;
 `;
 
 const TopWrapper = styled.div`
   width: 100%;
-  height: 200px;
   display: flex;
   flex-direction: column;
 
@@ -31,9 +28,9 @@ const TopWrapper = styled.div`
 
 const TopDetail = styled.div`
   width: 100%;
-  height: 120px;
   display: flex;
   align-items: center;
+  padding: 2rem 0;
 `;
 
 const TopSubUp = styled.div`
@@ -64,39 +61,32 @@ const BookingGeneral = styled.div`
 `;
 
 const BookingId = styled.div`
-  font-family: Poppins;
   font-size: 16px;
   color: #181b50;
 `;
 
 const ProductName = styled.div`
-  font-family: Poppins;
   font-size: 20px;
 `;
 
 const BottomTitle = styled.div`
-  font-family: Poppins;
   font-size: 20px;
-  margin-top: -20px;
-  margin-bottom: 20px;
+  margin: 2rem 0;
 `;
 
 const DetailName = styled.div`
-  font-family: Poppins;
   font-size: 18px;
   display: flex;
 `;
 
 const BookingNum = styled.div`
-  font-family: Poppins;
   font-size: 12px;
   margin-left: 10px;
   color: #8f8f8f;
 `;
 
 const ImgWrapper = styled.img`
-  width: 200px;
-  height: 100px;
+  width: 22%;
   border-radius: 10px;
   object-fit: cover;
 `;
@@ -120,7 +110,7 @@ const BookingCard = ({
           <ProductName>Current Booking</ProductName>
           <TopDetail>
             <IconWrapperLarge>
-              <FontAwesomeIcon color="#181b50" size="4x" icon={faShapes} />
+              <FontAwesomeIcon color="#181b50" size="3x" icon={faShapes} />
             </IconWrapperLarge>
             <BookingGeneral>
               <BookingId>Booking Number</BookingId>
@@ -131,7 +121,7 @@ const BookingCard = ({
                 <IconWrapperSmall>
                   <FontAwesomeIcon color="#8f8f8f" size="x" icon={faUser} />
                 </IconWrapperSmall>
-                <BookingNum>Book Capacity</BookingNum>
+                <BookingNum>Number of Guest</BookingNum>
               </TopSubUp>
               <DetailName>
                 {bookingDetail[0].numOfGuests}
