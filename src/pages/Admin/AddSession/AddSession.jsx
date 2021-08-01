@@ -41,8 +41,8 @@ const LegendImg = styled.span`
 
 const AddSession = () => (
   <Container>
-    <Title>Day Pass Availability</Title>
-    <Info>Please click on the date you wish to book</Info>
+    <Title>Add  Availability</Title>
+    <Info>Please click on the date you wish to add availability in</Info>
     <Legend>
       <LegendImg color="#bcff2e" />
       Available

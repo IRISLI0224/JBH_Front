@@ -1,0 +1,72 @@
+.modal {
+    position: fixed;
+    width: 300px;
+    height: 200px;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    border-radius: 10px;
+    background: #fff;
+    overflow: hidden;
+    z-index: 9999;
+    box-shadow: inset 0 0 1px 0 #000;
+  }
+  
+  .modal-title {
+    width: 100%;
+    height: 50px;
+    line-height: 50px;
+    padding: 0 10px;
+    margin-top: 40px;
+    margin-left: 40px;
+    font-size: 15px;
+  }
+  
+  .modal-content {
+    width: 100%;
+    height: 100px;
+    padding: 0 10px;
+  }
+  
+  .modal-operator {
+    width: 100%;
+    height: 50px;
+  }
+  
+  .modal-operator-close, .modal-operator-confirm {
+    font-family: "Roboto";
+    letter-spacing: 0.46px;
+    border: none;
+    border-radius: 0.9rem;
+    background-color: rgb(24, 28, 77);
+    color: #fff;
+    margin-top: 2rem;
+    padding: 0.7rem 1.3rem;
+    margin-left: 100px;
+    color: 'white';
+    text-decoration: 'none'
+
+  }
+  
+  .MyLink{
+    color: 'white';
+    text-decoration: 'none'
+  }
+  .modal-operator-close:active, .modal-operator-confirm:active {
+    opacity: .6;
+    transition: opacity .3s;
+  }
+  
+  .mask {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: #000;
+    opacity: .6;
+    z-index: 9998;
+  }
+  

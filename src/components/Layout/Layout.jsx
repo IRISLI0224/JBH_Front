@@ -32,6 +32,7 @@ const Layout = ({ children, location }) => {
     '/index.html': 'A',
     '/admin/guestlist': 'B',
     '/admin/bookingdetail': 'B',
+    '/admin/addsession': 'B',
   };
 
   const specialCase = specialCases[url];
