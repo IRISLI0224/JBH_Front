@@ -4,7 +4,7 @@ import moment from 'moment';
 import PropTypes from 'prop-types';
 import CalendarDay from './components/CalendarDay';
 import buildCalendar from './buildCalendar';
-import getSessionData from '../../../../apis/getSessionData';
+import { getBookingByMonth } from '../../../../apis/getBookingByMonth';
 
 const Container = styled.div`
   margin: 0 auto;
@@ -59,7 +59,9 @@ class Calendar extends React.Component {
 
   componentDidMount() {
     const { value } = this.state;
-    this.setMonthlySessions(value);
+    // console.log()
+    const value2 = (moment)(value).format('YYYY/MM');
+    this.setMonthlySessions(value2);
     this.setState({
       calendar: buildCalendar(value),
     });
@@ -72,7 +74,8 @@ class Calendar extends React.Component {
       : value.clone().add(1, 'month');
     const preOrNextCalendar = buildCalendar(preOrNextMonth);
     // 为什么这里加await，因为setMonthlySessions方法中对monthlySessions状态的改变是异步的，若慢于下面calendar的变动会导致日期延迟变色
-    await this.setMonthlySessions(preOrNextMonth);
+    const preOrNextMonth2 = (moment)(preOrNextMonth).format('YYYY/MM');
+    await this.setMonthlySessions(preOrNextMonth2);
     this.setState({
       value: preOrNextMonth,
       calendar: preOrNextCalendar,
@@ -80,13 +83,18 @@ class Calendar extends React.Component {
   }
 
   async setMonthlySessions(monthValue) {
-    const { stateArr } = await getSessionData(monthValue);
-    this.setState({ monthlySessions: stateArr });
+    // const { stateArr } = await getBookingByMonth(monthValue);
+    this.setState({ monthlySessions: await getBookingByMonth(monthValue) });
+    // this.state.monthlySessions = await getBookingByMonth(monthValue);
+    this.state.monthlySessions = this.state.monthlySessions.bookingsExistenceArr; //eslint-disable-line
+
+    // console.log(this.state.monthlySessions)
   }
 
   render() {
     const { calendar, value, monthlySessions } = this.state;
     const { getBookings } = this.props;
+    // console.log(monthlySessions)
     return (
       <Container>
         <CalendarHeader>

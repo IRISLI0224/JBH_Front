@@ -74,7 +74,8 @@ line-height: 26px;
 letter-spacing: 0.46px;
 text-transform: uppercase;
 color: #818181;
-margin-top: 4rem;`;
+margin-top: 4rem;
+margin-bottom:1rem;`;
 
 const ViewBooking = ({
   BookingDetails, handleNextStep, ready, handleFormData, today,

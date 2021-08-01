@@ -25,7 +25,7 @@ const DayItem = styled.span`
 const CalendarDay = ({
   day, value, monthlySessions, getBookings,
 }) => {
-  const colorStyles = setDayStyles(day, value, monthlySessions);
+  const colorStyles = setDayStyles(day, value, monthlySessions, (new Date(), 'day'));
   const handleDayClick = (date) => {
     getBookings(date.format('YYYY-MM-DD').toString());
   };
