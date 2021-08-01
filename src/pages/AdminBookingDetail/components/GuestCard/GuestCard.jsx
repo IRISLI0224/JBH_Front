@@ -6,18 +6,18 @@ import PropTypes from 'prop-types';
 import PaperImg from '../../../../assets/images/cement.jpeg';
 
 const Wrapper = styled.div`
-  width: 350px;
-  height: 400px;
+  width: 18%;
   background: #ffffff;
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding-top: 30px;
+  padding: 2rem;
+  border-radius: 10px;
 `;
 
 const AvatarIcon = styled.div`
-  width: 180px;
-  height: 100px;
+  width: 100%;
+  height: 30%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -32,30 +32,30 @@ const AvatarIconImg = styled.img`
 `;
 
 const Name = styled.div`
-  font-family: Poppins;
   font-size: 20px;
 `;
 
 const TelephoneWrapper = styled.div`
   display: flex;
-  margin-top: 30px;
+  align-items: center;
+  margin-top: 2rem;
 `;
 
 const EmailWrapper = styled.div`
   display: flex;
+  align-items: center;
   margin-top: 10px;
 `;
 
 const BackgroundImg = styled.img`
   width: 100%;
   height: 100%;
+  border-radius: 10px;
 `;
 
 const Number = styled.div`
-  font-family: Poppins;
   font-size: 16px;
-  margin-top: 3px;
-  margin-left: 10px;
+  margin: 0 1rem;
 `;
 
 const GuestCard = ({ bookingDetail }) => (

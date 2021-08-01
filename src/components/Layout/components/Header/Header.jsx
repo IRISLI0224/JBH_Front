@@ -44,15 +44,20 @@ const HeaderTitle = styled.h1`
   }
 `;
 
+const ButtonContainer = styled.div`
+  display:flex;
+  justify-content: flex-end;
+  margin-right: 2rem;
+  color: white;
+`;
+
 const HeaderButton = styled.button`
-  position: absolute;
-  bottom: 1rem;
-  right: 5%;
   border: none;
   background-color: rgb(24, 28, 77);
   color: #fff;
   font: 500 0.8rem 'Arial';
-  letter-spacing: 0.08rem;
+  letter-spacing: 0.05rem;
+  padding: 0 0.5rem;
   &:hover {
     cursor: pointer;
     color: #818181;
@@ -63,15 +68,25 @@ const Header = (props) => (
   <Container height={12}>
     <Logo src={LogoImg} alt="Logo" />
     <HeaderTitle>WELCOME TO JAPANESE BATH HOUSE</HeaderTitle>
-    <HeaderButton
-      onClick={() => {
-        props.history.push('/login');
-      }}
-    >
-      MANAGE MY BOOKING
-      {' '}
-      {'>'}
-    </HeaderButton>
+    <ButtonContainer>
+      <HeaderButton
+        onClick={() => {
+          props.history.push('/login');
+        }}
+      >
+        GUEST LOGIN
+        {' '}
+      </HeaderButton>
+      /
+      <HeaderButton
+        onClick={() => {
+          props.history.push('/admin');
+        }}
+      >
+        ADMIN LOGIN
+        {' '}
+      </HeaderButton>
+    </ButtonContainer>
   </Container>
 );
 

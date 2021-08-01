@@ -1,5 +1,5 @@
 import React from 'react';
-import styled from 'styled-components';
+import styled, {css} from 'styled-components';
 import { withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import Header, { OtherHeader } from './components/Header';
@@ -14,9 +14,14 @@ const Main = styled.div`
   flex-direction: column;
   justify-content: center;
   overflow: hidden;
-  min-height: 100vh;
   background: url(${({ img }) => img}) no-repeat center;
   background-size: cover;
+
+  ${(props) => ({
+    user: css`
+      min-height: 100vh;
+    `,
+  }[props.variant])}
 `;
 
 // location.pathname.indexOf("admin") != -1
@@ -54,7 +59,7 @@ const Layout = ({ children, location }) => {
   return (
     <>
       <OtherHeader />
-      <Main img={otherBgImg}>{children}</Main>
+      <Main variant="user" img={otherBgImg}>{children}</Main>
       <Footer />
     </>
   );
