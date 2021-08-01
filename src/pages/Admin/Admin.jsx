@@ -5,7 +5,6 @@ import AdminLogin from './AdminLogin';
 const Container = styled.div`
   display: flex;
   align-items: center;
-  margin-top: 5rem;
 `;
 const Admin = () => (
   <>

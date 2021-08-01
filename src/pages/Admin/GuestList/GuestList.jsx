@@ -226,8 +226,8 @@ class GuestList extends React.Component {
               defaultColDef
               pagination
               paginationPageSize={5}
-                columnDefs={this.state.columnDefs} //eslint-disable-line
-              rowData={this.state.rowData}//eslint-disable-line
+              columnDefs={this.state.columnDefs} //eslint-disable-line
+              rowData={this.state.rowData} //eslint-disable-line
             />
           </div>
         </FormContainer>
