@@ -6,7 +6,7 @@ import FormSubTitle from '../../../components/FormSubTitle';
 import FormWrapper from '../../../components/FormWrapper';
 import FormItem from '../../../components/FormItem';
 import Input from '../../../components/Input';
-import { addSession } from '../../../apis/addSession';
+import { updateSession } from '../../../apis/updateSession';
 import Modal from './modal';
 
 const Container = styled.div`
@@ -64,7 +64,7 @@ class EditSession extends React.Component {
 
   async handleAddSession() {
     const { date, maxnumber, time } = this.state;
-    addSession(date, maxnumber, time);
+    updateSession(date, maxnumber, time);
     this.setState({ visible: true });
   }
 

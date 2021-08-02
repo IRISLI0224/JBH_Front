@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faThLarge } from '@fortawesome/free-solid-svg-icons';
 import { faUser } from '@fortawesome/free-regular-svg-icons';
+import { Link } from 'react-router-dom';
 import LogoImg from '../../../../assets/images/logo.png';
 
 const Wrapper = styled.div`
@@ -47,18 +48,28 @@ const NavButton = styled.button`
 const AdminSidebar = () => (
   <Wrapper>
     <LogoIconImg src={LogoImg} alt="Avatar" />
-    <NavButton>
-      <IconTitleWrap>
-        <FontAwesomeIcon color="#8f8f8f" size="2x" icon={faThLarge} />
-        <Title>Dashboard</Title>
-      </IconTitleWrap>
-    </NavButton>
-    <NavButton>
-      <IconTitleWrap>
-        <FontAwesomeIcon color="#8f8f8f" size="2x" icon={faUser} />
-        <Title>User</Title>
-      </IconTitleWrap>
-    </NavButton>
+
+    <Link to="/admin/guestlist" style={{ textDecoration: 'none', marginTop: '5px', display: 'flex' }}>
+      <NavButton>
+        <IconTitleWrap>
+          <FontAwesomeIcon color="#8f8f8f" size="2x" icon={faThLarge} />
+          <Title>Dashboard</Title>
+        </IconTitleWrap>
+      </NavButton>
+
+    </Link>
+
+    <Link to="/admin/addsession" style={{ textDecoration: 'none', marginTop: '5px' }}>
+
+      <NavButton>
+        <IconTitleWrap>
+          <FontAwesomeIcon color="#8f8f8f" size="2x" icon={faUser} />
+
+        </IconTitleWrap>
+        <Title>Avaliability</Title>
+      </NavButton>
+    </Link>
+
   </Wrapper>
 
 );

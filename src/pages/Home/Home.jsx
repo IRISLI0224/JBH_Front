@@ -4,8 +4,8 @@ import Calendar from './components/Calendar';
 
 const Container = styled.div`
   overflow: hidden;
-  width: 58rem;
-  height: 58rem;
+  width: 45rem;
+  height: 42rem;
   border-radius: 4rem;
   margin: 5rem auto;
   background-color: #fff;
@@ -13,10 +13,10 @@ const Container = styled.div`
 `;
 
 const Title = styled.h1`
-  margin-top: 4rem;
+  margin-top: 2rem;
   margin-bottom: 0.7rem;
   color: #171a4f;
-  font: bold 36px 'Baloo';
+  font: bold 30px 'Baloo';
 `;
 
 const Info = styled.div`
@@ -24,16 +24,26 @@ const Info = styled.div`
 `;
 
 const Legend = styled.div`
-  font-family: 'Roboto';
-  display: flex;
-  align-items: center;
-  margin-left: 6rem;
-  height: 6rem;
+font-family: 'Roboto';
+display: -webkit-box;
+display: -webkit-flex;
+display: -ms-flexbox;
+display: flex;
+-webkit-align-items: center;
+-webkit-box-align: center;
+-ms-flex-align: center;
+align-items: stretch;
+height: 3.2rem;
+justify-content: flex-start;
+align-content: flex-start;
+flex-wrap: wrap;
+flex-direction: row;
+margin-top: 1.5rem;
 `;
 
 const LegendImg = styled.span`
   display: inline-block;
-  margin: 0 1rem 0 4rem;
+  margin: 0 1rem 0 3.2rem;
   width: 1.2rem;
   height: 1.2rem;
   background-color: ${({ color }) => color};
