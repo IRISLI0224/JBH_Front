@@ -7,6 +7,8 @@ import FormWrapper from '../../../components/FormWrapper';
 import FormItem from '../../../components/FormItem';
 import Input from '../../../components/Input';
 import { updateSession } from '../../../apis/updateSession';
+import { addSession } from '../../../apis/addSession';
+import { getSessionByDate } from '../../../apis/getSessionByOneDate';
 import Modal from './modal';
 
 const Container = styled.div`
@@ -46,11 +48,24 @@ class EditSession extends React.Component {
       time: 0,
       maxnumber: 0,
       visible: false,
+      exist: false,
     };
     const history = this.props;
     this.state.date = history.location.state.date; //eslint-disable-line
     this.handleAddSession = this.handleAddSession.bind(this);
     this.handleDataChange = this.handleDataChange.bind(this);
+  }
+
+  async componentDidMount() {
+    const { date, time } = this.state;
+    const check = await getSessionByDate(date, time);
+    // console.log(check)
+    if (typeof (check) !== 'string') {
+      this.setState({
+        exist: true,
+        maxnumber: check.maxNumber,
+      });
+    }
   }
 
   handleDataChange(event) {
@@ -63,8 +78,15 @@ class EditSession extends React.Component {
   }
 
   async handleAddSession() {
-    const { date, maxnumber, time } = this.state;
-    updateSession(date, maxnumber, time);
+    // if session exists, run update, else run add
+    const {
+      date, maxnumber, time, exist,
+    } = this.state;
+    if (exist) {
+      updateSession(date, maxnumber, time);
+    } else {
+      addSession(date, maxnumber, time);
+    }
     this.setState({ visible: true });
   }
 
@@ -99,6 +121,7 @@ class EditSession extends React.Component {
                 type="number"
                 value={time}
                 onChange={this.handleDataChange}
+                disabled
               />
             </FormItem>
           </FormWrapper>
