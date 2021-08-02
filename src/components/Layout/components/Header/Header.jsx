@@ -1,8 +1,7 @@
 import React from 'react';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import PropTypes from 'prop-types';
 import { withRouter } from 'react-router-dom';
-
 import LogoImg from '../../../../assets/images/logo.png';
 
 const Container = styled.div`
@@ -30,10 +29,6 @@ const Logo = styled.img`
   }
 `;
 
-const OtherLogo = styled.img`
-  width: 6.7rem;
-`;
-
 const HeaderTitle = styled.h1`
   margin-top: 5rem;
   color: #fff;
@@ -55,13 +50,23 @@ const HeaderButton = styled.button`
   border: none;
   background-color: rgb(24, 28, 77);
   color: #fff;
-  font: 500 0.8rem 'Arial';
+  font: 500 0.8rem 'Roboto';
   letter-spacing: 0.05rem;
-  padding: 0 0.5rem;
   &:hover {
     cursor: pointer;
     color: #818181;
-  }
+  };
+
+  ${(props) => ({
+    logout: css`
+      position: absolute;
+      right: 4rem;
+      bottom: 1rem;
+    `,
+    login: css`
+      padding: 0 0.5rem;
+    `,
+  }[props.type])}
 `;
 
 const Header = (props) => (
@@ -70,21 +75,21 @@ const Header = (props) => (
     <HeaderTitle>WELCOME TO JAPANESE BATH HOUSE</HeaderTitle>
     <ButtonContainer>
       <HeaderButton
+        type="login"
         onClick={() => {
           props.history.push('/login');
         }}
       >
         GUEST LOGIN
-        {' '}
       </HeaderButton>
       /
       <HeaderButton
+        type="login"
         onClick={() => {
           props.history.push('/admin');
         }}
       >
         ADMIN LOGIN
-        {' '}
       </HeaderButton>
     </ButtonContainer>
   </Container>
@@ -95,11 +100,5 @@ Header.propTypes = {
     push: PropTypes.func,
   }).isRequired,
 };
-
-export const OtherHeader = () => (
-  <Container height={7.5}>
-    <OtherLogo src={LogoImg} alt="Logo" />
-  </Container>
-);
 
 export default withRouter(Header);

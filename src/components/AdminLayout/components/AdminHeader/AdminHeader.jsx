@@ -1,8 +1,11 @@
 import React from 'react';
 import styled from 'styled-components';
+import PropTypes from 'prop-types';
+import { withRouter } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import Input from '../../../Input';
+import { removeToken } from '../../../../utils/authentication';
 
 const Wrapper = styled.div`
   background-color: #ffffff;
@@ -15,7 +18,7 @@ const Wrapper = styled.div`
 `;
 
 const NavLeft = styled.div`
-  width: 120px;
+  width: 30%;
   height: 30px;
   margin-left: 250px;
   font-family: Poppins;
@@ -26,15 +29,14 @@ const NavLeft = styled.div`
 `;
 
 const NavMiddle = styled.div`
-  width: 400px;
+  width: 30%;
   height: 30px;
-  margin-left: 300px;
   display: flex;
   align-content: space-between;
 `;
 
 const NavRight = styled.div`
-  width: 200px;
+  width: 30%;
   height: 30px;
   display: flex;
   align-content: space-between;
@@ -70,7 +72,25 @@ const AdminName = styled.div`
   color: #2e2e2e;
   margin-left: 10px;
 `;
-const AdminHeader = () => (
+
+const LogoutButton = styled.button`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  background-color: white;
+  font-family: 'Poppins';
+  font-size: 0.8rem;
+  color: darkslateblue;
+  border-radius: 10px;
+  border: solid 1.5px darkslateblue;
+  padding: 0.4rem 1.3rem;
+  cursor: pointer;
+  box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.03);
+  margin-left: 20%;
+`;
+
+const AdminHeader = (props) => (
   <Wrapper>
     <NavLeft>
       Guest List
@@ -90,9 +110,22 @@ const AdminHeader = () => (
     <NavRight>
       <AvatarIconImg src="http://s3.amazonaws.com/37assets/svn/765-default-avatar.png" alt="Avatar" />
       <AdminName>Name</AdminName>
+      <LogoutButton
+        onClick={() => {
+          removeToken();
+          props.history.replace('/admin');
+        }}
+      >
+        Logout
+      </LogoutButton>
     </NavRight>
-
   </Wrapper>
 );
 
-export default AdminHeader;
+AdminHeader.propTypes = {
+  history: PropTypes.shape({
+    replace: PropTypes.func,
+  }).isRequired,
+};
+
+export default withRouter(AdminHeader);
