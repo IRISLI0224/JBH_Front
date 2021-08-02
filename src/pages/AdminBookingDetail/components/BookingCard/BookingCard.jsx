@@ -10,12 +10,12 @@ import SlideTwo from '../../../../assets/images/slide2.jpeg';
 import SlideThree from '../../../../assets/images/slide3.jpeg';
 
 const Wrapper = styled.div`
-  width: 50%;
+  width: 55%;
   background: #ffffff;
   display: flex;
   flex-direction: column;
   padding: 1.5rem;
-  margin-left: 2rem;
+  margin-left: 1rem;
   border-radius:10px;
 `;
 

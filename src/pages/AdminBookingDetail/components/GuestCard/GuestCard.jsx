@@ -6,7 +6,7 @@ import PropTypes from 'prop-types';
 import PaperImg from '../../../../assets/images/cement.jpeg';
 
 const Wrapper = styled.div`
-  width: 18%;
+  width: 20%;
   background: #ffffff;
   display: flex;
   flex-direction: column;

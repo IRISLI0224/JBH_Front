@@ -11,11 +11,11 @@ import Modal from './modal';
 
 const Container = styled.div`
   display: inline-block;
-  margin: 0 auto;
+  margin: 2rem auto;
   padding: 3rem 4rem;
   border-radius: 20px;
   background-color: white;
-  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.03);
 `;
 
 const Buttons = styled.div`

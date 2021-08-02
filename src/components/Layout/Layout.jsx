@@ -2,7 +2,9 @@ import React from 'react';
 import styled, { css } from 'styled-components';
 import { withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import Header, { OtherHeader } from './components/Header';
+import Header from './components/Header';
+import BasicHeader from './components/Header/BasicHeader';
+import BasicLogoutHeader from './components/Header/BasicLogoutHeader';
 import Footer from './components/Footer';
 import bgImg from '../../assets/images/bgImg.jpeg';
 import otherBgImg from '../../assets/images/otherBgImg.jpg';
@@ -33,6 +35,8 @@ const Layout = ({ children, location }) => {
     '/admin/guestlist': 'B',
     '/admin/bookingdetail': 'B',
     '/admin/addsession': 'B',
+    '/admin/editsession': 'B',
+    '/mybooking': 'C',
   };
 
   const specialCase = specialCases[url];
@@ -47,19 +51,27 @@ const Layout = ({ children, location }) => {
   }
   if (specialCase === 'B') {
     return (
-
       <>
         <AdminHeader />
         <Main>{children}</Main>
         <AdminSidebar />
       </>
+    );
+  }
 
+  if (specialCase === 'C') {
+    return (
+      <>
+        <BasicLogoutHeader />
+        <Main variant="user" img={otherBgImg}>{children}</Main>
+        <Footer />
+      </>
     );
   }
 
   return (
     <>
-      <OtherHeader />
+      <BasicHeader />
       <Main variant="user" img={otherBgImg}>{children}</Main>
       <Footer />
     </>
