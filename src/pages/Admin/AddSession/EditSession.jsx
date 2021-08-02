@@ -47,7 +47,7 @@ class EditSession extends React.Component {
       date: '',
       time: 0,
       maxnumber: 0,
-      visible: false,
+      visible: true,
       exist: false,
     };
     const history = this.props;

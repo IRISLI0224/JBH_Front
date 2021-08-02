@@ -12,16 +12,20 @@
     overflow: hidden;
     z-index: 9999;
     box-shadow: inset 0 0 1px 0 #000;
+    display: flex;
+    align-content: stretch;
+    justify-content: flex-start;
+    flex-direction: column;
   }
   
   .modal-title {
-    width: 100%;
     height: 50px;
     line-height: 50px;
     padding: 0 10px;
     margin-top: 40px;
     margin-left: 40px;
     font-size: 15px;
+    font-family: 'Poppins';
   }
   
   .modal-content {
