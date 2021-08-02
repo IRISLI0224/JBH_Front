@@ -65,5 +65,4 @@ BasicHeader.propTypes = {
   }).isRequired,
 };
 
-
 export default withRouter(BasicHeader);
