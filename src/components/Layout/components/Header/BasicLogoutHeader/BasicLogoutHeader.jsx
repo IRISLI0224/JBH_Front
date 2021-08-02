@@ -47,6 +47,7 @@ const HeaderButton = styled.button`
 const BasicHeader = (props) => (
   <Container height={7.5}>
     <OtherLogo src={LogoImg} alt="Logo" />
+
     <HeaderButton
       type="logout"
       onClick={() => {

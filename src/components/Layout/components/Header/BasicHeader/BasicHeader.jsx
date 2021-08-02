@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 import LogoImg from '../../../../../assets/images/logo.png';
 
 const Container = styled.div`
@@ -18,9 +19,36 @@ const OtherLogo = styled.img`
   width: 6.7rem;
 `;
 
+const HeaderButton = styled.button`
+  border: none;
+  background-color: rgb(24, 28, 77);
+  color: #fff;
+  font: 500 0.9rem 'Roboto';
+  letter-spacing: 0.05rem;
+  &:hover {
+    cursor: pointer;
+    color: #818181;
+  };
+
+
+      position: absolute;
+      right: 4rem;
+      bottom: 1rem;
+
+
+
+`;
+
 const BasicHeader = () => (
   <Container height={7.5}>
     <OtherLogo src={LogoImg} alt="Logo" />
+
+    <Link to="/" style={{ color: 'white', textDecoration: 'none' }}>
+      <HeaderButton>
+        BACK TO HOMEPAGE
+      </HeaderButton>
+    </Link>
+
   </Container>
 );
 
