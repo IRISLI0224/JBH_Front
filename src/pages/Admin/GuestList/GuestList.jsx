@@ -115,7 +115,7 @@ const RightPanel = styled.div`
   width: 365px;
   background:white;
   font-family: 'Poppins';
-  margin: 0 1rem;
+  margin: 3.8rem 1rem;
   padding: 1rem 1rem;
   border-radius: 10px;
 `;

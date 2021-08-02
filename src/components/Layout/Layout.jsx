@@ -35,6 +35,7 @@ const Layout = ({ children, location }) => {
     '/admin/guestlist': 'B',
     '/admin/bookingdetail': 'B',
     '/admin/addsession': 'B',
+    '/admin/editsession': 'B',
     '/mybooking': 'C',
   };
 

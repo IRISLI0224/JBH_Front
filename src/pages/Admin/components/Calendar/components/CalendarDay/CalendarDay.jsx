@@ -16,6 +16,7 @@ const DayItem = styled.span`
   background-color: ${({ colorStyles }) => colorStyles.bgColor};
   color: ${({ colorStyles }) => colorStyles.numColor};
   font: bold 1rem 'Roboto';
+  cursor: pointer;
   text-align: left;
   ${({ colorStyles }) => (colorStyles.bgColor === '#bcff2e' || colorStyles.bgColor === '#ffab2e'
     ? '&:hover {cursor: pointer;}'

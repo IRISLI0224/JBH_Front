@@ -7,7 +7,7 @@ const Container = styled.div`
   width: 45rem;
   height: 41rem;
   border-radius: 4rem;
-  margin: 0.5rem auto;
+  margin: 1rem auto;
   background-color: #fff;
   text-align: center;
 `;
