@@ -3,7 +3,7 @@ const colors = {
   closed: '#F0F8FF',
   available: '#87CEFA',
   limited: '#ADD8E6',
-  'fullyBooked': '#6495ED',
+  fullyBooked: '#6495ED',
 };
 
 // 定义“非本月日子但显示在本月五周范围内的”、“当天”、“过去”三个判断函数
