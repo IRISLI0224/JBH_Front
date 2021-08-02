@@ -7,7 +7,7 @@ import getSessionData from '../../../../../apis/getSessionData';
 
 const Container = styled.div`
   margin: 0 auto;
-  width: 48rem;
+  width: 40rem;
   border-top: solid 1px #c7c7c7;
   border-left: solid 1px #c7c7c7;
 `;
@@ -16,10 +16,11 @@ const CalendarHeader = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  height: 6rem;
+  height: 4rem;
   border-right: solid 1px #c7c7c7;
   color: #181b50;
-  font: bold 2.2rem 'Baloo';
+  font: bold 1.5rem 'Baloo';
+  font-family: 'Poppins';
 `;
 
 const CalendarButton = styled.button`
@@ -42,7 +43,6 @@ const CalendarWeekday = styled.span`
   font: bold 0.9rem 'Roboto';
   line-height: 2.4rem;
 `;
-
 class Calendar extends React.Component {
   constructor(props) {
     super(props);

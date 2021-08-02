@@ -20,7 +20,8 @@ const CalendarHeader = styled.div`
   height: 6rem;
   border-right: solid 1px #c7c7c7;
   color: #181b50;
-  font: bold 1.8rem 'Baloo';
+  font: bold 1.3rem 'Baloo';
+  font-family: 'Poppins';
   
 `;
 
@@ -40,7 +41,7 @@ const CalendarWeekday = styled.span`
   border-top: solid 1px #c7c7c7;
   border-bottom: solid 1px #c7c7c7;
   border-right: solid 1px #c7c7c7;
-  font: bold 0.9rem 'Roboto';
+  font: bold 0.8rem 'Roboto';
   line-height: 2.4rem;
   color: rgba(0, 0, 0, 0.6);
 `;

@@ -9,7 +9,7 @@ import setDayStyles from './setDayStyles';
 const DayItem = styled.span`
   display: inline-block;
   width: calc(100% / 7);
-  height: 5rem;
+  height: 4rem;
   padding: 0.2rem 0.5rem;
   border-bottom: solid 1px #c7c7c7;
   border-right: solid 1px #c7c7c7;
