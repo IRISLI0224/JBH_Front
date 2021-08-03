@@ -129,7 +129,7 @@ class CheckoutForm extends React.Component {
       } catch (error) {
         // when an exception was caught during payment/addbooking request.
         if (error.response) {
-          error.message = error.response.data.message;
+          error.message = error.response.data.message || error.response.data;
         } else if (error.request) {
           // The request was made but no response was received
           error.message = 'The request was made but no response was received, try again later';
