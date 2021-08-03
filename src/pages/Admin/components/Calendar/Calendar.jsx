@@ -89,7 +89,6 @@ class Calendar extends React.Component {
     this.setState({
       monthlySessions: stateArr.bookingsExistenceArr,
     });
-
   }
 
   render() {
