@@ -4,7 +4,6 @@ import { CardElement, ElementsConsumer } from '@stripe/react-stripe-js';
 import styled, { css } from 'styled-components';
 
 import addBooking from '../../../../../apis/addBooking';
-import createPayment from '../../../../../apis/createPayment';
 
 const Form = styled.form`
   margin: 1.25rem auto;
@@ -86,24 +85,6 @@ class CheckoutForm extends React.Component {
     });
   };
 
-  // eslint-disable-next-line consistent-return
-  addBooking = async () => {
-    const { formData } = this.props;
-    try {
-      const response = await addBooking(formData);
-      return response.data;
-    } catch (error) {
-      if (error.response) {
-        error.message = error.response.data.message;
-      } else if (error.request) {
-        // The request was made but no response was received
-        error.message = 'The request was made but no response was received, try again later';
-      }
-      this.setErrorMessage(error);
-      this.setConfirmMessageAndButton(undefined, false);
-    }
-  };
-
   setPayment = async () => {
     const { stripe, elements } = this.props; // eslint-disable-line
 
@@ -133,16 +114,10 @@ class CheckoutForm extends React.Component {
 
       try {
         const { id } = paymentMethod;
-        const {
-          formData: { paidAmount, email },
-        } = this.props;
-        const paymentInfo = {
-          amount: paidAmount * 100,
-          id,
-          receipt_email: email,
-        };
+        const { formData } = this.props;
+        const bookingAndPaymentInfo = { ...formData, id };
         // send booking info (and payment id) to backend
-        const response = await createPayment(paymentInfo);
+        const response = await addBooking(bookingAndPaymentInfo);
         // when payment was successful
         if (response.data.success) {
           // this.setConfirmMessageAndButton(response.data.message, true);
@@ -152,7 +127,7 @@ class CheckoutForm extends React.Component {
         this.setConfirmMessageAndButton(response.data.message, false);
         // eslint-disable-next-line no-shadow
       } catch (error) {
-        // when an exception was caught during payment transaction.
+        // when an exception was caught during payment/addbooking request.
         if (error.response) {
           error.message = error.response.data.message;
         } else if (error.request) {
@@ -171,15 +146,11 @@ class CheckoutForm extends React.Component {
 
     const { error } = this.state;
 
-    let paymentResponse = null;
+    // let paymentResponse = null;
     let bookingResponse = null;
     // eslint-disable-next-line no-unused-expressions
-    !error && (paymentResponse = await this.setPayment());
+    !error && (bookingResponse = await this.setPayment());
     // eslint-disable-next-line no-unused-expressions
-    if (paymentResponse) {
-      // !!paymentResponse.success && this.handleClick(paymentResponse); // eslint-disable-line
-      bookingResponse = await this.addBooking(); // eslint-disable-line
-    }
     if (bookingResponse) {
       !!bookingResponse.bookingNum && this.handleClick(bookingResponse); // eslint-disable-line
     }
