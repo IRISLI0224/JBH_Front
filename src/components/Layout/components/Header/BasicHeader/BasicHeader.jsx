@@ -42,13 +42,11 @@ const HeaderButton = styled.button`
 const BasicHeader = () => (
   <Container height={7.5}>
     <OtherLogo src={LogoImg} alt="Logo" />
-
     <Link to="/" style={{ color: 'white', textDecoration: 'none' }}>
       <HeaderButton>
         BACK TO HOMEPAGE
       </HeaderButton>
     </Link>
-
   </Container>
 );
 

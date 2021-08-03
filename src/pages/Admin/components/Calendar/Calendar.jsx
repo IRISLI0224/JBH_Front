@@ -85,12 +85,10 @@ class Calendar extends React.Component {
   }
 
   async setMonthlySessions(monthValue) {
-    // const { stateArr } = await getBookingByMonth(monthValue);
-    this.setState({ monthlySessions: await getBookingByMonth(monthValue) });
-    // this.state.monthlySessions = await getBookingByMonth(monthValue);
-    this.state.monthlySessions = this.state.monthlySessions.bookingsExistenceArr; //eslint-disable-line
-
-    // console.log(this.state.monthlySessions);
+    const stateArr = await getBookingByMonth(monthValue);
+    this.setState({
+      monthlySessions: stateArr.bookingsExistenceArr,
+    });
   }
 
   render() {

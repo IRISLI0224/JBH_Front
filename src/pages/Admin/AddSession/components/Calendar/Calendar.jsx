@@ -61,6 +61,7 @@ class Calendar extends React.Component {
     this.setState({
       calendar: buildCalendar(value),
     });
+    // console.log(this.state.monthlySessions);
   }
 
   async handleClick(direction) {
@@ -84,6 +85,7 @@ class Calendar extends React.Component {
 
   render() {
     const { calendar, value, monthlySessions } = this.state;
+    console.log(monthlySessions);
     return (
       <Container>
         <CalendarHeader>
