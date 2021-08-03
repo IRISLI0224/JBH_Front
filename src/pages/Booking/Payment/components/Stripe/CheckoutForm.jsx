@@ -40,13 +40,12 @@ const Button = styled.button`
   color: #fff;
   cursor: pointer;
 
-  ${(props) =>
-    ({
-      true: css`
+  ${(props) => ({
+    true: css`
         background-color: grey;
         cursor: initial;
       `,
-    }[props.disabled || false])}
+  }[props.disabled || false])}
 `;
 
 const Error = styled.div`
@@ -110,7 +109,7 @@ class CheckoutForm extends React.Component {
       this.setErrorMessage();
       this.setConfirmMessageAndButton(
         'the payment is being processed......',
-        true
+        true,
       );
 
       try {
@@ -129,13 +128,11 @@ class CheckoutForm extends React.Component {
         // eslint-disable-next-line no-shadow
       } catch (error) {
         // when an exception was caught during payment/addbooking request.
-        console.log(error);
         if (error.response) {
-          error.message = error.response.data.message || error.response.data;
+          error.message = error.response.data.message;
         } else if (error.request) {
           // The request was made but no response was received
-          error.message =
-            'The request was made but no response was received, try again later';
+          error.message = 'The request was made but no response was received, try again later';
         }
         this.setErrorMessage(error);
         this.setConfirmMessageAndButton(undefined, false);
