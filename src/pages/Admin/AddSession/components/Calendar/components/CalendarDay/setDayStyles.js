@@ -1,9 +1,9 @@
 // 定义session四种状态的背景色
 const colors = {
-  closed: '#F0F8FF',
-  available: '#87CEFA',
-  limited: '#ADD8E6',
-  fullyBooked: '#6495ED',
+  closed: '#DCE9EF',
+  available: '#C9DCE2',
+  limited: '#AFAAC2',
+  fullyBooked: '#77AFCF',
 };
 
 // 定义“非本月日子但显示在本月五周范围内的”、“当天”、“过去”三个判断函数
@@ -19,7 +19,8 @@ const dayStyles = (day, value, monthlySessions) => {
     : beforeToday(day)
       ? '#F0F8FF'
       : colors[monthlySessions[day.format('D') * 1 - 1]];
-  const numColor = notCurrMonth(day, value) || isToday(day) ? '#fff' : '#000';
+  const numColor = notCurrMonth(day, value) ? '#fff' : isToday(day) ? '#7A6263' : '#000';//eslint-disable-line
+
   // 根据三个日期判断条件和session状态array，返回背景色和日期色供日历使用
   return { bgColor, numColor };
 };

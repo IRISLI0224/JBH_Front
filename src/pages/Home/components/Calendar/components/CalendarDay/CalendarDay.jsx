@@ -20,6 +20,9 @@ const DayItem = styled.span`
   ${({ colorStyles }) => (colorStyles.bgColor === '#bcff2e' || colorStyles.bgColor === '#ffab2e'
     ? '&:hover {cursor: pointer;}'
     : '')}
+
+    box-shadow: 0px 1px 4px #c7c7c7,
+          0px 0px 20px rgba(0,0,0.2,0.05) inset;
 `;
 
 const CalendarDay = ({
@@ -27,7 +30,7 @@ const CalendarDay = ({
 }) => {
   const colorStyles = setDayStyles(day, value, monthlySessions);
   const handleDayClick = (date, style) => {
-    if (style.bgColor === '#bcff2e' || style.bgColor === '#ffab2e') {
+    if (style.bgColor === '#8097B9' || style.bgColor === '#3894C5') {
       history.push('/booking', { date: date.format('YYYY-MM-DD').toString() });
     }
   };

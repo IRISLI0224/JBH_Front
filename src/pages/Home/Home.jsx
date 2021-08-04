@@ -47,6 +47,7 @@ const LegendImg = styled.span`
   width: 1.2rem;
   height: 1.2rem;
   background-color: ${({ color }) => color};
+  box-shadow:0px 15px 10px -15px #000;
 `;
 
 const Home = () => (
@@ -54,13 +55,13 @@ const Home = () => (
     <Title>Day Pass Availability</Title>
     <Info>Please click on the date you wish to book</Info>
     <Legend>
-      <LegendImg color="#bcff2e" />
+      <LegendImg color="#8097B9" />
       Available
-      <LegendImg color="#ffab2e" />
+      <LegendImg color="#7A95A1" />
       limited
-      <LegendImg color="#ff2e2e" />
+      <LegendImg color="#3894C5" />
       Fully Booked
-      <LegendImg color="#818181" />
+      <LegendImg color="#D2E0E5" />
       Closed
     </Legend>
     <Calendar />

@@ -8,6 +8,7 @@ import PropTypes from 'prop-types';
 import SlideOne from '../../../../assets/images/slide1.png';
 import SlideTwo from '../../../../assets/images/slide2.jpeg';
 import SlideThree from '../../../../assets/images/slide3.jpeg';
+import SlideFour from '../../../../assets/images/slide4.png';
 
 const Wrapper = styled.div`
   width: 55%;
@@ -146,7 +147,7 @@ const BookingCard = ({
             <ImgWrapper src={SlideOne} alt="Avatar" />
             <ImgWrapper src={SlideTwo} alt="Avatar" />
             <ImgWrapper src={SlideThree} alt="Avatar" />
-            <ImgWrapper src={SlideThree} alt="Avatar" />
+            <ImgWrapper src={SlideFour} alt="Avatar" />
           </ImgContainer>
         </TopWrapper>
       </Wrapper>

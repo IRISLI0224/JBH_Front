@@ -10,6 +10,7 @@ const Container = styled.div`
   margin: 1rem auto;
   background-color: #fff;
   text-align: center;
+  margin-bottom:5%
 `;
 
 const Title = styled.h1`
@@ -55,13 +56,13 @@ const AddSession = () => (
     <Title>Add  Availability</Title>
     <Info>Please click on the date you wish to add availability in</Info>
     <Legend>
-      <LegendImg color="#87CEFA" />
+      <LegendImg color="#C9DCE2" />
       Available
-      <LegendImg color="#ADD8E6" />
+      <LegendImg color="#AFAAC2" />
       limited
-      <LegendImg color="#6495ED" />
+      <LegendImg color="#77AFCF" />
       Fully Booked
-      <LegendImg color="#F0F8FF" />
+      <LegendImg color="#DCE9EF" />
       Closed
     </Legend>
     <Calendar />
