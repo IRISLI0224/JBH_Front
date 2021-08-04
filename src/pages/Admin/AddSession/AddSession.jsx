@@ -56,7 +56,7 @@ const AddSession = () => (
     <Title>Add  Availability</Title>
     <Info>Please click on the date you wish to add availability in</Info>
     <Legend>
-      <LegendImg color="#C9DCE2" />
+      <LegendImg color="#127785" />
       Available
       <LegendImg color="#AFAAC2" />
       limited
