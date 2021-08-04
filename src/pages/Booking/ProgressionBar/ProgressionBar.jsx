@@ -72,6 +72,7 @@ const Stage = styled.div`
         color: #181b50;
       `,
   }[state >= children])}
+  box-shadow:0px 15px 10px -15px #000;
 `;
 
 const StageDescription = styled.div`

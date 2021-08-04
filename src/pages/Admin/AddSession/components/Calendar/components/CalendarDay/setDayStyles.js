@@ -1,7 +1,7 @@
 // 定义session四种状态的背景色
 const colors = {
   closed: '#DCE9EF',
-  available: '#C9DCE2',
+  available: '#127785',
   limited: '#AFAAC2',
   fullyBooked: '#77AFCF',
 };

@@ -6,7 +6,7 @@ import Header from './components/Header';
 import BasicHeader from './components/Header/BasicHeader';
 import BasicLogoutHeader from './components/Header/BasicLogoutHeader';
 import Footer from './components/Footer';
-import bgImg from '../../assets/images/bgImg.jpeg';
+import bgImg from '../../assets/images/bgGif.gif';
 import adminbg from '../../assets/images/adminbg.jpg';
 import otherBgImg from '../../assets/images/otherBgImg.jpg';
 import AdminHeader from '../AdminLayout/components/AdminHeader';
