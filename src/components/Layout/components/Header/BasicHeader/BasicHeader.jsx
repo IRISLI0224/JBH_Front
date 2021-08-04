@@ -13,6 +13,7 @@ const Container = styled.div`
   @media(max-width:768px){
     height:${({ height }) => (height + 2)}rem;
   }
+  box-shadow:0px 15px 10px -15px #000;
 `;
 
 const OtherLogo = styled.img`

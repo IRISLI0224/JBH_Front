@@ -19,6 +19,7 @@ const FormContainer = styled.div`
   width: 100%;
   font-family: 'Poppins';
   margin-left: 11rem;
+  margin-bottom:4.6%
 `;
 
 const NavBar = styled.div`

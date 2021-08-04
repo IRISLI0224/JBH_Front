@@ -21,6 +21,7 @@ const DayItem = styled.span`
   ${({ colorStyles }) => (colorStyles.bgColor === '#bcff2e' || colorStyles.bgColor === '#ffab2e'
     ? '&:hover {cursor: pointer;}'
     : '')}
+    box-shadow:2px 2px 5px grey;
 `;
 
 const CalendarDay = ({

@@ -18,6 +18,7 @@ const Container = styled.div`
   border-radius: 20px;
   background-color: white;
   box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.03);
+  margin-bottom:20%
 `;
 
 const Buttons = styled.div`
@@ -47,7 +48,7 @@ class EditSession extends React.Component {
       date: '',
       time: 0,
       maxnumber: 0,
-      visible: true,
+      visible: false,
       exist: false,
     };
     const history = this.props;

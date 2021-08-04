@@ -7,7 +7,7 @@ const colors = {
 // 定义“非本月日子但显示在本月五周范围内的”、“当天”、“过去”三个判断函数
 const notCurrMonth = (day, value) => day.isBefore(value.clone().startOf('month'), 'day')
   || day.isAfter(value.clone().endOf('month'), 'day');
-const isToday = (day) => day.isSame(new Date(), 'day');
+// const isToday = (day) => day.isSame(new Date(), 'day');
 // const beforeToday = (day) => day.isBefore(new Date(), 'day');
 
 const dayStyles = (day, value, monthlySessions) => {
@@ -17,7 +17,8 @@ const dayStyles = (day, value, monthlySessions) => {
     : colors[monthlySessions[day.format('D') * 1 - 1]];
 
   // console.log(bgColor);
-  const numColor = notCurrMonth(day, value) || isToday(day) ? '#fff' : '#000';
+  const numColor = notCurrMonth(day, value) ? '#fff' : '#000';
+
   // 根据三个日期判断条件和session状态array，返回背景色和日期色供日历使用
   return { bgColor, numColor };
 };
