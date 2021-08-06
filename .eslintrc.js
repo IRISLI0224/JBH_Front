@@ -15,5 +15,6 @@ module.exports = {
   plugins: ['react'],
   rules: {
     'import/no-extraneous-dependencies': ['error', { devDependencies: true }],
+    'import/prefer-default-export': ['off'],
   },
 };
