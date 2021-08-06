@@ -64,7 +64,7 @@ const TabMenu = styled.div`
   font-family: 'Poppins';
 `;
 const EmployeeNum = styled.div`
-  border-bottom: 2px solid darkslateblue;
+  border-bottom: 2px solid #181b50;
   padding: 0.7rem 0.5rem;
 `;
 
@@ -79,10 +79,10 @@ const Button = styled.button`
     nav: css`
       justify-content: space-around;
       color: white;
-      background-color: darkslateblue;
+      background-color: #181b50;
       border-radius: 10px;
       margin-bottom: 1rem;
-      width: 13%;
+      width: 15%;
       padding: 0.2rem 1rem 0.2rem 1rem;
       border: none;
       box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.03);
@@ -90,10 +90,10 @@ const Button = styled.button`
     `,
     form: css`
       justify-content: center;
-      color: darkslateblue;
+      color: #181b50;
       background-color: white;
       border-radius: 30px;
-      border: solid 1.5px darkslateblue;
+      border: solid 1.5px #181b50;
       padding: 0.4rem 1.3rem;
       letter-spacing: 0.4px;
       font-family: 'PoppinsBold';
@@ -209,11 +209,11 @@ class GuestList extends React.Component {
         <FormContainer>
           <NavBar>
             <TabMenu>
-              <EmployeeNum>All Employee (216)</EmployeeNum>
+              <EmployeeNum>All Guest (5)</EmployeeNum>
             </TabMenu>
             <SearchBox>
               <Input type="search" onChange={this.handleSearch} placeholder="Search here" />
-              <FontAwesomeIcon color="darkslateblue" size="1x" icon={faSearch} />
+              <FontAwesomeIcon color="#181b50" size="1x" icon={faSearch} />
             </SearchBox>
             <Button variant="nav">
               <FontAwesomeIcon color="white" size="lg" icon={faFileAlt} />

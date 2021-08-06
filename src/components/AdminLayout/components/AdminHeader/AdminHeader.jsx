@@ -43,7 +43,10 @@ const NavRight = styled.div`
 `;
 
 const SearchInput = styled(Input)`
+  padding-left: 2rem;
+  font-size: 0.7rem;
   border-radius: 20px;
+  font-family: 'Poppins';
 `;
 
 const SearchButton = styled.button`
@@ -56,22 +59,22 @@ const SearchButton = styled.button`
   margin-left: -40px;
 `;
 
-const AvatarIconImg = styled.img`
-  margin-left: 80px;
-  width: 40px;
-  height: 40px;
-  margin-top: -5px;
-  border: 2px solid #8f8f8f;
-  border-radius:50%;
-`;
+// const AvatarIconImg = styled.img`
+//   margin-left: 80px;
+//   width: 40px;
+//   height: 40px;
+//   margin-top: -5px;
+//   border: 2px solid #8f8f8f;
+//   border-radius:50%;
+// `;
 
-const AdminName = styled.div`
-  font-size : 18px;
-  font-family: Poppins;
-  font-weight: bold;
-  color: #2e2e2e;
-  margin-left: 10px;
-`;
+// const AdminName = styled.div`
+//   font-size : 18px;
+//   font-family: Poppins;
+//   font-weight: bold;
+//   color: #2e2e2e;
+//   margin-left: 10px;
+// `;
 
 const LogoutButton = styled.button`
   display: flex;
@@ -81,19 +84,19 @@ const LogoutButton = styled.button`
   background-color: white;
   font-family: 'Poppins';
   font-size: 0.8rem;
-  color: darkslateblue;
+  color: #181b50;
   border-radius: 10px;
-  border: solid 1.5px darkslateblue;
+  border: solid 1.5px #181b50;
   padding: 0.4rem 1.3rem;
   cursor: pointer;
   box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.03);
-  margin-left: 20%;
+  margin-left: 60%;
 `;
 
 const AdminHeader = (props) => (
   <Wrapper>
     <NavLeft>
-      Guest List
+      Japanese Bath House
     </NavLeft>
     <NavMiddle>
       <SearchInput
@@ -108,8 +111,6 @@ const AdminHeader = (props) => (
       </SearchButton>
     </NavMiddle>
     <NavRight>
-      <AvatarIconImg src="http://s3.amazonaws.com/37assets/svn/765-default-avatar.png" alt="Avatar" />
-      <AdminName>Name</AdminName>
       <LogoutButton
         onClick={() => {
           removeToken();

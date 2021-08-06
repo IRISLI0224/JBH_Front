@@ -17,7 +17,7 @@ const dayStyles = (day, value, monthlySessions) => {
     : colors[monthlySessions[day.format('D') * 1 - 1]];
 
   // console.log(bgColor);
-  const numColor = notCurrMonth(day, value) || isToday(day) ? '#fff' : '#000';
+  const numColor = notCurrMonth(day, value) || isToday(day) ? '#181b57' : '#000';
   // 根据三个日期判断条件和session状态array，返回背景色和日期色供日历使用
   return { bgColor, numColor };
 };

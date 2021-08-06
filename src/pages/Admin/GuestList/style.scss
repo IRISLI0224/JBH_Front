@@ -49,13 +49,25 @@
       color: black;
     }
     #ag-17-start-page-number {
-      background:darkslateblue;
-      box-shadow: 0px 7px 16px rgba(0, 0, 0, 0.14);
-      border-radius: 30px;
+      // background:darkslateblue;
+      // box-shadow: 0px 7px 16px rgba(0, 0, 0, 0.14);
+      // border-radius: 30px;
       color: white;
       font-weight: bold;
-      padding: 0.4rem 0.75rem;
+      padding: 0.4rem 0.5rem 0.4rem 0;
       margin: 0 0.5rem;
+      text-align: center;
     }
+    #ag-17-start-page-number::before{
+      content: '';
+      display: inline-block;
+      width: 25px;
+      height: 25px;
+      border-radius: 50%;
+      background-color: #181b50;
+      box-shadow: 0px 7px 16px rgba(0, 0, 0, 0.14);
+      margin-right: -15px;
+      margin-bottom:-8px;
+    }   
   }
 }

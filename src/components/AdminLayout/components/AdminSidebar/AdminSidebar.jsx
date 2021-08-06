@@ -19,9 +19,9 @@ const Wrapper = styled.div`
 `;
 
 const LogoIconImg = styled.img`
-  margin-top: 25px;
-  width: 60px;
-  height: 60px;
+  margin-top: 20px;
+  width: 80px;
+  height: 80px;
 `;
 
 const IconTitleWrap = styled.div`
@@ -63,7 +63,7 @@ const AdminSidebar = () => (
 
       <NavButton>
         <IconTitleWrap>
-          <FontAwesomeIcon color="#8f8f8f" size="2x" icon={faUser} />
+          <FontAwesomeIcon color="#181b50" size="2x" icon={faUser} />
 
         </IconTitleWrap>
         <Title>Avaliability</Title>
