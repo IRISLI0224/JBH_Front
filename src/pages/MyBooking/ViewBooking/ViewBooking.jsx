@@ -1,4 +1,3 @@
-// First page of Mybooking part, get all booking data and transform to next page
 import React from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
@@ -89,7 +88,6 @@ const ViewBooking = ({
       <UpcomingTitle>Upcoming</UpcomingTitle>
       <Vector1 />
       <Vector2 />
-      {/* {console.log(ready)} */}
       {BookingDetails.length !== 0 && (
         BookingDetails.map((bookings) => (
           (moment)(bookings.bookingDate).format('YYYY-MM-DD') >= today && (
@@ -116,7 +114,6 @@ const ViewBooking = ({
 );
 
 ViewBooking.propTypes = {
-  // 下两条type验证有问题
   BookingDetails: PropTypes.arrayOf(PropTypes.object),
   handleNextStep: PropTypes.func.isRequired,
   handleFormData: PropTypes.func.isRequired,

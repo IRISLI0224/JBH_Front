@@ -60,7 +60,6 @@ class EditSession extends React.Component {
   async componentDidMount() {
     const { date, time } = this.state;
     const check = await getSessionByDate(date, time);
-    // console.log(check)
     if (typeof (check) !== 'string') {
       this.setState({
         exist: true,
@@ -75,7 +74,6 @@ class EditSession extends React.Component {
     this.setState({
       [name]: value,
     });
-    // console.log(this.state.maxnumber)
   }
 
   async handleAddSession() {

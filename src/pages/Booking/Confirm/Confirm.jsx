@@ -13,8 +13,6 @@ const Confirm = ({ formData }) => (Object.keys(formData).length > 0 ? (
   <Loading />
 ));
 
-// 加个按钮。如果付款成功，点击按钮发送formDAta给后端
-
 Confirm.propTypes = {
   formData: PropTypes.shape({
     name: PropTypes.string,

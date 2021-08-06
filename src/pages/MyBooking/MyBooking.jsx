@@ -1,4 +1,3 @@
-// main page of Mybooking part, dealing with links between pages
 import React from 'react';
 import moment from 'moment';
 import EditBooking from './EditBooking';
@@ -36,7 +35,6 @@ class MyBooking extends React.Component {
 
   handleNextStep() {
     const { step } = this.state;
-    // console.log(step);
     if (step < 3) this.setState({ step: step + 1 });
     if (step === 3) this.setState({ step: 1 });
   }
@@ -53,8 +51,6 @@ class MyBooking extends React.Component {
     const {
       step, formData, ready, allData, today,
     } = this.state;
-    // console.log(ready ? allData.bookings : 'not ready');
-    // console.log(ready +" "+typeof(formData));
     return (
       <>
         {step === 1 && ready === true && typeof (allData) !== 'undefined' && (

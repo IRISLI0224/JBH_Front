@@ -28,7 +28,6 @@ const CalendarDay = ({
   day, value, monthlySessions, getBookings,
 }) => {
   const colorStyles = setDayStyles(day, value, monthlySessions, (new Date(), 'day'));
-  // console.log("in calendarday",monthlySessions)
   const handleDayClick = (date) => {
     getBookings(date.format('YYYY-MM-DD').toString());
   };

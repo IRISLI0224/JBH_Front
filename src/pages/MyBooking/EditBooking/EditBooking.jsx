@@ -1,4 +1,3 @@
-// Second page of Mybooking part, edit data of chosen booking
 import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';

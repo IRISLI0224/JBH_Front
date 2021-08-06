@@ -56,12 +56,10 @@ class Calendar extends React.Component {
     };
     this.handleClick = this.handleClick.bind(this);
     this.setMonthlySessions = this.setMonthlySessions.bind(this);
-    // console.log(this.state.value);
   }
 
   componentDidMount() {
     const { value } = this.state;
-    // console.log()
     const value2 = (moment)(value).format('YYYY/MM');
     this.setMonthlySessions(value2);
     this.setState({
@@ -75,7 +73,6 @@ class Calendar extends React.Component {
       ? value.clone().subtract(1, 'month')
       : value.clone().add(1, 'month');
     const preOrNextCalendar = buildCalendar(preOrNextMonth);
-    // 为什么这里加await，因为setMonthlySessions方法中对monthlySessions状态的改变是异步的，若慢于下面calendar的变动会导致日期延迟变色
     const preOrNextMonth2 = (moment)(preOrNextMonth).format('YYYY/MM');
     await this.setMonthlySessions(preOrNextMonth2);
     this.setState({
@@ -94,7 +91,6 @@ class Calendar extends React.Component {
   render() {
     const { calendar, value, monthlySessions } = this.state;
     const { getBookings } = this.props;
-    // console.log(monthlySessions)
     return (
       <Container>
         <CalendarHeader>

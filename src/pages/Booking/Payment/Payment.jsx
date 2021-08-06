@@ -21,10 +21,8 @@ const PUBLIC_KEY = 'pk_test_51JAT9YC8FjBDUp9B7ovNxTZYvGyOeuWnLvddN3VrH0I5sfleL0e
 const stripeTestPromise = loadStripe(PUBLIC_KEY);
 
 const formatFormData = (formData) => {
-  // check if the data has already been formatted.
   // eslint-disable-next-line no-prototype-builtins
   if (formData.hasOwnProperty('email')) {
-    // add new keys
     const newFormData = {
       ...formData,
       paidAmount: formData.price * 0.5,

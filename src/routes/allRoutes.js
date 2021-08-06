@@ -8,7 +8,6 @@ import AdminBookingDetail from '../pages/AdminBookingDetail';
 import AddSession from '../pages/Admin/AddSession';
 import EditSession from '../pages/Admin/AddSession/EditSession';
 
-// 不需要登录即可访问的路由
 export const commonRoutes = [
   { path: '/', component: Home },
   { path: '/login', component: Login },
@@ -17,7 +16,6 @@ export const commonRoutes = [
   { path: '/admin', component: Admin },
 ];
 
-// 需要登录访问的路由
 export const authRoutes = [
   { path: '/mybooking', component: MyBooking },
   // { path: '/admin', component: Admin },

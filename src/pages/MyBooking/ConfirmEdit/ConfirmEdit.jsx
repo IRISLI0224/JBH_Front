@@ -1,4 +1,3 @@
-// Third page of Mybooking part, Confirm edit of booking
 import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';

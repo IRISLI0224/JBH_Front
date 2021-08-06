@@ -1,4 +1,3 @@
-// 此按钮为用于所有回退功能的按钮
 import React from 'react';
 import styled, { css } from 'styled-components';
 import PropTypes from 'prop-types';
