@@ -106,7 +106,6 @@ class Login extends React.Component {
           this.setState({ isLoading: false }, () => {
             setToken(data.token);
             const { history } = this.props;
-            // history.replace('/mybooking');
             history.replace({
               pathname: '/mybooking',
               email: loginData.email.value,
@@ -132,7 +131,6 @@ class Login extends React.Component {
               e.preventDefault();
               this.handleIsFormSubmitChange(true);
               if (!hasError) {
-                console.log(data); //eslint-disable-line
               }
             }}
           >

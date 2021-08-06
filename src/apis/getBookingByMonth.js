@@ -5,7 +5,6 @@ const API_GET_BOOKING_BY_MONTH = '/bookings/monthly/';
 export const getBookingByMonth = (month) => {
   const data = {
   };
-  console.log(get(API_GET_BOOKING_BY_MONTH + month, data).then((res) => res.data));
   return get(API_GET_BOOKING_BY_MONTH + month, data).then((res) => res.data);
 };
 

@@ -11,5 +11,4 @@ export const loginUser = (email, password) => {
 };
 
 export const signUp = (data) => {
-  console.log(data);
 };

@@ -101,11 +101,9 @@ class CheckoutForm extends React.Component {
     });
 
     if (error) {
-      // when the card details are invalid.
       this.setErrorMessage(error);
       this.setConfirmMessageAndButton(undefined, false);
     } else {
-      // when the card details are valid.
       this.setErrorMessage();
       this.setConfirmMessageAndButton(
         'the payment is being processed......',
@@ -116,22 +114,15 @@ class CheckoutForm extends React.Component {
         const { id } = paymentMethod;
         const { formData } = this.props;
         const bookingAndPaymentInfo = { ...formData, id };
-        // send booking info (and payment id) to backend
         const response = await addBooking(bookingAndPaymentInfo);
-        // when payment was successful
         if (response.data.success) {
-          // this.setConfirmMessageAndButton(response.data.message, true);
           return response.data; // eslint-disable-line
         }
-        // when payment was unsuccessful
         this.setConfirmMessageAndButton(response.data.message, false);
-        // eslint-disable-next-line no-shadow
       } catch (error) {
-        // when an exception was caught during payment/addbooking request.
         if (error.response) {
           error.message = error.response.data.message || error.response.data;
         } else if (error.request) {
-          // The request was made but no response was received
           error.message = 'The request was made but no response was received, try again later';
         }
         this.setErrorMessage(error);
@@ -141,16 +132,10 @@ class CheckoutForm extends React.Component {
   };
 
   handleSubmit = async (event) => {
-    // Block native form submission.
     event.preventDefault();
-
     const { error } = this.state;
-
-    // let paymentResponse = null;
     let bookingResponse = null;
-    // eslint-disable-next-line no-unused-expressions
     !error && (bookingResponse = await this.setPayment());
-    // eslint-disable-next-line no-unused-expressions
     if (bookingResponse) {
       !!bookingResponse.bookingNum && this.handleClick(bookingResponse); // eslint-disable-line
     }

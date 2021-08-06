@@ -129,7 +129,6 @@ class AdminLogin extends React.Component {
               e.preventDefault();
               this.handleIsFormSubmitChange(true);
               if (!hasError) {
-                console.log(data); //eslint-disable-line
               }
             }}
           >

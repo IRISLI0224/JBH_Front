@@ -27,7 +27,6 @@ const Main = styled.div`
   }[props.variant])}
 `;
 
-// location.pathname.indexOf("admin") != -1
 const Layout = ({ children, location }) => {
   const url = location.pathname;
   const specialCases = {
