@@ -119,7 +119,7 @@ class CheckoutForm extends React.Component {
           return response.data; // eslint-disable-line
         }
         this.setConfirmMessageAndButton(response.data.message, false);
-      } catch (error) {
+      } catch (error) {// eslint-disable-line
         if (error.response) {
           error.message = error.response.data.message || error.response.data;
         } else if (error.request) {
@@ -135,7 +135,7 @@ class CheckoutForm extends React.Component {
     event.preventDefault();
     const { error } = this.state;
     let bookingResponse = null;
-    !error && (bookingResponse = await this.setPayment());
+    !error && (bookingResponse = await this.setPayment());// eslint-disable-line
     if (bookingResponse) {
       !!bookingResponse.bookingNum && this.handleClick(bookingResponse); // eslint-disable-line
     }

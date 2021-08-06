@@ -11,6 +11,7 @@ const isToday = (day) => day.isSame(new Date(), 'day');
 const beforeToday = (day) => day.isBefore(new Date(), 'day');
 
 const dayStyles = (day, value, monthlySessions) => {
+  // eslint-disable-next-line no-nested-ternary
   const bgColor = notCurrMonth(day, value)
     ? '#fff'
     : beforeToday(day)

@@ -6,7 +6,6 @@ const colors = {
 const notCurrMonth = (day, value) => day.isBefore(value.clone().startOf('month'), 'day')
   || day.isAfter(value.clone().endOf('month'), 'day');
 
-
 const dayStyles = (day, value, monthlySessions) => {
   const bgColor = notCurrMonth(day, value)
     ? '#fff'
