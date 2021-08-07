@@ -62,10 +62,18 @@ class MyBooking extends React.Component {
           />
         )}
         {step === 2 && (
-          <EditBooking handleNextStep={this.handleNextStep} handleFormData={this.handleFormData} formData={formData} />
+          <EditBooking
+            handleNextStep={this.handleNextStep}
+            handleFormData={this.handleFormData}
+            formData={formData}
+          />
         )}
         {step === 3 && (
-          <ConfirmEdit formData={formData} handleNextStep={this.handleNextStep} updateData={this.getBookingDetails} />
+          <ConfirmEdit
+            formData={formData}
+            handleNextStep={this.handleNextStep}
+            updateData={this.getBookingDetails}
+          />
         )}
       </>
     );

@@ -65,7 +65,8 @@ class Calendar extends React.Component {
 
   async handleClick(direction) {
     const { value } = this.state;
-    const preOrNextMonth = direction === 'left' ? value.clone().subtract(1, 'month') : value.clone().add(1, 'month');
+    const preOrNextMonth =
+      direction === 'left' ? value.clone().subtract(1, 'month') : value.clone().add(1, 'month');
     const preOrNextCalendar = buildCalendar(preOrNextMonth);
     await this.setMonthlySessions(preOrNextMonth);
     this.setState({
@@ -104,7 +105,9 @@ class Calendar extends React.Component {
           <CalendarWeekday key={weekday}>{weekday}</CalendarWeekday>
         ))}
         {calendar.map((week) =>
-          week.map((day) => <CalendarDay key={day} day={day} value={value} monthlySessions={monthlySessions} />),
+          week.map((day) => (
+            <CalendarDay key={day} day={day} value={value} monthlySessions={monthlySessions} />
+          )),
         )}
       </Container>
     );

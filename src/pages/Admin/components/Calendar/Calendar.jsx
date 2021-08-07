@@ -68,7 +68,8 @@ class Calendar extends React.Component {
 
   async handleClick(direction) {
     const { value } = this.state;
-    const preOrNextMonth = direction === 'left' ? value.clone().subtract(1, 'month') : value.clone().add(1, 'month');
+    const preOrNextMonth =
+      direction === 'left' ? value.clone().subtract(1, 'month') : value.clone().add(1, 'month');
     const preOrNextCalendar = buildCalendar(preOrNextMonth);
     const preOrNextMonth2 = moment(preOrNextMonth).format('YYYY/MM');
     await this.setMonthlySessions(preOrNextMonth2);

@@ -133,7 +133,9 @@ class Form extends React.Component {
     return (
       <>
         <FormTitle variant="primary">Booking Details</FormTitle>
-        <FormSubTitle font="special">You can manage your booking with your details below.</FormSubTitle>
+        <FormSubTitle font="special">
+          You can manage your booking with your details below.
+        </FormSubTitle>
         <FormWrapper
           onSubmit={(e) => {
             e.preventDefault();

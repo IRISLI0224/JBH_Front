@@ -113,7 +113,14 @@ export default class loading extends Component {
         <Wrapper>
           {loadingBallStateTable.map((loadingBall) => {
             const { key, animationDelay, position } = loadingBall;
-            return <LoadingBall key={key} animationDelay={animationDelay} top={position.top} left={position.left} />;
+            return (
+              <LoadingBall
+                key={key}
+                animationDelay={animationDelay}
+                top={position.top}
+                left={position.left}
+              />
+            );
           })}
         </Wrapper>
         <div>

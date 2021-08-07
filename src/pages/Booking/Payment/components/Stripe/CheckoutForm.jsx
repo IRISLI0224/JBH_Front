@@ -177,7 +177,8 @@ class CheckoutForm extends React.Component {
             </b>
           </div>
           <FormStatement>
-            By proceeding, I agree with the terms of the license agreement, privacy policy and terms and conditions.
+            By proceeding, I agree with the terms of the license agreement, privacy policy and terms
+            and conditions.
           </FormStatement>
           <Button type="submit" disabled={isButtonDisabled}>
             Pay AU$

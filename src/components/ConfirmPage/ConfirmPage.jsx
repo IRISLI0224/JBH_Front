@@ -30,7 +30,10 @@ const Line = styled.div`
   background-color: #c7c7c7;
 `;
 
-const ConfirmPage = ({ formData: { firstName, email, bookingDate, bookingNum, numOfGuests }, title }) => (
+const ConfirmPage = ({
+  formData: { firstName, email, bookingDate, bookingNum, numOfGuests },
+  title,
+}) => (
   <Container>
     <FontAwesomeIcon color="#181b50" size="4x" icon={faCheckCircle} />
     <Title>{title}</Title>

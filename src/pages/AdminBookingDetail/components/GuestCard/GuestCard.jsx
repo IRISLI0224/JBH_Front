@@ -64,7 +64,10 @@ const GuestCard = ({ bookingDetail }) => (
       <Wrapper>
         <AvatarIcon>
           <BackgroundImg src={PaperImg} alt="Avatar" />
-          <AvatarIconImg src="http://s3.amazonaws.com/37assets/svn/765-default-avatar.png" alt="Avatar" />
+          <AvatarIconImg
+            src="http://s3.amazonaws.com/37assets/svn/765-default-avatar.png"
+            alt="Avatar"
+          />
         </AvatarIcon>
         <Name>{bookingDetail[0].firstName}</Name>
         <div>

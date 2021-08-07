@@ -41,10 +41,12 @@ const Footer = () => (
       <ContentItem>Monday 11am-6pm**</ContentItem>
     </FooterContent>
     <FooterInstruction>
-      * On long weekends the bath house will open from 12 noon – 9 pm on Sunday. (Last entry: Day visit guests 7pm for
-      in-house 8.15pm)
+      * On long weekends the bath house will open from 12 noon – 9 pm on Sunday. (Last entry: Day
+      visit guests 7pm for in-house 8.15pm)
     </FooterInstruction>
-    <FooterInstruction>** Available on selected long weekends only. (Last entry 4pm) </FooterInstruction>
+    <FooterInstruction>
+      ** Available on selected long weekends only. (Last entry 4pm){' '}
+    </FooterInstruction>
   </Container>
 );
 

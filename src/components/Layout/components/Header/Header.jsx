@@ -38,8 +38,8 @@ const HeaderTitle = styled.h1`
   @media (max-width: 992px) {
     display: none;
   }
-  text-shadow: 1px 1px black, 2px 2px black, 3px 3px black, 4px 4px black, 5px 5px black, 6px 6px black, 7px 7px black,
-    8px 8px black;
+  text-shadow: 1px 1px black, 2px 2px black, 3px 3px black, 4px 4px black, 5px 5px black,
+    6px 6px black, 7px 7px black, 8px 8px black;
 `;
 
 const ButtonContainer = styled.div`
