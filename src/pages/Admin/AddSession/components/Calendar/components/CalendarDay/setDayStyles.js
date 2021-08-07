@@ -6,8 +6,7 @@ const colors = {
 };
 
 const notCurrMonth = (day, value) =>
-  day.isBefore(value.clone().startOf('month'), 'day') ||
-  day.isAfter(value.clone().endOf('month'), 'day');
+  day.isBefore(value.clone().startOf('month'), 'day') || day.isAfter(value.clone().endOf('month'), 'day');
 const isToday = (day) => day.isSame(new Date(), 'day');
 const beforeToday = (day) => day.isBefore(new Date(), 'day');
 

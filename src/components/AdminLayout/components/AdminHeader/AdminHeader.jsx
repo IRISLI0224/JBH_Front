@@ -96,22 +96,13 @@ const AdminHeader = ({ history }) => (
   <Wrapper>
     <NavLeft>Japanese Bath House</NavLeft>
     <NavMiddle>
-      <SearchInput
-        size="lg"
-        name="adminSearch"
-        id="adminSearch"
-        type="search"
-        placeholder="Search here"
-      />
+      <SearchInput size="lg" name="adminSearch" id="adminSearch" type="search" placeholder="Search here" />
       <SearchButton>
         <FontAwesomeIcon color="#181b50" size="1x" icon={faSearch} />
       </SearchButton>
     </NavMiddle>
     <NavRight>
-      <AvatarIconImg
-        src="http://s3.amazonaws.com/37assets/svn/765-default-avatar.png"
-        alt="Avatar"
-      />
+      <AvatarIconImg src="http://s3.amazonaws.com/37assets/svn/765-default-avatar.png" alt="Avatar" />
       <AdminName>{history.location.adminName}</AdminName>
       <LogoutButton
         onClick={() => {

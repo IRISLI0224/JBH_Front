@@ -75,7 +75,6 @@ const Button = styled.button`
   align-items: center;
   font-size: 0.7rem;
   cursor: pointer;
-
   ${(props) =>
     ({
       nav: css`
