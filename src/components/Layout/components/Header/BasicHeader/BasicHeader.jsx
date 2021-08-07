@@ -10,13 +10,13 @@ const Container = styled.div`
   height: ${({ height }) => height}rem;
   background-color: rgb(24, 28, 77);
   text-align: center;
-  @media(max-width:768px){
-    height:${({ height }) => (height + 2)}rem;
+  @media (max-width: 768px) {
+    height: ${({ height }) => height + 2}rem;
   }
-  box-shadow:0px 15px 10px -15px #000;
+  box-shadow: 0px 15px 10px -15px #000;
 `;
 
-const OtherLogo = styled.img`
+const Logo = styled.img`
   width: 6.7rem;
 `;
 
@@ -29,24 +29,18 @@ const HeaderButton = styled.button`
   &:hover {
     cursor: pointer;
     color: #818181;
-  };
+  }
 
-
-      position: absolute;
-      right: 4rem;
-      bottom: 1rem;
-
-
-
+  position: absolute;
+  right: 4rem;
+  bottom: 1rem;
 `;
 
 const BasicHeader = () => (
   <Container height={7.5}>
-    <OtherLogo src={LogoImg} alt="Logo" />
+    <Logo src={LogoImg} alt="Logo" />
     <Link to="/" style={{ color: 'white', textDecoration: 'none' }}>
-      <HeaderButton>
-        BACK TO HOMEPAGE
-      </HeaderButton>
+      <HeaderButton>BACK TO HOMEPAGE</HeaderButton>
     </Link>
   </Container>
 );

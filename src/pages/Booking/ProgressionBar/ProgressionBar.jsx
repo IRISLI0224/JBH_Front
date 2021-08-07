@@ -62,16 +62,17 @@ const Stage = styled.div`
     }
   }
 
-  ${({ state, children }) => ({
-    true: css`
+  ${({ state, children }) =>
+    ({
+      true: css`
         background-color: #181b50;
         color: #fff;
       `,
-    false: css`
+      false: css`
         background-color: #fff;
         color: #181b50;
       `,
-  }[state >= children])}
+    }[state >= children])}
   box-shadow:0px 15px 10px -15px #000;
 `;
 

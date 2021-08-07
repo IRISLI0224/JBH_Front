@@ -18,15 +18,14 @@ const DayItem = styled.span`
   font: bold 1rem 'Roboto';
   cursor: pointer;
   text-align: left;
-  ${({ colorStyles }) => (colorStyles.bgColor === '#bcff2e' || colorStyles.bgColor === '#ffab2e'
-    ? '&:hover {cursor: pointer;}'
-    : '')}
-    box-shadow:2px 2px 5px grey;
+  ${({ colorStyles }) =>
+    colorStyles.bgColor === '#bcff2e' || colorStyles.bgColor === '#ffab2e'
+      ? '&:hover {cursor: pointer;}'
+      : ''}
+  box-shadow:2px 2px 5px grey;
 `;
 
-const CalendarDay = ({
-  day, value, monthlySessions, getBookings,
-}) => {
+const CalendarDay = ({ day, value, monthlySessions, getBookings }) => {
   const colorStyles = setDayStyles(day, value, monthlySessions, (new Date(), 'day'));
   const handleDayClick = (date) => {
     getBookings(date.format('YYYY-MM-DD').toString());

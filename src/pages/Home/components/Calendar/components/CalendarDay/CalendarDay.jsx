@@ -17,17 +17,14 @@ const DayItem = styled.span`
   color: ${({ colorStyles }) => colorStyles.numColor};
   font: bold 1.2rem 'Roboto';
   text-align: left;
-  ${({ colorStyles }) => (colorStyles.bgColor === '#bcff2e' || colorStyles.bgColor === '#ffab2e'
-    ? '&:hover {cursor: pointer;}'
-    : '')}
+  ${({ colorStyles }) =>
+    colorStyles.bgColor === '#bcff2e' || colorStyles.bgColor === '#ffab2e' ? '&:hover {cursor: pointer;}' : ''}
 
-    box-shadow: 0px 1px 4px #c7c7c7,
+  box-shadow: 0px 1px 4px #c7c7c7,
           0px 0px 20px rgba(0,0,0.2,0.05) inset;
 `;
 
-const CalendarDay = ({
-  day, value, monthlySessions, history,
-}) => {
+const CalendarDay = ({ day, value, monthlySessions, history }) => {
   const colorStyles = setDayStyles(day, value, monthlySessions);
   const handleDayClick = (date, style) => {
     if (style.bgColor === '#8097B9' || style.bgColor === '#3894C5') {

@@ -13,13 +13,9 @@ const Item = styled.div`
   margin-bottom: 10px;
 `;
 
-const FormItem = ({
-  label,
-  htmlFor,
-  children,
-}) => (
+const FormItem = ({ label, htmlFor, children }) => (
   <Item>
-    {label && (<Label htmlFor={htmlFor}>{label}</Label>)}
+    {label && <Label htmlFor={htmlFor}>{label}</Label>}
     {children}
   </Item>
 );

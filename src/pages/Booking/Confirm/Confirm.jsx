@@ -3,15 +3,12 @@ import PropTypes from 'prop-types';
 import Loading from './Loading';
 import ConfirmPage from '../../../components/ConfirmPage';
 
-const Confirm = ({ formData }) => (Object.keys(formData).length > 0 ? (
-
-  <ConfirmPage
-    formData={formData}
-    title="Booking Confirmed"
-  />
-) : (
-  <Loading />
-));
+const Confirm = ({ formData }) =>
+  Object.keys(formData).length > 0 ? (
+    <ConfirmPage formData={formData} title="Booking Confirmed" />
+  ) : (
+    <Loading />
+  );
 
 Confirm.propTypes = {
   formData: PropTypes.shape({

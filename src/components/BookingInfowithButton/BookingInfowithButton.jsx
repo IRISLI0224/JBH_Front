@@ -23,14 +23,14 @@ const EditButton = styled.div`
   justify-content: center;
   align-items: center;
   padding: 0.6rem 1.2rem;
-  background: #181B50;
+  background: #181b50;
   box-shadow: 0px 3px 1px -2px rgba(0, 0, 0, 0.2), 0px 2px 2px rgba(0, 0, 0, 0.14), 0px 1px 5px rgba(0, 0, 0, 0.12);
   border-radius: 4px;
   font-family: Roboto;
   font-size: 13px;
   line-height: 22px;
   letter-spacing: 0.46px;
-  color: #FFFFFF;
+  color: #ffffff;
   flex: none;
   order: 0;
   flex-grow: 0;
@@ -38,30 +38,20 @@ const EditButton = styled.div`
 `;
 
 //= =================== BOOKINGINFO COMPONENT ====================
-const BookingInfowithButton = ({
-  date, id, guestAmount, handleNextStep, handleFormData, formData,
-}) => {
+const BookingInfoWithButton = ({ date, id, guestAmount, handleNextStep, handleFormData, formData }) => {
   const handleClick = () => {
     handleFormData(formData);
     handleNextStep();
   };
   return (
     <Container>
-      <BookingInfo
-        date={date}
-        id={id}
-        guestAmount={guestAmount}
-      />
-      <EditButton
-        onClick={handleClick}
-      >
-        EDIT
-      </EditButton>
+      <BookingInfo date={date} id={id} guestAmount={guestAmount} />
+      <EditButton onClick={handleClick}>EDIT</EditButton>
     </Container>
   );
 };
 
-BookingInfowithButton.propTypes = {
+BookingInfoWithButton.propTypes = {
   date: PropTypes.string.isRequired,
   id: PropTypes.string.isRequired,
   guestAmount: PropTypes.number.isRequired,
@@ -70,7 +60,7 @@ BookingInfowithButton.propTypes = {
   formData: PropTypes.arrayOf(PropTypes.object),
 };
 
-BookingInfowithButton.defaultProps = {
+BookingInfoWithButton.defaultProps = {
   formData: [],
 };
-export default BookingInfowithButton;
+export default BookingInfoWithButton;

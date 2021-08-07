@@ -7,14 +7,15 @@ const FormSubTitle = styled.p`
   text-align: center;
   margin-bottom: 20px;
 
-  ${(props) => ({
-    normal: css`
-      font-family: 'Roboto';
-    `,
-    special: css`
-      font-family: 'Raleway';
-    `,
-  }[props.font])}
+  ${(props) =>
+    ({
+      normal: css`
+        font-family: 'Roboto';
+      `,
+      special: css`
+        font-family: 'Raleway';
+      `,
+    }[props.font])}
 `;
 
 export default FormSubTitle;

@@ -31,18 +31,14 @@ const Line = styled.div`
 `;
 
 const ConfirmPage = ({
-  formData: {
-    firstName, email, bookingDate, bookingNum, numOfGuests,
-  },
+  formData: { firstName, email, bookingDate, bookingNum, numOfGuests },
   title,
 }) => (
   <Container>
     <FontAwesomeIcon color="#181b50" size="4x" icon={faCheckCircle} />
     <Title>{title}</Title>
     <ConfirmedMessage>
-      Thank you
-      {' '}
-      {firstName}
+      Thank you {firstName}
       , we&apos;re looking forward to see you soon!
       <br />
       Confirmation email send to &nbsp;

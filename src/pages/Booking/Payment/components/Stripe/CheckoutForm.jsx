@@ -40,12 +40,13 @@ const Button = styled.button`
   color: #fff;
   cursor: pointer;
 
-  ${(props) => ({
-    true: css`
+  ${(props) =>
+    ({
+      true: css`
         background-color: grey;
         cursor: initial;
       `,
-  }[props.disabled || false])}
+    }[props.disabled || false])}
 `;
 
 const Error = styled.div`
@@ -105,10 +106,7 @@ class CheckoutForm extends React.Component {
       this.setConfirmMessageAndButton(undefined, false);
     } else {
       this.setErrorMessage();
-      this.setConfirmMessageAndButton(
-        'the payment is being processed......',
-        true,
-      );
+      this.setConfirmMessageAndButton('the payment is being processed......', true);
 
       try {
         const { id } = paymentMethod;
@@ -179,8 +177,8 @@ class CheckoutForm extends React.Component {
             </b>
           </div>
           <FormStatement>
-            By proceeding, I agree with the terms of the license agreement,
-            privacy policy and terms and conditions.
+            By proceeding, I agree with the terms of the license agreement, privacy policy and terms
+            and conditions.
           </FormStatement>
           <Button type="submit" disabled={isButtonDisabled}>
             Pay AU$
@@ -201,12 +199,7 @@ CheckoutForm.propTypes = {
   handleNextStep: PropTypes.func.isRequired,
 };
 
-const InjectedCheckoutForm = ({
-  formData,
-  handlePaidStatus,
-  handleFormData,
-  handleNextStep,
-}) => (
+const InjectedCheckoutForm = ({ formData, handlePaidStatus, handleFormData, handleNextStep }) => (
   <ElementsConsumer>
     {({ elements, stripe }) => (
       <CheckoutForm

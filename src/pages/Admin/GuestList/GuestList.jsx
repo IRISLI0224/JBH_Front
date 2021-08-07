@@ -19,7 +19,7 @@ const FormContainer = styled.div`
   width: 100%;
   font-family: 'Poppins';
   margin-left: 11rem;
-  margin-bottom:4.6%
+  margin-bottom: 4.6%;
 `;
 
 const NavBar = styled.div`
@@ -65,7 +65,7 @@ const TabMenu = styled.div`
   font-family: 'Poppins';
 `;
 const EmployeeNum = styled.div`
-  border-bottom: 2px solid darkslateblue;
+  border-bottom: 2px solid #181b50;
   padding: 0.7rem 0.5rem;
 `;
 
@@ -75,31 +75,31 @@ const Button = styled.button`
   align-items: center;
   font-size: 0.7rem;
   cursor: pointer;
-    
-  ${(props) => ({
-    nav: css`
-      justify-content: space-around;
-      color: white;
-      background-color: darkslateblue;
-      border-radius: 10px;
-      margin-bottom: 1rem;
-      width: 13%;
-      padding: 0.2rem 1rem 0.2rem 1rem;
-      border: none;
-      box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.03);
-      font-family: 'Poppins';
-    `,
-    form: css`
-      justify-content: center;
-      color: darkslateblue;
-      background-color: white;
-      border-radius: 30px;
-      border: solid 1.5px darkslateblue;
-      padding: 0.4rem 1.3rem;
-      letter-spacing: 0.4px;
-      font-family: 'PoppinsBold';
-    `,
-  }[props.variant])}
+  ${(props) =>
+    ({
+      nav: css`
+        justify-content: space-around;
+        color: white;
+        background-color: #181b50;
+        border-radius: 10px;
+        margin-bottom: 1rem;
+        width: 15%;
+        padding: 0.2rem 1rem 0.2rem 1rem;
+        border: none;
+        box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.03);
+        font-family: 'Poppins';
+      `,
+      form: css`
+        justify-content: center;
+        color: #181b50;
+        background-color: white;
+        border-radius: 30px;
+        border: solid 1.5px #181b50;
+        padding: 0.4rem 1.3rem;
+        letter-spacing: 0.4px;
+        font-family: 'PoppinsBold';
+      `,
+    }[props.variant])}
 `;
 
 const Container = styled.div`
@@ -112,9 +112,8 @@ const Container = styled.div`
 
 const RightPanel = styled.div`
   flex-direction: column;
-  /* min-height: 100vh; */
   width: 365px;
-  background:white;
+  background: white;
   font-family: 'Poppins';
   margin: 3.8rem 1rem;
   padding: 1rem 1rem;
@@ -127,6 +126,7 @@ class GuestList extends React.Component {
     this.state = {
       chosenDate: '2021-07-29',//eslint-disable-line
       today: '',
+      guestNum: 0,
       columnDefs: [
         {
           headerName: 'FirstName',
@@ -163,6 +163,7 @@ class GuestList extends React.Component {
                   history.push({
                     pathname: '/admin/bookingdetail',
                     id: params.data._id,//eslint-disable-line
+                    adminName: props.history.location.adminName,
                   });
                 }}
               >
@@ -177,44 +178,47 @@ class GuestList extends React.Component {
     this.getBookingDetails = this.getBookingDetails.bind(this);
     const myDate = new Date();
     const currentdate = `${myDate.getFullYear()}-${myDate.getMonth() + 1}-${myDate.getDate()}`;
-    this.state.today = (moment)(currentdate).format('YYYY-MM-DD');
+    this.state.today = moment(currentdate).format('YYYY-MM-DD');
     this.getBookingDetails(this.state.today);//eslint-disable-line
   }
 
   async getBookingDetails(chosenDate) {
     const response = await getBookingByDate(chosenDate);
-    if (typeof (response) !== 'string') {
+    if (typeof response !== 'string') {
       this.setState({
         rowData: response,//eslint-disable-line
+        guestNum: response.length,
       });
     } else {
       this.setState({
         rowData: [],//eslint-disable-line
+        guestNum: 0,
       });
     }
   }
 
   handleSearch = (event) => {
     this.gridApi.setQuickFilter(event.target.value);
-  }
+  };
 
   onGridReady = (params) => {
     this.gridApi = params.api;
     this.columnApi = params.columnApi;
     this.gridApi.sizeColumnsToFit();
-  }
+  };
 
   render() {
+    const { guestNum } = this.state;
     return (
       <Container>
         <FormContainer>
           <NavBar>
             <TabMenu>
-              <EmployeeNum>All Employee (216)</EmployeeNum>
+              <EmployeeNum>All Guest ({guestNum})</EmployeeNum>
             </TabMenu>
             <SearchBox>
               <Input type="search" onChange={this.handleSearch} placeholder="Search here" />
-              <FontAwesomeIcon color="darkslateblue" size="1x" icon={faSearch} />
+              <FontAwesomeIcon color="#181b50" size="1x" icon={faSearch} />
             </SearchBox>
             <Button variant="nav">
               <FontAwesomeIcon color="white" size="lg" icon={faFileAlt} />
@@ -233,9 +237,7 @@ class GuestList extends React.Component {
           </div>
         </FormContainer>
         <RightPanel>
-          <Calendar
-            getBookings={this.getBookingDetails}
-          />
+          <Calendar getBookings={this.getBookingDetails} />
         </RightPanel>
       </Container>
     );
@@ -244,6 +246,9 @@ class GuestList extends React.Component {
 
 GuestList.propTypes = {
   history: PropTypes.shape({
+    location: PropTypes.shape({
+      adminName: PropTypes.string,
+    }),
     push: PropTypes.func,
   }).isRequired,
 };

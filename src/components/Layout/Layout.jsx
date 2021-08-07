@@ -7,8 +7,8 @@ import BasicHeader from './components/Header/BasicHeader';
 import BasicLogoutHeader from './components/Header/BasicLogoutHeader';
 import Footer from './components/Footer';
 import bgImg from '../../assets/images/bgGif.gif';
-import adminbg from '../../assets/images/adminbg.jpg';
-import otherBgImg from '../../assets/images/otherBgImg.jpg';
+import adminBg from '../../assets/images/adminBg.jpg';
+import primaryBgImg from '../../assets/images/primaryBgImg.jpg';
 import AdminHeader from '../AdminLayout/components/AdminHeader';
 import AdminSidebar from '../AdminLayout/components/AdminSidebar';
 
@@ -20,11 +20,12 @@ const Main = styled.div`
   background: url(${({ img }) => img}) no-repeat center;
   background-size: cover;
 
-  ${(props) => ({
-    user: css`
-      min-height: 100vh;
-    `,
-  }[props.variant])}
+  ${(props) =>
+    ({
+      user: css`
+        min-height: 100vh;
+      `,
+    }[props.variant])}
 `;
 
 const Layout = ({ children, location }) => {
@@ -53,7 +54,7 @@ const Layout = ({ children, location }) => {
     return (
       <>
         <AdminHeader />
-        <Main img={adminbg}>{children}</Main>
+        <Main img={adminBg}>{children}</Main>
         <AdminSidebar />
       </>
     );
@@ -63,7 +64,9 @@ const Layout = ({ children, location }) => {
     return (
       <>
         <BasicLogoutHeader />
-        <Main variant="user" img={otherBgImg}>{children}</Main>
+        <Main variant="user" img={primaryBgImg}>
+          {children}
+        </Main>
         <Footer />
       </>
     );
@@ -72,7 +75,9 @@ const Layout = ({ children, location }) => {
   return (
     <>
       <BasicHeader />
-      <Main variant="user" img={otherBgImg}>{children}</Main>
+      <Main variant="user" img={primaryBgImg}>
+        {children}
+      </Main>
       <Footer />
     </>
   );

@@ -17,14 +17,13 @@ const Wrapper = styled.div`
   flex-direction: column;
   padding: 1.5rem;
   margin-left: 1rem;
-  border-radius:10px;
+  border-radius: 10px;
 `;
 
 const TopWrapper = styled.div`
   width: 100%;
   display: flex;
   flex-direction: column;
-
 `;
 
 const TopDetail = styled.div`
@@ -101,9 +100,7 @@ const PersonWrap = styled.div`
   margin-left: 10px;
 `;
 
-const BookingCard = ({
-  bookingDetail,
-}) => (
+const BookingCard = ({ bookingDetail }) => (
   <>
     {bookingDetail && (
       <Wrapper>
@@ -136,10 +133,9 @@ const BookingCard = ({
                 </IconWrapperSmall>
                 <BookingNum>Booking Date</BookingNum>
               </TopSubUp>
-              <DetailName>{(moment)(bookingDetail[0].bookingDate).format('YYYY-MM-DD')}</DetailName>
+              <DetailName>{moment(bookingDetail[0].bookingDate).format('YYYY-MM-DD')}</DetailName>
             </TopSub>
           </TopDetail>
-
         </TopWrapper>
         <TopWrapper>
           <BottomTitle>Room Facilities</BottomTitle>
@@ -153,12 +149,10 @@ const BookingCard = ({
       </Wrapper>
     )}
   </>
-
 );
 
 BookingCard.propTypes = {
   bookingDetail: PropTypes.shape([]).isRequired,
-
 };
 
 export default BookingCard;

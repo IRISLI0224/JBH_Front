@@ -26,7 +26,6 @@ class Form extends React.Component {
     super(props);
 
     this.state = {
-
       data: {
         numOfGuests: initialData,
         firstName: initialData,
@@ -134,7 +133,9 @@ class Form extends React.Component {
     return (
       <>
         <FormTitle variant="primary">Booking Details</FormTitle>
-        <FormSubTitle font="special">You can manage your booking with your details below.</FormSubTitle>
+        <FormSubTitle font="special">
+          You can manage your booking with your details below.
+        </FormSubTitle>
         <FormWrapper
           onSubmit={(e) => {
             e.preventDefault();
@@ -249,7 +250,7 @@ class Form extends React.Component {
             </label>
             <InputErrorMsg>{this.getErrorMessage(error, 'towelChecked')}</InputErrorMsg>
           </Checkbox>
-          {isSubmitFail && (<ServerMsg status="error">{submitError}</ServerMsg>)}
+          {isSubmitFail && <ServerMsg status="error">{submitError}</ServerMsg>}
           <ButtonContinue>CONTINUE</ButtonContinue>
         </FormWrapper>
       </>

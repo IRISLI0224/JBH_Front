@@ -80,9 +80,7 @@ const BookingInfo = ({ date, id, guestAmount }) => {
           <BookingId>{id}</BookingId>
           <BookingType>All Day Pass</BookingType>
           <GuestAmount>
-            {guestAmount}
-            {' '}
-            {guestAmount === 1 ? 'Guest' : 'Guests'}
+            {guestAmount} {guestAmount === 1 ? 'Guest' : 'Guests'}
           </GuestAmount>
         </BookingDetails>
       </BookingContent>

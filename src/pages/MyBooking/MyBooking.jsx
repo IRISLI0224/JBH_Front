@@ -24,7 +24,7 @@ class MyBooking extends React.Component {
     this.getBookingDetails();
     const myDate = new Date();
     const currentdate = `${myDate.getFullYear()}-${myDate.getMonth() + 1}-${myDate.getDate()}`;
-    this.state.today = (moment)(currentdate).format('YYYY-MM-DD');
+    this.state.today = moment(currentdate).format('YYYY-MM-DD');
   }
 
   handleFormData(formData) {
@@ -48,12 +48,10 @@ class MyBooking extends React.Component {
   }
 
   render() {
-    const {
-      step, formData, ready, allData, today,
-    } = this.state;
+    const { step, formData, ready, allData, today } = this.state;
     return (
       <>
-        {step === 1 && ready === true && typeof (allData) !== 'undefined' && (
+        {step === 1 && ready === true && typeof allData !== 'undefined' && (
           <ViewBooking
             BookingDetails={allData}
             handleNextStep={this.handleNextStep}
@@ -70,13 +68,12 @@ class MyBooking extends React.Component {
             formData={formData}
           />
         )}
-        {step === 3
-        && (
-        <ConfirmEdit
-          formData={formData}
-          handleNextStep={this.handleNextStep}
-          updateData={this.getBookingDetails}
-        />
+        {step === 3 && (
+          <ConfirmEdit
+            formData={formData}
+            handleNextStep={this.handleNextStep}
+            updateData={this.getBookingDetails}
+          />
         )}
       </>
     );

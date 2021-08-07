@@ -10,7 +10,7 @@ const Container = styled.div`
   margin: 1rem auto;
   background-color: #fff;
   text-align: center;
-  margin-bottom:5%
+  margin-bottom: 5%;
 `;
 
 const Title = styled.h1`
@@ -26,21 +26,21 @@ const Info = styled.div`
 `;
 
 const Legend = styled.div`
-font-family: 'Roboto';
-display: -webkit-box;
-display: -webkit-flex;
-display: -ms-flexbox;
-display: flex;
--webkit-align-items: center;
--webkit-box-align: center;
--ms-flex-align: center;
-align-items: stretch;
-height: 3.2rem;
-justify-content: flex-start;
-align-content: flex-start;
-flex-wrap: wrap;
-flex-direction: row;
-margin-top: 1.5rem;
+  font-family: 'Roboto';
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: stretch;
+  height: 3.2rem;
+  justify-content: flex-start;
+  align-content: flex-start;
+  flex-wrap: wrap;
+  flex-direction: row;
+  margin-top: 1.5rem;
 `;
 
 const LegendImg = styled.span`
@@ -53,7 +53,7 @@ const LegendImg = styled.span`
 
 const AddSession = () => (
   <Container>
-    <Title>Add  Availability</Title>
+    <Title>Add Availability</Title>
     <Info>Please click on the date you wish to add availability in</Info>
     <Legend>
       <LegendImg color="#127785" />

@@ -11,22 +11,22 @@ const Container = styled.div`
   height: ${({ height }) => height}rem;
   background-color: rgb(24, 28, 77);
   text-align: center;
-  @media(max-width:768px){
-    height:${({ height }) => (height + 2)}rem;
+  @media (max-width: 768px) {
+    height: ${({ height }) => height + 2}rem;
   }
-  box-shadow:0px 15px 10px -15px #000;
+  box-shadow: 0px 15px 10px -15px #000;
 `;
 
 const Logo = styled.img`
   position: absolute;
   top: 0.3rem;
   left: 8%;
-  width:10.5rem;
+  width: 10.5rem;
   @media (max-width: 992px) {
-    left:40%;
+    left: 40%;
   }
-  @media(max-width:414px){
-    left:28%;
+  @media (max-width: 414px) {
+    left: 28%;
   }
 `;
 
@@ -36,16 +36,14 @@ const HeaderTitle = styled.h1`
   font: bold 2.1rem 'Baloo';
   letter-spacing: 0.1rem;
   @media (max-width: 992px) {
-    display:none;
+    display: none;
   }
-  text-shadow: 1px 1px black,2px 2px black,
-  3px 3px black,4px 4px black, 
-  5px 5px black,6px 6px black, 
-  7px 7px black,8px 8px black;
+  text-shadow: 1px 1px black, 2px 2px black, 3px 3px black, 4px 4px black, 5px 5px black,
+    6px 6px black, 7px 7px black, 8px 8px black;
 `;
 
 const ButtonContainer = styled.div`
-  display:flex;
+  display: flex;
   justify-content: flex-end;
   margin-right: 2rem;
   color: white;
@@ -60,18 +58,19 @@ const HeaderButton = styled.button`
   &:hover {
     cursor: pointer;
     color: #818181;
-  };
+  }
 
-  ${(props) => ({
-    logout: css`
-      position: absolute;
-      right: 4rem;
-      bottom: 1rem;
-    `,
-    login: css`
-      padding: 0 0.5rem;
-    `,
-  }[props.type])}
+  ${(props) =>
+    ({
+      logout: css`
+        position: absolute;
+        right: 4rem;
+        bottom: 1rem;
+      `,
+      login: css`
+        padding: 0 0.5rem;
+      `,
+    }[props.type])}
 `;
 
 const Header = (props) => (

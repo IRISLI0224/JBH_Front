@@ -32,13 +32,11 @@ class EditBooking extends React.Component {
     super(props);
 
     const { formData } = this.props;
-    const {
-      bookingNum, bookingDate, numOfGuests, firstName, lastName, email, phone,
-    } = formData[0];
+    const { bookingNum, bookingDate, numOfGuests, firstName, lastName, email, phone } = formData[0];
 
     this.state = {
       data: {
-        bookingDate: initialData((moment)(bookingDate).format('YYYY-MM-DD')),
+        bookingDate: initialData(moment(bookingDate).format('YYYY-MM-DD')),
         numOfGuests: initialData(numOfGuests),
         firstName: initialData(firstName),
         lastName: initialData(lastName),
@@ -120,9 +118,7 @@ class EditBooking extends React.Component {
 
   handleContinueClick = (data, hasError) => {
     const { formData, handleNextStep, handleFormData } = this.props;
-    const {
-      bookingNum, dateOfBirth, gender, paidAmount,
-    } = formData[0];
+    const { bookingNum, dateOfBirth, gender, paidAmount } = formData[0];
     const updatedData = { paidAmount, gender, dateOfBirth };
     Object.entries(data).map(([key, value]) => {
       updatedData[key] = value.value;
@@ -130,15 +126,14 @@ class EditBooking extends React.Component {
     });
 
     if (!hasError) {
-      updateBooking(updatedData, bookingNum)
-        .then((value) => {
-          if (value === 201) {
-            handleFormData(updatedData);
-            handleNextStep();
-          } else {
-            this.getSubmitError(value);
-          }
-        });
+      updateBooking(updatedData, bookingNum).then((value) => {
+        if (value === 201) {
+          handleFormData(updatedData);
+          handleNextStep();
+        } else {
+          this.getSubmitError(value);
+        }
+      });
     }
   };
 
@@ -151,11 +146,7 @@ class EditBooking extends React.Component {
       <>
         <Container>
           <FormTitle variant="primary">Booking Details</FormTitle>
-          <FormSubTitle font="normal">
-            Order number
-            {' '}
-            { data.bookingNum.value }
-          </FormSubTitle>
+          <FormSubTitle font="normal">Order number {data.bookingNum.value}</FormSubTitle>
           <FormWrapper
             onSubmit={(e) => {
               e.preventDefault();
@@ -242,7 +233,7 @@ class EditBooking extends React.Component {
               />
               <InputErrorMsg>{this.getErrorMessage(error, 'phone')}</InputErrorMsg>
             </FormItem>
-            {isSubmitFail && (<ServerMsg status="error">{submitError}</ServerMsg>)}
+            {isSubmitFail && <ServerMsg status="error">{submitError}</ServerMsg>}
             <ButtonContinue>SUBMIT</ButtonContinue>
           </FormWrapper>
         </Container>

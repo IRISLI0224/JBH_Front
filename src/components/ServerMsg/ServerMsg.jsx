@@ -11,17 +11,18 @@ const ServerMsg = styled.div`
   font-family: 'Roboto';
   font-size: 13px;
 
-  ${(props) => ({
-    error: css`
-      color: red;
-      background-color: #fdecea;
-    `,
+  ${(props) =>
+    ({
+      error: css`
+        color: red;
+        background-color: #fdecea;
+      `,
 
-    success: css`
-      color: green;
-      background-color: #e5ffe5 ;
-    `,
-  }[props.status])}
+      success: css`
+        color: green;
+        background-color: #e5ffe5;
+      `,
+    }[props.status])}
 `;
 
 export default ServerMsg;

@@ -22,7 +22,6 @@ const CalendarHeader = styled.div`
   color: #181b50;
   font: bold 1.3rem 'Baloo';
   font-family: 'Poppins';
-  
 `;
 
 const CalendarButton = styled.button`
@@ -60,7 +59,7 @@ class Calendar extends React.Component {
 
   componentDidMount() {
     const { value } = this.state;
-    const value2 = (moment)(value).format('YYYY/MM');
+    const value2 = moment(value).format('YYYY/MM');
     this.setMonthlySessions(value2);
     this.setState({
       calendar: buildCalendar(value),
@@ -69,11 +68,10 @@ class Calendar extends React.Component {
 
   async handleClick(direction) {
     const { value } = this.state;
-    const preOrNextMonth = direction === 'left'
-      ? value.clone().subtract(1, 'month')
-      : value.clone().add(1, 'month');
+    const preOrNextMonth =
+      direction === 'left' ? value.clone().subtract(1, 'month') : value.clone().add(1, 'month');
     const preOrNextCalendar = buildCalendar(preOrNextMonth);
-    const preOrNextMonth2 = (moment)(preOrNextMonth).format('YYYY/MM');
+    const preOrNextMonth2 = moment(preOrNextMonth).format('YYYY/MM');
     await this.setMonthlySessions(preOrNextMonth2);
     this.setState({
       value: preOrNextMonth,
@@ -113,15 +111,17 @@ class Calendar extends React.Component {
         {['SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT'].map((weekday) => (
           <CalendarWeekday key={weekday}>{weekday}</CalendarWeekday>
         ))}
-        {calendar.map((week) => week.map((day) => (
-          <CalendarDay
-            key={day}
-            day={day}
-            value={value}
-            monthlySessions={monthlySessions}
-            getBookings={getBookings}
-          />
-        )))}
+        {calendar.map((week) =>
+          week.map((day) => (
+            <CalendarDay
+              key={day}
+              day={day}
+              value={value}
+              monthlySessions={monthlySessions}
+              getBookings={getBookings}
+            />
+          )),
+        )}
       </Container>
     );
   }

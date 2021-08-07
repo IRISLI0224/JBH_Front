@@ -29,7 +29,7 @@ const LoadingBall = styled.div`
   transform-origin: 40px 40px;
   animation-delay: ${({ animationDelay }) => animationDelay};
   &::after {
-    content: " ";
+    content: ' ';
     display: block;
     position: absolute;
     width: 7px;
