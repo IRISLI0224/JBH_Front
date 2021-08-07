@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import CalendarDay from './components/CalendarDay';
 import buildCalendar from './buildCalendar';
 import { getBookingByMonth } from '../../../../apis/getBookingByMonth';
+import weekdays from '../../../../common/weekdays';
 
 const Container = styled.div`
   margin: 0 auto;
@@ -108,7 +109,7 @@ class Calendar extends React.Component {
             {'>'}
           </CalendarButton>
         </CalendarHeader>
-        {['SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT'].map((weekday) => (
+        {weekdays.map((weekday) => (
           <CalendarWeekday key={weekday}>{weekday}</CalendarWeekday>
         ))}
         {calendar.map((week) =>

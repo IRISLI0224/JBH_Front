@@ -4,6 +4,7 @@ import moment from 'moment';
 import CalendarDay from './components/CalendarDay';
 import buildCalendar from './buildCalendar';
 import getSessionData from '../../../../apis/getSessionData';
+import weekdays from '../../../../common/weekdays';
 
 const Container = styled.div`
   margin: 0 auto;
@@ -101,7 +102,7 @@ class Calendar extends React.Component {
             {'>'}
           </CalendarButton>
         </CalendarHeader>
-        {['SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT'].map((weekday) => (
+        {weekdays.map((weekday) => (
           <CalendarWeekday key={weekday}>{weekday}</CalendarWeekday>
         ))}
         {calendar.map((week) =>
