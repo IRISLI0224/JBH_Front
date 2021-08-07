@@ -4,6 +4,7 @@ import moment from 'moment';
 import CalendarDay from './components/CalendarDay';
 import buildCalendar from './buildCalendar';
 import getSessionData from '../../../../apis/getSessionData';
+import weekdays from '../../../../common/weekdays';
 
 const Container = styled.div`
   margin: 0 auto;
@@ -65,7 +66,8 @@ class Calendar extends React.Component {
 
   async handleClick(direction) {
     const { value } = this.state;
-    const preOrNextMonth = direction === 'left' ? value.clone().subtract(1, 'month') : value.clone().add(1, 'month');
+    const preOrNextMonth =
+      direction === 'left' ? value.clone().subtract(1, 'month') : value.clone().add(1, 'month');
     const preOrNextCalendar = buildCalendar(preOrNextMonth);
     await this.setMonthlySessions(preOrNextMonth);
     this.setState({
@@ -100,11 +102,13 @@ class Calendar extends React.Component {
             {'>'}
           </CalendarButton>
         </CalendarHeader>
-        {['SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT'].map((weekday) => (
+        {weekdays.map((weekday) => (
           <CalendarWeekday key={weekday}>{weekday}</CalendarWeekday>
         ))}
         {calendar.map((week) =>
-          week.map((day) => <CalendarDay key={day} day={day} value={value} monthlySessions={monthlySessions} />),
+          week.map((day) => (
+            <CalendarDay key={day} day={day} value={value} monthlySessions={monthlySessions} />
+          )),
         )}
       </Container>
     );
