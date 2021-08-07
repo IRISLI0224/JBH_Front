@@ -51,20 +51,7 @@ const BookingInfo = ({ date, id, guestAmount }) => {
   const day = date.split('-')[2].substring(0, 2);
 
   const monthIndex = parseInt(date.split('-')[1], 10);
-  const monthTable = [
-    'JAN',
-    'FEB',
-    'MAR',
-    'APR',
-    'MAY',
-    'JUNE',
-    'JULY',
-    'AUG',
-    'SEPT',
-    'OCT',
-    'NOV',
-    'DEC',
-  ];
+  const monthTable = ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUNE', 'JULY', 'AUG', 'SEPT', 'OCT', 'NOV', 'DEC'];
   const month = monthTable[monthIndex - 1];
 
   return (
@@ -80,9 +67,7 @@ const BookingInfo = ({ date, id, guestAmount }) => {
           <BookingId>{id}</BookingId>
           <BookingType>All Day Pass</BookingType>
           <GuestAmount>
-            {guestAmount}
-            {' '}
-            {guestAmount === 1 ? 'Guest' : 'Guests'}
+            {guestAmount} {guestAmount === 1 ? 'Guest' : 'Guests'}
           </GuestAmount>
         </BookingDetails>
       </BookingContent>

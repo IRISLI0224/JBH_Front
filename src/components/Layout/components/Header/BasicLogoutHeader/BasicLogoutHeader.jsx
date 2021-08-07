@@ -12,12 +12,12 @@ const Container = styled.div`
   height: ${({ height }) => height}rem;
   background-color: rgb(24, 28, 77);
   text-align: center;
-  @media(max-width:768px){
-    height:${({ height }) => (height + 2)}rem;
+  @media (max-width: 768px) {
+    height: ${({ height }) => height + 2}rem;
   }
 `;
 
-const OtherLogo = styled.img`
+const Logo = styled.img`
   width: 6.7rem;
 `;
 
@@ -30,23 +30,24 @@ const HeaderButton = styled.button`
   &:hover {
     cursor: pointer;
     color: #818181;
-  };
+  }
 
-  ${(props) => ({
-    logout: css`
-      position: absolute;
-      right: 4rem;
-      bottom: 1rem;
-    `,
-    login: css`
-      padding: 0 0.5rem;
-    `,
-  }[props.type])}
+  ${(props) =>
+    ({
+      logout: css`
+        position: absolute;
+        right: 4rem;
+        bottom: 1rem;
+      `,
+      login: css`
+        padding: 0 0.5rem;
+      `,
+    }[props.type])}
 `;
 
 const BasicHeader = (props) => (
   <Container height={7.5}>
-    <OtherLogo src={LogoImg} alt="Logo" />
+    <Logo src={LogoImg} alt="Logo" />
 
     <HeaderButton
       onClick={() => {

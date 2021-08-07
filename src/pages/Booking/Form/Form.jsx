@@ -26,7 +26,6 @@ class Form extends React.Component {
     super(props);
 
     this.state = {
-
       data: {
         numOfGuests: initialData,
         firstName: initialData,
@@ -249,7 +248,7 @@ class Form extends React.Component {
             </label>
             <InputErrorMsg>{this.getErrorMessage(error, 'towelChecked')}</InputErrorMsg>
           </Checkbox>
-          {isSubmitFail && (<ServerMsg status="error">{submitError}</ServerMsg>)}
+          {isSubmitFail && <ServerMsg status="error">{submitError}</ServerMsg>}
           <ButtonContinue>CONTINUE</ButtonContinue>
         </FormWrapper>
       </>

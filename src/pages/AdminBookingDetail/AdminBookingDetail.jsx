@@ -39,15 +39,10 @@ class AdminBookingDetail extends React.Component {
     return (
       <>
         {bookingDetail && (
-        <Wrapper>
-
-          <GuestCard
-            bookingDetail={bookingDetail}
-          />
-          <BookingCard
-            bookingDetail={bookingDetail}
-          />
-        </Wrapper>
+          <Wrapper>
+            <GuestCard bookingDetail={bookingDetail} />
+            <BookingCard bookingDetail={bookingDetail} />
+          </Wrapper>
         )}
       </>
     );

@@ -107,7 +107,10 @@ class AdminLogin extends React.Component {
           this.setState({ isLoading: false }, () => {
             setToken(data.token);
             const { history } = this.props;
-            history.push('/admin/guestlist');
+            history.push({
+              pathname: '/admin/guestlist',
+              adminName: loginData.email.value,
+            });
           });
         })
         .catch((error) => this.setState({ error, isLoading: false }));

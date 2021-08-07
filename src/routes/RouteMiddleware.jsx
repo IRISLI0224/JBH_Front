@@ -8,11 +8,7 @@ const RouteMiddleware = ({ component: Component, isAuthProtected, ...rest }) => 
     {...rest}
     render={(props) => {
       if (isAuthProtected && !localStorage.getItem('jr-hyperlink')) {
-        return (
-          <Redirect
-            to={{ pathname: '/login', state: { from: props.location } }}
-          />
-        );
+        return <Redirect to={{ pathname: '/login', state: { from: props.location } }} />;
       }
 
       return <Component {...props} />;

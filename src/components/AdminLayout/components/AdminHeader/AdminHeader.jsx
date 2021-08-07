@@ -40,6 +40,7 @@ const NavRight = styled.div`
   height: 30px;
   display: flex;
   align-content: space-between;
+  align-items: center;
 `;
 
 const SearchInput = styled(Input)`
@@ -59,22 +60,20 @@ const SearchButton = styled.button`
   margin-left: -40px;
 `;
 
-// const AvatarIconImg = styled.img`
-//   margin-left: 80px;
-//   width: 40px;
-//   height: 40px;
-//   margin-top: -5px;
-//   border: 2px solid #8f8f8f;
-//   border-radius:50%;
-// `;
+const AvatarIconImg = styled.img`
+  margin-left: 80px;
+  border: 2px solid #8f8f8f;
+  border-radius: 50%;
+  height: 100%;
+`;
 
-// const AdminName = styled.div`
-//   font-size : 18px;
-//   font-family: Poppins;
-//   font-weight: bold;
-//   color: #2e2e2e;
-//   margin-left: 10px;
-// `;
+const AdminName = styled.div`
+  font-size: 13px;
+  font-family: Poppins;
+  font-weight: bold;
+  color: #2e2e2e;
+  margin-left: 10px;
+`;
 
 const LogoutButton = styled.button`
   display: flex;
@@ -90,31 +89,25 @@ const LogoutButton = styled.button`
   padding: 0.4rem 1.3rem;
   cursor: pointer;
   box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.03);
-  margin-left: 60%;
+  margin-left: 10%;
 `;
 
-const AdminHeader = (props) => (
+const AdminHeader = ({ history }) => (
   <Wrapper>
-    <NavLeft>
-      Japanese Bath House
-    </NavLeft>
+    <NavLeft>Japanese Bath House</NavLeft>
     <NavMiddle>
-      <SearchInput
-        size="lg"
-        name="adminSearch"
-        id="adminSearch"
-        type="search"
-        placeholder="Search here"
-      />
+      <SearchInput size="lg" name="adminSearch" id="adminSearch" type="search" placeholder="Search here" />
       <SearchButton>
         <FontAwesomeIcon color="#181b50" size="1x" icon={faSearch} />
       </SearchButton>
     </NavMiddle>
     <NavRight>
+      <AvatarIconImg src="http://s3.amazonaws.com/37assets/svn/765-default-avatar.png" alt="Avatar" />
+      <AdminName>{history.location.adminName}</AdminName>
       <LogoutButton
         onClick={() => {
           removeToken();
-          props.history.replace('/admin');
+          history.replace('/admin');
         }}
       >
         Logout
@@ -125,6 +118,9 @@ const AdminHeader = (props) => (
 
 AdminHeader.propTypes = {
   history: PropTypes.shape({
+    location: PropTypes.shape({
+      adminName: PropTypes.string,
+    }),
     replace: PropTypes.func,
   }).isRequired,
 };

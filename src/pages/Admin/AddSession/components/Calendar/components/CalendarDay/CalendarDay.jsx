@@ -18,19 +18,20 @@ const DayItem = styled.span`
   font: bold 1.2rem 'Roboto';
   cursor: pointer;
   text-align: left;
-  ${({ colorStyles }) => (colorStyles.bgColor === '#bcff2e' || colorStyles.bgColor === '#ffab2e'
-    ? '&:hover {cursor: pointer;}'
-    : '')}
-    box-shadow: 0px 1px 4px grey,
+  ${({ colorStyles }) =>
+    colorStyles.bgColor === '#bcff2e' || colorStyles.bgColor === '#ffab2e' ? '&:hover {cursor: pointer;}' : ''}
+  box-shadow: 0px 1px 4px grey,
           0px 0px 20px rgba(0,0,0.2,0.05) inset;
 `;
 
-const CalendarDay = ({
-  day, value, monthlySessions, history,
-}) => {
+const CalendarDay = ({ day, value, monthlySessions, history }) => {
   const colorStyles = setDayStyles(day, value, monthlySessions);
   const handleDayClick = (date) => {
-    history.push('/admin/editsession', { date: date.format('YYYY-MM-DD').toString() });
+    history.push({
+      pathname: '/admin/editsession',
+      adminName: history.location.adminName,
+      date: date.format('YYYY-MM-DD').toString(),
+    });
   };
 
   return (
@@ -50,6 +51,9 @@ CalendarDay.propTypes = {
   value: PropTypes.instanceOf(moment).isRequired,
   monthlySessions: PropTypes.arrayOf(PropTypes.string).isRequired,
   history: PropTypes.shape({
+    location: PropTypes.shape({
+      adminName: PropTypes.string,
+    }),
     push: PropTypes.func,
   }).isRequired,
 };

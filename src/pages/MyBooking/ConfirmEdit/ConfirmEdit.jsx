@@ -48,9 +48,7 @@ class ConfirmEdit extends React.Component {
       <Container>
         <ConfirmPage formData={formData} title="Booking changes submitted" />
         <Button size="md" onClick={this.DataUpdata}>
-          {'<'}
-          {' '}
-          My Bookings
+          {'<'} My Bookings
         </Button>
       </Container>
     );

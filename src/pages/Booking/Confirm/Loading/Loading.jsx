@@ -29,7 +29,7 @@ const LoadingBall = styled.div`
   transform-origin: 40px 40px;
   animation-delay: ${({ animationDelay }) => animationDelay};
   &::after {
-    content: " ";
+    content: ' ';
     display: block;
     position: absolute;
     width: 7px;
@@ -113,14 +113,7 @@ export default class loading extends Component {
         <Wrapper>
           {loadingBallStateTable.map((loadingBall) => {
             const { key, animationDelay, position } = loadingBall;
-            return (
-              <LoadingBall
-                key={key}
-                animationDelay={animationDelay}
-                top={position.top}
-                left={position.left}
-              />
-            );
+            return <LoadingBall key={key} animationDelay={animationDelay} top={position.top} left={position.left} />;
           })}
         </Wrapper>
         <div>

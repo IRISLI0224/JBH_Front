@@ -1,9 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
+import { withRouter } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faThLarge } from '@fortawesome/free-solid-svg-icons';
 import { faUser } from '@fortawesome/free-regular-svg-icons';
-import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import LogoImg from '../../../../assets/images/logo.png';
 
 const Wrapper = styled.div`
@@ -45,33 +46,45 @@ const NavButton = styled.button`
   cursor: pointer;
 `;
 
-const AdminSidebar = () => (
+const AdminSidebar = ({ history }) => (
   <Wrapper>
     <LogoIconImg src={LogoImg} alt="Avatar" />
-
-    <Link to="/admin/guestlist" style={{ textDecoration: 'none', marginTop: '5px', display: 'flex' }}>
-      <NavButton>
-        <IconTitleWrap>
-          <FontAwesomeIcon color="#8f8f8f" size="2x" icon={faThLarge} />
-          <Title>Dashboard</Title>
-        </IconTitleWrap>
-      </NavButton>
-
-    </Link>
-
-    <Link to="/admin/addsession" style={{ textDecoration: 'none', marginTop: '5px' }}>
-
-      <NavButton>
-        <IconTitleWrap>
-          <FontAwesomeIcon color="#181b50" size="2x" icon={faUser} />
-
-        </IconTitleWrap>
-        <Title>Avaliability</Title>
-      </NavButton>
-    </Link>
-
+    <NavButton
+      onClick={() => {
+        history.push({
+          pathname: '/admin/guestlist',
+          adminName: history.location.adminName,
+        });
+      }}
+    >
+      <IconTitleWrap>
+        <FontAwesomeIcon color="#8f8f8f" size="2x" icon={faThLarge} />
+        <Title>Dashboard</Title>
+      </IconTitleWrap>
+    </NavButton>
+    <NavButton
+      onClick={() => {
+        history.push({
+          pathname: '/admin/addsession',
+          adminName: history.location.adminName,
+        });
+      }}
+    >
+      <IconTitleWrap>
+        <FontAwesomeIcon color="#8f8f8f" size="2x" icon={faUser} />
+      </IconTitleWrap>
+      <Title>Avaliability</Title>
+    </NavButton>
   </Wrapper>
-
 );
 
-export default AdminSidebar;
+AdminSidebar.propTypes = {
+  history: PropTypes.shape({
+    location: PropTypes.shape({
+      adminName: PropTypes.string,
+    }),
+    push: PropTypes.func,
+  }).isRequired,
+};
+
+export default withRouter(AdminSidebar);

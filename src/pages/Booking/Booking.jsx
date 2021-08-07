@@ -87,17 +87,9 @@ class Booking extends React.Component {
           />
         )}
         {step === 3 && formData !== undefined && (
-          <Confirm
-            paid={paid}
-            formData={formData}
-            ConfirmTitle="Booking Confirmed"
-          />
+          <Confirm paid={paid} formData={formData} ConfirmTitle="Booking Confirmed" />
         )}
-        <GoBackButton onClick={this.handlePreStep}>
-          {'<'}
-          {' '}
-          go back
-        </GoBackButton>
+        <GoBackButton onClick={this.handlePreStep}>{'<'} go back</GoBackButton>
       </Container>
     );
   }

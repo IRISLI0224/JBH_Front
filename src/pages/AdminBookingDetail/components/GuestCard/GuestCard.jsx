@@ -25,9 +25,9 @@ const AvatarIcon = styled.div`
 `;
 
 const AvatarIconImg = styled.img`
-  width:80px; 
+  width: 80px;
   border: 5px solid white;
-  border-radius:50%;
+  border-radius: 50%;
   margin-top: -40px;
 `;
 
@@ -61,25 +61,23 @@ const Number = styled.div`
 const GuestCard = ({ bookingDetail }) => (
   <>
     {bookingDetail && (
-    <Wrapper>
-      <AvatarIcon>
-        <BackgroundImg src={PaperImg} alt="Avatar" />
-        <AvatarIconImg src="http://s3.amazonaws.com/37assets/svn/765-default-avatar.png" alt="Avatar" />
-      </AvatarIcon>
-      <Name>
-        {bookingDetail[0].firstName}
-      </Name>
-      <div>
-        <TelephoneWrapper>
-          <FontAwesomeIcon color="#181b50" size="2x" icon={faPhoneSquareAlt} />
-          <Number>{bookingDetail[0].phone}</Number>
-        </TelephoneWrapper>
-        <EmailWrapper>
-          <FontAwesomeIcon color="#181b50" size="2x" icon={faEnvelopeSquare} />
-          <Number>{bookingDetail[0].email}</Number>
-        </EmailWrapper>
-      </div>
-    </Wrapper>
+      <Wrapper>
+        <AvatarIcon>
+          <BackgroundImg src={PaperImg} alt="Avatar" />
+          <AvatarIconImg src="http://s3.amazonaws.com/37assets/svn/765-default-avatar.png" alt="Avatar" />
+        </AvatarIcon>
+        <Name>{bookingDetail[0].firstName}</Name>
+        <div>
+          <TelephoneWrapper>
+            <FontAwesomeIcon color="#181b50" size="2x" icon={faPhoneSquareAlt} />
+            <Number>{bookingDetail[0].phone}</Number>
+          </TelephoneWrapper>
+          <EmailWrapper>
+            <FontAwesomeIcon color="#181b50" size="2x" icon={faEnvelopeSquare} />
+            <Number>{bookingDetail[0].email}</Number>
+          </EmailWrapper>
+        </div>
+      </Wrapper>
     )}
   </>
 );

@@ -23,5 +23,4 @@ export const authRoutes = [
   { path: '/admin/bookingdetail', component: AdminBookingDetail },
   { path: '/admin/addsession', component: AddSession },
   { path: '/admin/editsession', component: EditSession },
-
 ];

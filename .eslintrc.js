@@ -16,12 +16,7 @@ module.exports = {
   rules: {
     'prettier/prettier': ['error'],
     'import/no-extraneous-dependencies': ['error', { devDependencies: true }],
-<<<<<<< HEAD
     'no-console': 2,
     'import/prefer-default-export': ['off'],
-||||||| merged common ancestors
-=======
-    'import/prefer-default-export': ['off'],
->>>>>>> for update
   },
 };

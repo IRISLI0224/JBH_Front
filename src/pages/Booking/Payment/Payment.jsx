@@ -16,7 +16,8 @@ const PaymentTitle = styled.div`
   font-size: 1.5rem;
 `;
 
-const PUBLIC_KEY = 'pk_test_51JAT9YC8FjBDUp9B7ovNxTZYvGyOeuWnLvddN3VrH0I5sfleL0eATlWon3tn1i4MfeSHrpVS02wrqKArGD8FgQny00DW4yXprq';
+const PUBLIC_KEY =
+  'pk_test_51JAT9YC8FjBDUp9B7ovNxTZYvGyOeuWnLvddN3VrH0I5sfleL0eATlWon3tn1i4MfeSHrpVS02wrqKArGD8FgQny00DW4yXprq';
 
 const stripeTestPromise = loadStripe(PUBLIC_KEY);
 
@@ -38,12 +39,7 @@ const formatFormData = (formData) => {
   return formData;
 };
 
-const Payment = ({
-  formData,
-  handlePaidStatus,
-  handleFormData,
-  handleNextStep,
-}) => {
+const Payment = ({ formData, handlePaidStatus, handleFormData, handleNextStep }) => {
   const newFormData = formatFormData(formData);
   return (
     <PaymentContainer>

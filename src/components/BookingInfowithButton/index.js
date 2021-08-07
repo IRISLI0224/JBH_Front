@@ -1,1 +1,1 @@
-export { default } from './BookingInfowithButton';
+export { default } from './BookingInfoWithButton';

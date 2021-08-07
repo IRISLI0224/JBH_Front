@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Link } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import FormTitle from '../../../components/FormTitle';
 import FormSubTitle from '../../../components/FormSubTitle';
 import FormWrapper from '../../../components/FormWrapper';
@@ -18,16 +19,16 @@ const Container = styled.div`
   border-radius: 20px;
   background-color: white;
   box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.03);
-  margin-bottom:20%
+  margin-bottom: 20%;
 `;
 
 const Buttons = styled.div`
-    display: flex;
-    justify-content: space-around;
-    width: 32rem;
+  display: flex;
+  justify-content: space-around;
+  width: 32rem;
 `;
 const Button = styled.button`
-  font-family: "Roboto";
+  font-family: 'Roboto';
   letter-spacing: 0.46px;
   border: none;
   border-radius: 0.3rem;
@@ -52,7 +53,7 @@ class EditSession extends React.Component {
       exist: false,
     };
     const history = this.props;
-    this.state.date = history.location.state.date; //eslint-disable-line
+    this.state.date = history.location.date; //eslint-disable-line
     this.handleAddSession = this.handleAddSession.bind(this);
     this.handleDataChange = this.handleDataChange.bind(this);
   }
@@ -60,7 +61,7 @@ class EditSession extends React.Component {
   async componentDidMount() {
     const { date, time } = this.state;
     const check = await getSessionByDate(date, time);
-    if (typeof (check) !== 'string') {
+    if (typeof check !== 'string') {
       this.setState({
         exist: true,
         maxnumber: check.maxNumber,
@@ -78,9 +79,7 @@ class EditSession extends React.Component {
 
   async handleAddSession() {
     // if session exists, run update, else run add
-    const {
-      date, maxnumber, time, exist,
-    } = this.state;
+    const { date, maxnumber, time, exist } = this.state;
     if (exist) {
       updateSession(date, maxnumber, time);
     } else {
@@ -90,17 +89,13 @@ class EditSession extends React.Component {
   }
 
   render() {
-    const {
-      date, time, maxnumber, visible,
-    } = this.state;
+    const { date, time, maxnumber, visible } = this.state;
+    const { history } = this.props;
     return (
       <>
         <Container>
           <FormTitle variant="primary">Add Avaliability</FormTitle>
-          <FormSubTitle font="special">
-            Date :
-            {date}
-          </FormSubTitle>
+          <FormSubTitle font="special">Date :{date}</FormSubTitle>
           <FormWrapper>
             <FormItem label="MaxNumber" htmlFor="maxnumber">
               <Input
@@ -125,10 +120,15 @@ class EditSession extends React.Component {
             </FormItem>
           </FormWrapper>
           <Buttons>
-            <Button>
-              <Link to="/admin/addsession" style={{ color: 'white', textDecoration: 'none' }}>
-                Cancel
-              </Link>
+            <Button
+              onClick={() => {
+                history.push({
+                  pathname: '/admin/addsession',
+                  adminName: history.location.adminName,
+                });
+              }}
+            >
+              Cancel
             </Button>
             <Button onClick={this.handleAddSession}>Confirm</Button>
           </Buttons>
@@ -139,4 +139,13 @@ class EditSession extends React.Component {
   }
 }
 
-export default EditSession;
+EditSession.propTypes = {
+  history: PropTypes.shape({
+    location: PropTypes.shape({
+      adminName: PropTypes.string,
+    }),
+    push: PropTypes.func,
+  }).isRequired,
+};
+
+export default withRouter(EditSession);
