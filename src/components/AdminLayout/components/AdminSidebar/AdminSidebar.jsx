@@ -73,7 +73,7 @@ const AdminSidebar = ({ history }) => (
       <IconTitleWrap>
         <FontAwesomeIcon color="#8f8f8f" size="2x" icon={faUser} />
       </IconTitleWrap>
-      <Title>Avaliability</Title>
+      <Title>Availability</Title>
     </NavButton>
   </Wrapper>
 );

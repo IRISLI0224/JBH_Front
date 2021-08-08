@@ -10,8 +10,7 @@ const Container = styled.div`
   text-align: center;
   padding: 0.6rem;
   padding-right: 1.5rem;
-  box-shadow: 0px 3px 1px -2px rgba(0, 0, 0, 0.2), 0px 2px 2px rgba(0, 0, 0, 0.14),
-    0px 1px 5px rgba(0, 0, 0, 0.12);
+  box-shadow: 0px 3px 1px -2px rgba(0, 0, 0, 0.2), 0px 2px 2px rgba(0, 0, 0, 0.14), 0px 1px 5px rgba(0, 0, 0, 0.12);
   border-radius: 4px;
   width: 500px;
   margin-left: 50px;
@@ -25,8 +24,7 @@ const EditButton = styled.div`
   align-items: center;
   padding: 0.6rem 1.2rem;
   background: #181b50;
-  box-shadow: 0px 3px 1px -2px rgba(0, 0, 0, 0.2), 0px 2px 2px rgba(0, 0, 0, 0.14),
-    0px 1px 5px rgba(0, 0, 0, 0.12);
+  box-shadow: 0px 3px 1px -2px rgba(0, 0, 0, 0.2), 0px 2px 2px rgba(0, 0, 0, 0.14), 0px 1px 5px rgba(0, 0, 0, 0.12);
   border-radius: 4px;
   font-family: Roboto;
   font-size: 13px;
@@ -40,14 +38,7 @@ const EditButton = styled.div`
 `;
 
 //= =================== BOOKINGINFO COMPONENT ====================
-const BookingInfoWithButton = ({
-  date,
-  id,
-  guestAmount,
-  handleNextStep,
-  handleFormData,
-  formData,
-}) => {
+const BookingInfoWithButton = ({ date, id, guestAmount, handleNextStep, handleFormData, formData }) => {
   const handleClick = () => {
     handleFormData(formData);
     handleNextStep();
