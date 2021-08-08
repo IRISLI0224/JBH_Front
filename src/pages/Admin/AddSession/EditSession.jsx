@@ -17,9 +17,10 @@ const Container = styled.div`
   margin: 2rem auto;
   padding: 3rem 4rem;
   border-radius: 20px;
-  background-color: white;
+  background-color: #fff;
   box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.03);
-  margin-bottom: 20%;
+  margin-bottom: 23%;
+  margin-top: 0.8%;
 `;
 
 const Buttons = styled.div`
