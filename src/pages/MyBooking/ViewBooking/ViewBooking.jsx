@@ -61,19 +61,18 @@ const BookingExplain = styled.div`
   color: #000000;
 `;
 
-const BacktoAvailability = styled.div`
+const BackToAvailability = styled.button`
+  border: none;
+  background: none;
   text-align: center;
-  font-family: Roboto;
-  font-style: normal;
-  font-weight: 500;
+  font-family: 'Roboto';
   font-size: 16px;
-  line-height: 26px;
-  /* identical to box height, or 162% */
   letter-spacing: 0.46px;
-  text-transform: uppercase;
   color: #818181;
-  margin-top: 4rem;
-  margin-bottom: 1rem;
+  margin: 4rem 0 2rem 0;
+  &:hover {
+    color: #181b50;
+  }
 `;
 
 const ViewBooking = ({ BookingDetails, handleNextStep, ready, handleFormData, today }) => (
@@ -99,11 +98,10 @@ const ViewBooking = ({ BookingDetails, handleNextStep, ready, handleFormData, to
               />
             ),
         )}
-      <BacktoAvailability>
-        <Link to="/" style={{ textDecoration: 'none', color: '#818181' }}>
-          back to Availability
-        </Link>
-      </BacktoAvailability>
+
+      <Link to="/">
+        <BackToAvailability>BACK TO AVAILABILITY</BackToAvailability>
+      </Link>
     </BookingCard>
   </>
 );

@@ -5,10 +5,10 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faShapes, faBed } from '@fortawesome/free-solid-svg-icons';
 import { faUser } from '@fortawesome/free-regular-svg-icons';
 import PropTypes from 'prop-types';
-import SlideOne from '../../../../assets/images/slide1.png';
-import SlideTwo from '../../../../assets/images/slide2.jpeg';
-import SlideThree from '../../../../assets/images/slide3.jpeg';
-import SlideFour from '../../../../assets/images/slide4.png';
+import SlideOne from '../../../../../assets/images/slide1.png';
+import SlideTwo from '../../../../../assets/images/slide2.jpeg';
+import SlideThree from '../../../../../assets/images/slide3.jpeg';
+import SlideFour from '../../../../../assets/images/slide4.png';
 
 const Wrapper = styled.div`
   width: 55%;

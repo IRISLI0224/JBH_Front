@@ -73,7 +73,7 @@ const Stage = styled.div`
         color: #181b50;
       `,
     }[state >= children])}
-  box-shadow:0px 15px 10px -15px #000;
+  box-shadow:0 4px 4px 0 rgba(0, 0, 0, 0.1);
 `;
 
 const StageDescription = styled.div`

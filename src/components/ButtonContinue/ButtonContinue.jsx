@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 const ButtonContinue = styled.button`
   font-family: 'Roboto';
@@ -12,6 +12,14 @@ const ButtonContinue = styled.button`
   &:hover {
     cursor: pointer;
   }
+
+  ${(props) =>
+    ({
+      true: css`
+        background-color: grey;
+        cursor: initial;
+      `,
+    }[props.disabled || false])}
 `;
 
 export default ButtonContinue;

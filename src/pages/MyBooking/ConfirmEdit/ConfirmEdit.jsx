@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import ConfirmPage from '../../../components/ConfirmPage';
+import ButtonContinue from '../../../components/ButtonContinue';
 
 const Container = styled.div`
   font-family: 'Roboto';
@@ -14,28 +15,14 @@ const Container = styled.div`
   border-radius: 20px;
 `;
 
-const Button = styled.div`
-  font-family: Arial, Helvetica, sans-serif;
-  font-size: 16px;
-  font-weight: 500;
-  line-height: 1.63;
-  letter-spacing: 0.46px;
-  margin: 5rem 0 1rem 0;
-  color: #818181;
-  &:hover {
-    color: red;
-    cursor: pointer;
-  }
-`;
-
 class ConfirmEdit extends React.Component {
   constructor(props) {
     super(props);
     this.state = {};
-    this.DataUpdata = this.DataUpdata.bind(this);
+    this.DataUpdate = this.DataUpdate.bind(this);
   }
 
-  DataUpdata() {
+  DataUpdate() {
     const { updateData, handleNextStep } = this.props;
     updateData();
     handleNextStep();
@@ -47,9 +34,9 @@ class ConfirmEdit extends React.Component {
     return (
       <Container>
         <ConfirmPage formData={formData} title="Booking changes submitted" />
-        <Button size="md" onClick={this.DataUpdata}>
-          {'<'} My Bookings
-        </Button>
+        <ButtonContinue size="md" onClick={this.DataUpdate}>
+          MY BOOKINGS
+        </ButtonContinue>
       </Container>
     );
   }

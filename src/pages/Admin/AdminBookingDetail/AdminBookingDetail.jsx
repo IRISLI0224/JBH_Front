@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import GuestCard from './components/GuestCard';
 import BookingCard from './components/BookingCard';
-import { getBookingById } from '../../apis/getBookingById';
+import { getBookingById } from '../../../apis/getBookingById';
 
 const Wrapper = styled.div`
   height: 100%;
