@@ -50,6 +50,7 @@ const BasicHeader = (props) => (
     <Logo src={LogoImg} alt="Logo" />
 
     <HeaderButton
+      type="logout"
       onClick={() => {
         removeToken();
         props.history.push('/login');
