@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { CardElement, ElementsConsumer } from '@stripe/react-stripe-js';
-import styled, { css } from 'styled-components';
-
+import styled from 'styled-components';
+import ButtonContinue from '../../../../../components/ButtonContinue';
 import addBooking from '../../../../../apis/addBooking';
 
 const Form = styled.form`
@@ -29,24 +29,6 @@ const FormStatement = styled.div`
   font-size: 0.875rem;
   color: #818181;
   border: none;
-`;
-
-const Button = styled.button`
-  width: 6.5rem;
-  height: 2rem;
-  border: none;
-  border-radius: 0.2rem;
-  background-color: rgb(24, 28, 77);
-  color: #fff;
-  cursor: pointer;
-
-  ${(props) =>
-    ({
-      true: css`
-        background-color: grey;
-        cursor: initial;
-      `,
-    }[props.disabled || false])}
 `;
 
 const Error = styled.div`
@@ -180,10 +162,10 @@ class CheckoutForm extends React.Component {
             By proceeding, I agree with the terms of the license agreement, privacy policy and terms
             and conditions.
           </FormStatement>
-          <Button type="submit" disabled={isButtonDisabled}>
+          <ButtonContinue type="submit" disabled={isButtonDisabled}>
             Pay AU$
             {paidAmount}
-          </Button>
+          </ButtonContinue>
           <br />
         </Form>
       </>

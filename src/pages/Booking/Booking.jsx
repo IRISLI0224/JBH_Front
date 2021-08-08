@@ -12,17 +12,7 @@ const Container = styled.div`
   align-items: center;
   min-height: 100vh;
   background-color: #fff;
-`;
-
-const GoBackButton = styled.button`
-  width: 6.5rem;
-  height: 2rem;
-  margin-right: 4rem;
-  border: none;
-  background-color: #fff;
-  &:hover {
-    cursor: pointer;
-  }
+  padding-bottom: 2rem;
 `;
 
 class Booking extends React.Component {
@@ -89,7 +79,6 @@ class Booking extends React.Component {
         {step === 3 && formData !== undefined && (
           <Confirm paid={paid} formData={formData} ConfirmTitle="Booking Confirmed" />
         )}
-        <GoBackButton onClick={this.handlePreStep}>{'<'} go back</GoBackButton>
       </Container>
     );
   }

@@ -4,7 +4,7 @@ import Booking from '../pages/Booking';
 import Home from '../pages/Home';
 import Login from '../pages/Login';
 import MyBooking from '../pages/MyBooking';
-import AdminBookingDetail from '../pages/AdminBookingDetail';
+import AdminBookingDetail from '../pages/Admin/AdminBookingDetail';
 import AddSession from '../pages/Admin/AddSession';
 import EditSession from '../pages/Admin/AddSession/EditSession';
 

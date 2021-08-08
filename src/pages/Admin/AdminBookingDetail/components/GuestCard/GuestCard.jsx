@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPhoneSquareAlt, faEnvelopeSquare } from '@fortawesome/free-solid-svg-icons';
 import PropTypes from 'prop-types';
-import PaperImg from '../../../../assets/images/cement.jpeg';
+import PaperImg from '../../../../../assets/images/cement.jpeg';
 
 const Wrapper = styled.div`
   width: 20%;
