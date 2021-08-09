@@ -69,15 +69,14 @@ class CheckoutForm extends React.Component {
   };
 
   setPayment = async () => {
-    const { stripe, elements } = this.props; // eslint-disable-line
+    const { stripe, elements } = this.props;
 
     if (!stripe || !elements) {
-      return;
+      return '';
     }
 
-    const cardElement = elements.getElement(CardElement); // eslint-disable-line
+    const cardElement = elements.getElement(CardElement);
 
-    // eslint-disable-next-line
     const { error, paymentMethod } = await stripe.createPaymentMethod({
       type: 'card',
       card: cardElement,
@@ -86,38 +85,40 @@ class CheckoutForm extends React.Component {
     if (error) {
       this.setErrorMessage(error);
       this.setConfirmMessageAndButton(undefined, false);
-    } else {
-      this.setErrorMessage();
-      this.setConfirmMessageAndButton('the payment is being processed......', true);
-
-      try {
-        const { id } = paymentMethod;
-        const { formData } = this.props;
-        const bookingAndPaymentInfo = { ...formData, id };
-        const response = await addBooking(bookingAndPaymentInfo);
-        if (response.data.success) {
-          return response.data; // eslint-disable-line
-        }
-        this.setConfirmMessageAndButton(response.data.message, false);
-      } catch (error) {// eslint-disable-line
-        if (error.response) {
-          error.message = error.response.data.message || error.response.data;
-        } else if (error.request) {
-          error.message = 'The request was made but no response was received, try again later';
-        }
-        this.setErrorMessage(error);
-        this.setConfirmMessageAndButton(undefined, false);
-      }
+      return '';
     }
+    this.setErrorMessage();
+    this.setConfirmMessageAndButton('the payment is being processed......', true);
+
+    try {
+      const { id } = paymentMethod;
+      const { formData } = this.props;
+      const bookingAndPaymentInfo = { ...formData, id };
+      const response = await addBooking(bookingAndPaymentInfo);
+      if (response.data.success) {
+        return response.data;
+      }
+      this.setConfirmMessageAndButton(response.data.message, false);
+    } catch (payError) {
+      if (payError.response) {
+        payError.message = payError.response.data.message || payError.response.data;
+      } else if (payError.request) {
+        payError.message = 'The request was made but no response was received, try again later';
+      }
+      this.setErrorMessage(payError);
+      this.setConfirmMessageAndButton(undefined, false);
+    }
+
+    return '';
   };
 
   handleSubmit = async (event) => {
     event.preventDefault();
     const { error } = this.state;
     let bookingResponse = null;
-    !error && (bookingResponse = await this.setPayment());// eslint-disable-line
+    bookingResponse = !error && (await this.setPayment());
     if (bookingResponse) {
-      !!bookingResponse.bookingNum && this.handleClick(bookingResponse); // eslint-disable-line
+      this.handleClick(bookingResponse);
     }
   };
 
@@ -173,9 +174,26 @@ class CheckoutForm extends React.Component {
   }
 }
 
+CheckoutForm.defaultProps = {
+  stripe: undefined,
+  elements: undefined,
+};
+
 CheckoutForm.propTypes = {
-  // eslint-disable-next-line react/forbid-prop-types
-  formData: PropTypes.object.isRequired,
+  stripe: PropTypes.shape({
+    createPaymentMethod: PropTypes.func,
+    elements: PropTypes.func,
+  }),
+  elements: PropTypes.shape({
+    create: PropTypes.func,
+    getElement: PropTypes.func,
+  }),
+  formData: PropTypes.shape({
+    firstName: PropTypes.string,
+    lastName: PropTypes.string,
+    bookingDate: PropTypes.string,
+    paidAmount: PropTypes.number,
+  }).isRequired,
   handlePaidStatus: PropTypes.func.isRequired,
   handleFormData: PropTypes.func.isRequired,
   handleNextStep: PropTypes.func.isRequired,
@@ -197,8 +215,13 @@ const InjectedCheckoutForm = ({ formData, handlePaidStatus, handleFormData, hand
 );
 
 InjectedCheckoutForm.propTypes = {
-  // eslint-disable-next-line react/forbid-prop-types
-  formData: PropTypes.object.isRequired,
+  formData: PropTypes.shape({
+    firstName: PropTypes.string,
+    lastName: PropTypes.string,
+    bookingDate: PropTypes.string,
+    paidAmount: PropTypes.number,
+    sessions: PropTypes.arrayOf(PropTypes.string),
+  }).isRequired,
   handlePaidStatus: PropTypes.func.isRequired,
   handleFormData: PropTypes.func.isRequired,
   handleNextStep: PropTypes.func.isRequired,
