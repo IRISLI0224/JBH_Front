@@ -7,7 +7,7 @@ import BasicHeader from './components/Header/BasicHeader';
 import BasicLogoutHeader from './components/Header/BasicLogoutHeader';
 import Footer from './components/Footer';
 import bgImg from '../../assets/images/bgGif.gif';
-import adminBg from '../../assets/images/adminBg.jpg';
+import adminBgImg from '../../assets/images/adminBgImg.jpg';
 import primaryBgImg from '../../assets/images/primaryBgImg.jpg';
 import AdminHeader from '../AdminLayout/components/AdminHeader';
 import AdminSidebar from '../AdminLayout/components/AdminSidebar';
@@ -54,7 +54,7 @@ const Layout = ({ children, location }) => {
     return (
       <>
         <AdminHeader />
-        <Main img={adminBg}>{children}</Main>
+        <Main img={adminBgImg}>{children}</Main>
         <AdminSidebar />
       </>
     );

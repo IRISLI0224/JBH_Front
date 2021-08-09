@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import moment from 'moment';
-import BookingInfoWithButton from '../../../components/BookingInfoWithButton';
+import BookingInfoEdit from '../../../components/BookingInfoEdit';
 
 const BookingCard = styled.div`
   text-align: center;
@@ -70,6 +70,7 @@ const BackToAvailability = styled.button`
   letter-spacing: 0.46px;
   color: #818181;
   margin: 4rem 0 2rem 0;
+  cursor: pointer;
   &:hover {
     color: #181b50;
   }
@@ -87,7 +88,7 @@ const ViewBooking = ({ BookingDetails, handleNextStep, ready, handleFormData, to
         BookingDetails.map(
           (bookings) =>
             moment(bookings.bookingDate).format('YYYY-MM-DD') >= today && (
-              <BookingInfoWithButton
+              <BookingInfoEdit
                 key={bookings.bookingNum}
                 date={ready ? moment(bookings.bookingDate).format('YYYY-MM-DD') : ''}
                 id={ready ? bookings.bookingNum : '0'}
