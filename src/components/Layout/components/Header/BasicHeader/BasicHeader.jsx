@@ -24,7 +24,7 @@ const HeaderButton = styled.button`
   border: none;
   background-color: rgb(24, 28, 77);
   color: #fff;
-  font: 500 0.9rem 'Roboto';
+  font: 500 0.8rem 'Roboto';
   letter-spacing: 0.05rem;
   &:hover {
     cursor: pointer;

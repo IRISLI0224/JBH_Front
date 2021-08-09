@@ -37,17 +37,11 @@ const EditButton = styled.div`
   order: 0;
   flex-grow: 0;
   margin: 8px 0px;
+  cursor: pointer;
 `;
 
 //= =================== BOOKINGINFO COMPONENT ====================
-const BookingInfoWithButton = ({
-  date,
-  id,
-  guestAmount,
-  handleNextStep,
-  handleFormData,
-  formData,
-}) => {
+const BookingInfoEdit = ({ date, id, guestAmount, handleNextStep, handleFormData, formData }) => {
   const handleClick = () => {
     handleFormData(formData);
     handleNextStep();
@@ -60,7 +54,7 @@ const BookingInfoWithButton = ({
   );
 };
 
-BookingInfoWithButton.propTypes = {
+BookingInfoEdit.propTypes = {
   date: PropTypes.string.isRequired,
   id: PropTypes.string.isRequired,
   guestAmount: PropTypes.number.isRequired,
@@ -69,7 +63,7 @@ BookingInfoWithButton.propTypes = {
   formData: PropTypes.arrayOf(PropTypes.object),
 };
 
-BookingInfoWithButton.defaultProps = {
+BookingInfoEdit.defaultProps = {
   formData: [],
 };
-export default BookingInfoWithButton;
+export default BookingInfoEdit;
