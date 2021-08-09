@@ -22,15 +22,11 @@ const PUBLIC_KEY =
 const stripeTestPromise = loadStripe(PUBLIC_KEY);
 
 const formatFormData = (formData) => {
-  // eslint-disable-next-line no-prototype-builtins
-  if (formData.hasOwnProperty('email')) {
+  if (Object.prototype.hasOwnProperty.call(formData, 'email')) {
     const newFormData = {
       ...formData,
       paidAmount: formData.price * 0.5,
       gender: formData.gender ? formData.gender : true,
-      email: formData.email,
-      phone: formData.phone,
-      dateOfBirth: formData.dateOfBirth,
     };
     delete newFormData.price;
     delete newFormData.towelChecked;
@@ -60,8 +56,13 @@ const Payment = ({ formData, handlePaidStatus, handleFormData, handleNextStep })
 };
 
 Payment.propTypes = {
-  // eslint-disable-next-line react/forbid-prop-types
-  formData: PropTypes.object.isRequired,
+  formData: PropTypes.shape({
+    firstName: PropTypes.string,
+    lastName: PropTypes.string,
+    towelChecked: PropTypes.bool,
+    bookingDate: PropTypes.string,
+    price: PropTypes.number,
+  }).isRequired,
   handlePaidStatus: PropTypes.func.isRequired,
   handleFormData: PropTypes.func.isRequired,
   handleNextStep: PropTypes.func.isRequired,
