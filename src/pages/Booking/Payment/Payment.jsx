@@ -22,8 +22,7 @@ const PUBLIC_KEY =
 const stripeTestPromise = loadStripe(PUBLIC_KEY);
 
 const formatFormData = (formData) => {
-  // eslint-disable-next-line no-prototype-builtins
-  if (formData.hasOwnProperty('email')) {
+  if (Object.prototype.hasOwnProperty.call(formData, 'email')) {
     const newFormData = {
       ...formData,
       paidAmount: formData.price * 0.5,
