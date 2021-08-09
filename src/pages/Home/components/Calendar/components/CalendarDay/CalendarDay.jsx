@@ -30,7 +30,7 @@ const DayItem = styled.span`
 const CalendarDay = ({ day, value, monthlySessions, history }) => {
   const colorStyles = setDayStyles(day, value, monthlySessions);
   const handleDayClick = (date, style) => {
-    if (style.bgColor === '#8097B9' || style.bgColor === '#3894C5') {
+    if (style.bgColor === '#8097B9' || style.bgColor === '#7A95A1') {
       history.push('/booking', { date: date.format('YYYY-MM-DD').toString() });
     }
   };
