@@ -60,8 +60,8 @@ class Calendar extends React.Component {
 
   componentDidMount() {
     const { value } = this.state;
-    const value2 = moment(value).format('YYYY/MM');
-    this.setMonthlySessions(value2);
+    const formattedValue = moment(value).format('YYYY/MM');
+    this.setMonthlySessions(formattedValue);
     this.setState({
       calendar: buildCalendar(value),
     });

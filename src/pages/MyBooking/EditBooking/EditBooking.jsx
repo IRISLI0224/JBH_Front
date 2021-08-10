@@ -137,6 +137,12 @@ class EditBooking extends React.Component {
     }
   };
 
+  handleSubmit = (e, data, hasError) => {
+    e.preventDefault();
+    this.handleIsFormSubmitChange(true);
+    this.handleContinueClick(data, hasError);
+  };
+
   render() {
     const { data, isSubmitFail, submitError } = this.state;
     const error = this.getError(data);
@@ -149,9 +155,7 @@ class EditBooking extends React.Component {
           <FormSubTitle font="normal">Order number {data.bookingNum.value}</FormSubTitle>
           <FormWrapper
             onSubmit={(e) => {
-              e.preventDefault();
-              this.handleIsFormSubmitChange(true);
-              this.handleContinueClick(data, hasError);
+              this.handleSubmit(e, data, hasError);
             }}
           >
             <FlexRow>

@@ -17,7 +17,7 @@ const Wrapper = styled.div`
   align-content: space-between;
 `;
 
-const NavLeft = styled.div`
+const CompanyName = styled.div`
   width: 30%;
   height: 30px;
   margin-left: 250px;
@@ -28,14 +28,14 @@ const NavLeft = styled.div`
   color: #0f0f0f;
 `;
 
-const NavMiddle = styled.div`
+const SearchBar = styled.div`
   width: 30%;
   height: 30px;
   display: flex;
   align-content: space-between;
 `;
 
-const NavRight = styled.div`
+const AdminInfo = styled.div`
   width: 30%;
   height: 30px;
   display: flex;
@@ -94,8 +94,8 @@ const LogoutButton = styled.button`
 
 const AdminHeader = ({ history }) => (
   <Wrapper>
-    <NavLeft>Japanese Bath House</NavLeft>
-    <NavMiddle>
+    <CompanyName>Japanese Bath House</CompanyName>
+    <SearchBar>
       <SearchInput
         size="lg"
         name="adminSearch"
@@ -106,8 +106,8 @@ const AdminHeader = ({ history }) => (
       <SearchButton>
         <FontAwesomeIcon color="#181b50" size="1x" icon={faSearch} />
       </SearchButton>
-    </NavMiddle>
-    <NavRight>
+    </SearchBar>
+    <AdminInfo>
       <AvatarIconImg
         src="http://s3.amazonaws.com/37assets/svn/765-default-avatar.png"
         alt="Avatar"
@@ -121,7 +121,7 @@ const AdminHeader = ({ history }) => (
       >
         Logout
       </LogoutButton>
-    </NavRight>
+    </AdminInfo>
   </Wrapper>
 );
 

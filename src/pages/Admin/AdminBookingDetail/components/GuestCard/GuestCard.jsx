@@ -35,6 +35,10 @@ const Name = styled.div`
   font-size: 20px;
 `;
 
+const Info = styled.div`
+  width: 100%;
+`;
+
 const TelephoneWrapper = styled.div`
   display: flex;
   align-items: center;
@@ -54,7 +58,7 @@ const BackgroundImg = styled.img`
 `;
 
 const Number = styled.div`
-  font-size: 16px;
+  font-size: 1rem;
   margin: 0 1rem;
 `;
 
@@ -70,16 +74,16 @@ const GuestCard = ({ bookingDetail }) => (
           />
         </AvatarIcon>
         <Name>{bookingDetail[0].firstName}</Name>
-        <div>
+        <Info>
           <TelephoneWrapper>
-            <FontAwesomeIcon color="#181b50" size="2x" icon={faPhoneSquareAlt} />
+            <FontAwesomeIcon color="#181b50" size="lg" icon={faPhoneSquareAlt} />
             <Number>{bookingDetail[0].phone}</Number>
           </TelephoneWrapper>
           <EmailWrapper>
-            <FontAwesomeIcon color="#181b50" size="2x" icon={faEnvelopeSquare} />
+            <FontAwesomeIcon color="#181b50" size="lg" icon={faEnvelopeSquare} />
             <Number>{bookingDetail[0].email}</Number>
           </EmailWrapper>
-        </div>
+        </Info>
       </Wrapper>
     )}
   </>

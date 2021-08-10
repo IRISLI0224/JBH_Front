@@ -23,8 +23,8 @@ class MyBooking extends React.Component {
     this.state.email = history.location.email; //eslint-disable-line
     this.getBookingDetails();
     const myDate = new Date();
-    const currentdate = `${myDate.getFullYear()}-${myDate.getMonth() + 1}-${myDate.getDate()}`;
-    this.state.today = moment(currentdate).format('YYYY-MM-DD');
+    const currentDate = `${myDate.getFullYear()}-${myDate.getMonth() + 1}-${myDate.getDate()}`;
+    this.state.today = moment(currentDate).format('YYYY-MM-DD');
   }
 
   handleFormData(formData) {

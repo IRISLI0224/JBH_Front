@@ -49,7 +49,7 @@ class EditSession extends React.Component {
     this.state = {
       date: '',
       time: 0,
-      maxnumber: 0,
+      maxNumber: 0,
       visible: false,
       exist: false,
     };
@@ -65,7 +65,7 @@ class EditSession extends React.Component {
     if (typeof check !== 'string') {
       this.setState({
         exist: true,
-        maxnumber: check.maxNumber,
+        maxNumber: check.maxNumber,
       });
     }
   }
@@ -80,31 +80,31 @@ class EditSession extends React.Component {
 
   async handleAddSession() {
     // if session exists, run update, else run add
-    const { date, maxnumber, time, exist } = this.state;
+    const { date, maxNumber, time, exist } = this.state;
     if (exist) {
-      updateSession(date, maxnumber, time);
+      updateSession(date, maxNumber, time);
     } else {
-      addSession(date, maxnumber, time);
+      addSession(date, maxNumber, time);
     }
     this.setState({ visible: true });
   }
 
   render() {
-    const { date, time, maxnumber, visible } = this.state;
+    const { date, time, maxNumber, visible } = this.state;
     const { history } = this.props;
     return (
       <>
         <Container>
-          <FormTitle variant="primary">Add Avaliability</FormTitle>
+          <FormTitle variant="primary">Add Availability</FormTitle>
           <FormSubTitle font="special">Date :{date}</FormSubTitle>
           <FormWrapper>
-            <FormItem label="MaxNumber" htmlFor="maxnumber">
+            <FormItem label="Max Number" htmlFor="maxNumber">
               <Input
                 size="lg"
-                name="maxnumber"
-                id="maxnumber"
+                name="maxNumber"
+                id="maxNumber"
                 type="number"
-                value={maxnumber}
+                value={maxNumber}
                 onChange={this.handleDataChange}
               />
             </FormItem>
