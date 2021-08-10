@@ -5,10 +5,10 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faShapes, faBed } from '@fortawesome/free-solid-svg-icons';
 import { faUser } from '@fortawesome/free-regular-svg-icons';
 import PropTypes from 'prop-types';
-import SlideOne from '../../../../../assets/images/slide1.png';
-import SlideTwo from '../../../../../assets/images/slide2.jpeg';
-import SlideThree from '../../../../../assets/images/slide3.jpeg';
-import SlideFour from '../../../../../assets/images/slide4.png';
+import ImgOne from '../../../../../assets/images/slide1.png';
+import ImgTwo from '../../../../../assets/images/slide2.jpeg';
+import ImgThree from '../../../../../assets/images/slide3.jpeg';
+import ImgFour from '../../../../../assets/images/slide4.png';
 
 const Wrapper = styled.div`
   width: 55%;
@@ -140,10 +140,10 @@ const BookingCard = ({ bookingDetail }) => (
         <TopWrapper>
           <BottomTitle>Room Facilities</BottomTitle>
           <ImgContainer>
-            <ImgWrapper src={SlideOne} alt="Avatar" />
-            <ImgWrapper src={SlideTwo} alt="Avatar" />
-            <ImgWrapper src={SlideThree} alt="Avatar" />
-            <ImgWrapper src={SlideFour} alt="Avatar" />
+            <ImgWrapper src={ImgOne} alt="Avatar" />
+            <ImgWrapper src={ImgTwo} alt="Avatar" />
+            <ImgWrapper src={ImgThree} alt="Avatar" />
+            <ImgWrapper src={ImgFour} alt="Avatar" />
           </ImgContainer>
         </TopWrapper>
       </Wrapper>

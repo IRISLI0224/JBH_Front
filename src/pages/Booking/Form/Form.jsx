@@ -124,6 +124,12 @@ class Form extends React.Component {
     }
   };
 
+  handleSubmit = (e, data, hasError) => {
+    e.preventDefault();
+    this.handleIsFormSubmitChange(true);
+    this.handleContinueClick(data, hasError);
+  };
+
   render() {
     const { data, isSubmitFail, submitError } = this.state;
     const { date } = this.props;
@@ -138,9 +144,7 @@ class Form extends React.Component {
         </FormSubTitle>
         <FormWrapper
           onSubmit={(e) => {
-            e.preventDefault();
-            this.handleIsFormSubmitChange(true);
-            this.handleContinueClick(data, hasError);
+            this.handleSubmit(e, data, hasError);
           }}
         >
           <FlexRow>

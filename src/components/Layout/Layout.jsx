@@ -40,28 +40,22 @@ const Layout = ({ children, location }) => {
     '/mybooking': 'C',
   };
 
-  const specialCase = specialCases[url];
-  if (specialCase === 'A') {
-    return (
+  const layout = {
+    A: (
       <>
         <Header />
         <Main img={bgImg}>{children}</Main>
         <Footer />
       </>
-    );
-  }
-  if (specialCase === 'B') {
-    return (
+    ),
+    B: (
       <>
         <AdminHeader />
         <Main img={adminBgImg}>{children}</Main>
         <AdminSidebar />
       </>
-    );
-  }
-
-  if (specialCase === 'C') {
-    return (
+    ),
+    C: (
       <>
         <BasicLogoutHeader />
         <Main variant="user" img={primaryBgImg}>
@@ -69,16 +63,22 @@ const Layout = ({ children, location }) => {
         </Main>
         <Footer />
       </>
-    );
-  }
+    ),
+  };
+  const specialCase = specialCases[url];
 
   return (
     <>
-      <BasicHeader />
-      <Main variant="user" img={primaryBgImg}>
-        {children}
-      </Main>
-      <Footer />
+      {specialCase && layout[specialCase]}
+      {!specialCase && (
+        <>
+          <BasicHeader />
+          <Main variant="user" img={primaryBgImg}>
+            {children}
+          </Main>
+          <Footer />
+        </>
+      )}
     </>
   );
 };
