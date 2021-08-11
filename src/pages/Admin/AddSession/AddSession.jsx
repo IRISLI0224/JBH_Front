@@ -11,7 +11,6 @@ const Container = styled.div`
   margin: 1rem auto;
   background-color: #fff;
   text-align: center;
-  margin-bottom: 5%;
 `;
 
 const Title = styled.h1`
