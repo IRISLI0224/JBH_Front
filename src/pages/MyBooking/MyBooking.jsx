@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import moment from 'moment';
 import EditBooking from './EditBooking';
 import ConfirmEdit from './ConfirmEdit';
@@ -19,9 +20,8 @@ class MyBooking extends React.Component {
     this.handleNextStep = this.handleNextStep.bind(this);
     this.handleFormData = this.handleFormData.bind(this);
     this.getBookingDetails = this.getBookingDetails.bind(this);
-    const history = this.prop;
-    const { location } = history;
-    this.state.date = location.date;
+    const { history } = this.props;
+    this.state.email = history.location.email;
     this.getBookingDetails();
     const myDate = new Date();
     const currentDate = `${myDate.getFullYear()}-${myDate.getMonth() + 1}-${myDate.getDate()}`;
@@ -80,5 +80,11 @@ class MyBooking extends React.Component {
     );
   }
 }
+
+MyBooking.propTypes = {
+  history: PropTypes.shape({
+    location: PropTypes.shape,
+  }).isRequired,
+};
 
 export default MyBooking;
