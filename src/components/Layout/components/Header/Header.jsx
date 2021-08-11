@@ -20,7 +20,7 @@ const Container = styled.div`
 const Logo = styled.img`
   position: absolute;
   top: 0.3rem;
-  left: 8%;
+  left: 5%;
   width: 10.5rem;
   @media (max-width: 992px) {
     left: 40%;
@@ -33,7 +33,7 @@ const Logo = styled.img`
 const HeaderTitle = styled.h1`
   margin-top: 5rem;
   color: #fff;
-  font: bold 2.1rem 'Baloo';
+  font: bold 2rem 'Baloo';
   letter-spacing: 0.1rem;
   @media (max-width: 992px) {
     display: none;
@@ -42,9 +42,11 @@ const HeaderTitle = styled.h1`
 `;
 
 const ButtonContainer = styled.div`
+  position: absolute;
+  right: 2rem;
+  bottom: 1rem;
   display: flex;
   justify-content: flex-end;
-  margin-right: 2rem;
   color: white;
 `;
 
