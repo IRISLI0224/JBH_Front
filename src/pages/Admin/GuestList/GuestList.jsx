@@ -175,8 +175,8 @@ class GuestList extends React.Component {
     };
     this.getBookingDetails = this.getBookingDetails.bind(this);
     const myDate = new Date();
-    const currentdate = `${myDate.getFullYear()}-${myDate.getMonth() + 1}-${myDate.getDate()}`;
-    this.state.today = moment(currentdate).format('YYYY-MM-DD');
+    const currentDate = `${myDate.getFullYear()}-${myDate.getMonth() + 1}-${myDate.getDate()}`;
+    this.state.today = moment(currentDate).format('YYYY-MM-DD');
     this.getBookingDetails(this.state.today);//eslint-disable-line
   }
 
@@ -228,7 +228,7 @@ class GuestList extends React.Component {
               onGridReady={this.onGridReady}
               defaultColDef
               pagination
-              paginationPageSize={5}
+              paginationPageSize={10}
               columnDefs={this.state.columnDefs} //eslint-disable-line
               rowData={this.state.rowData} //eslint-disable-line
             />
