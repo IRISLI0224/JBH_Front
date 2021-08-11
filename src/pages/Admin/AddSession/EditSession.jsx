@@ -20,7 +20,7 @@ const Container = styled.div`
   background-color: #fff;
   box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.03);
   margin-bottom: 23%;
-  margin-top: 0.8%;
+  margin-top: 5%;
 `;
 
 const Buttons = styled.div`
