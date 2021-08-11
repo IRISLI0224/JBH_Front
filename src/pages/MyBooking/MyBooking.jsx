@@ -1,4 +1,3 @@
-/* eslint-disable react/prop-types */
 import React from 'react';
 import PropTypes from 'prop-types';
 import moment from 'moment';
@@ -89,4 +88,3 @@ MyBooking.propTypes = {
   ]).isRequired,
 };
 export default MyBooking;
-

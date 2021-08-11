@@ -99,11 +99,11 @@ class Login extends React.Component {
   }
 
   login = () => {
-    this.setState({ error: null, isLoading: true }, () => {
+    this.setState({ error: null }, () => {
       const { data: loginData } = this.state;
       loginUser(loginData.email.value, loginData.password.value)
         .then((data) => {
-          this.setState({ isLoading: false }, () => {
+          this.setState({ isLoading: true }, () => {
             setToken(data.token);
             setUserEmail(loginData.email.value);
             const { history } = this.props;
@@ -159,8 +159,8 @@ class Login extends React.Component {
               <InputErrorMsg>{this.getErrorMessage(error, 'password')}</InputErrorMsg>
             </FormItem>
             <ButtonContinue onClick={this.login}>LOGIN</ButtonContinue>
-            {!!authError && <ServerMsg status="error">Login failed, Please try again.</ServerMsg>}
-            {!!isLoading && <ServerMsg status="success">Login Success!</ServerMsg>}
+            {authError && <ServerMsg status="error">Login failed, Please try again.</ServerMsg>}
+            {isLoading && <ServerMsg status="success">Login Success!</ServerMsg>}
           </FormWrapper>
         </Container>
       </>
