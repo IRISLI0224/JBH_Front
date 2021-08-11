@@ -160,7 +160,7 @@ class GuestList extends React.Component {
                   const { history } = this.props;
                   history.push({
                     pathname: '/admin/bookingdetail',
-                    id: params.data._id,//eslint-disable-line
+                    id: params.data._id,
                   });
                 }}
               >
@@ -229,8 +229,8 @@ class GuestList extends React.Component {
               defaultColDef
               pagination
               paginationPageSize={10}
-              columnDefs={this.state.columnDefs} //eslint-disable-line
-              rowData={this.state.rowData} //eslint-disable-line
+              columnDefs={this.state.columnDefs}
+              rowData={this.state.rowData}
             />
           </div>
         </FormContainer>

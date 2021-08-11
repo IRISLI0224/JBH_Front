@@ -18,5 +18,9 @@ module.exports = {
     'import/no-extraneous-dependencies': ['error', { devDependencies: true }],
     'no-console': 2,
     'import/prefer-default-export': ['off'],
+    'react/destructuring-assignment': ['off'],
+    'no-underscore-dangle': ['off'],
+    'react/jsx-props-no-spreading': ['off'],
+    'global-require': ['off'],
   },
 };
