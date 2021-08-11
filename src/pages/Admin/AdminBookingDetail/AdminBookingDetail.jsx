@@ -1,4 +1,3 @@
-/* eslint-disable prefer-destructuring */
 import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
@@ -23,10 +22,9 @@ class AdminBookingDetail extends React.Component {
       bookingDetail: undefined,
       id: '',
     };
-    const history = this.props;
-    const location = history.location;
-    const locationid = location.id;
-    this.state.id = locationid;
+    const { history } = this.props;
+    const locationId = history.location.id;
+    this.state.id = locationId;
     this.getBookingDetail();
   }
 
@@ -53,9 +51,11 @@ class AdminBookingDetail extends React.Component {
 }
 
 AdminBookingDetail.propTypes = {
-  location: PropTypes.oneOfType([
-    PropTypes.objectOf.isRequired,
-    PropTypes.oneOf([undefined]).isRequired,
-  ]).isRequired,
+  history: PropTypes.shape({
+    location: PropTypes.oneOfType([
+      PropTypes.objectOf.isRequired,
+      PropTypes.oneOf([undefined]).isRequired,
+    ]).isRequired,
+  }).isRequired,
 };
 export default AdminBookingDetail;

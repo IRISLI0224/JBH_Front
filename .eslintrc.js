@@ -22,5 +22,6 @@ module.exports = {
     'no-underscore-dangle': ['off'],
     'react/jsx-props-no-spreading': ['off'],
     'global-require': ['off'],
+    'no-nested-ternary': ['off'],
   },
 };
