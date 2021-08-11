@@ -44,11 +44,8 @@ const ConfirmPage = ({
       Confirmation email send to &nbsp;
       <a href={email}>{email}</a>
     </ConfirmedMessage>
-
     <Line />
-
     <BookingInfo date={bookingDate} id={bookingNum} guestAmount={numOfGuests} />
-
     <Line />
   </Container>
 );

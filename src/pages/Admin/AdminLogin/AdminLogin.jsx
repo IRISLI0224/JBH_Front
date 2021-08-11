@@ -11,7 +11,7 @@ import FormTitle from '../../../components/FormTitle';
 import FormSubTitle from '../../../components/FormSubTitle';
 import FormWrapper from '../../../components/FormWrapper';
 import { loginAdmin } from '../../../apis/adminAuth';
-import { setToken } from '../../../utils/authentication';
+import { setToken, setUserEmail } from '../../../utils/authentication';
 import ServerMsg from '../../../components/ServerMsg';
 
 const Container = styled.div`
@@ -26,7 +26,6 @@ const Container = styled.div`
 class AdminLogin extends React.Component {
   constructor(props) {
     super(props);
-
     this.state = {
       data: {
         email: {
@@ -106,10 +105,10 @@ class AdminLogin extends React.Component {
         .then((data) => {
           this.setState({ isLoading: false }, () => {
             setToken(data.token);
+            setUserEmail(loginData.email.value);
             const { history } = this.props;
             history.push({
               pathname: '/admin/guestlist',
-              adminName: loginData.email.value,
             });
           });
         })
@@ -120,7 +119,6 @@ class AdminLogin extends React.Component {
   render() {
     const { data, error: authError, isLoading } = this.state;
     const error = this.getError(data);
-    const hasError = Object.keys(error).length > 0;
 
     return (
       <>
@@ -131,9 +129,6 @@ class AdminLogin extends React.Component {
             onSubmit={(e) => {
               e.preventDefault();
               this.handleIsFormSubmitChange(true);
-              if (!hasError) {
-                // console.log()
-              }
             }}
           >
             <FormItem label="Email" htmlFor="email">

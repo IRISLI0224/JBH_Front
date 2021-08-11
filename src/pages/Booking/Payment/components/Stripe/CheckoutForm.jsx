@@ -70,18 +70,14 @@ class CheckoutForm extends React.Component {
 
   setPayment = async () => {
     const { stripe, elements } = this.props;
-
     if (!stripe || !elements) {
       return '';
     }
-
     const cardElement = elements.getElement(CardElement);
-
     const { error, paymentMethod } = await stripe.createPaymentMethod({
       type: 'card',
       card: cardElement,
     });
-
     if (error) {
       this.setErrorMessage(error);
       this.setConfirmMessageAndButton(undefined, false);
@@ -89,7 +85,6 @@ class CheckoutForm extends React.Component {
     }
     this.setErrorMessage();
     this.setConfirmMessageAndButton('the payment is being processed......', true);
-
     try {
       const { id } = paymentMethod;
       const { formData } = this.props;
@@ -226,4 +221,5 @@ InjectedCheckoutForm.propTypes = {
   handleFormData: PropTypes.func.isRequired,
   handleNextStep: PropTypes.func.isRequired,
 };
+
 export default InjectedCheckoutForm;

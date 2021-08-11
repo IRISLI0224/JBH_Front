@@ -40,7 +40,6 @@ const EditButton = styled.div`
   cursor: pointer;
 `;
 
-//= =================== BOOKINGINFO COMPONENT ====================
 const BookingInfoEdit = ({ date, id, guestAmount, handleNextStep, handleFormData, formData }) => {
   const handleClick = () => {
     handleFormData(formData);

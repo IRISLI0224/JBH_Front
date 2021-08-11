@@ -19,7 +19,6 @@ const Main = styled.div`
   overflow: hidden;
   background: url(${({ img }) => img}) no-repeat center;
   background-size: cover;
-
   ${(props) =>
     ({
       user: css`

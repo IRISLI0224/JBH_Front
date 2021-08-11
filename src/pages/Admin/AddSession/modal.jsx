@@ -4,7 +4,6 @@ import { withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 class Modal extends React.Component { //eslint-disable-line
-
   render() {
     const { visible, history } = this.props;
     return (
@@ -19,7 +18,6 @@ class Modal extends React.Component { //eslint-disable-line
                 onClick={() => {
                   history.push({
                     pathname: '/admin/addsession',
-                    adminName: history.location.adminName,
                   });
                 }}
               >
@@ -37,9 +35,6 @@ class Modal extends React.Component { //eslint-disable-line
 Modal.propTypes = {
   visible: PropTypes.bool.isRequired,
   history: PropTypes.shape({
-    location: PropTypes.shape({
-      adminName: PropTypes.string,
-    }),
     push: PropTypes.func,
   }).isRequired,
 };

@@ -46,10 +46,8 @@ const BookingId = styled.span``;
 const BookingType = styled.span``;
 const GuestAmount = styled.span``;
 
-//= =================== BOOKINGINFO COMPONENT ====================
 const BookingInfo = ({ date, id, guestAmount }) => {
   const day = date.split('-')[2].substring(0, 2);
-
   const monthIndex = parseInt(date.split('-')[1], 10);
   const monthTable = [
     'JAN',
@@ -73,7 +71,6 @@ const BookingInfo = ({ date, id, guestAmount }) => {
         <Day>{day}</Day>
         <Month>{month}</Month>
       </BookingDate>
-
       <BookingContent>
         <BookingMessage>Your booking with Japanese Bath House</BookingMessage>
         <BookingDetails>

@@ -120,4 +120,5 @@ ViewBooking.defaultProps = {
   ready: false,
   today: '',
 };
+
 export default ViewBooking;

@@ -3,7 +3,6 @@ import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import moment from 'moment';
 import { withRouter } from 'react-router-dom';
-
 import setDayStyles from './setDayStyles';
 
 const DayItem = styled.span`

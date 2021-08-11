@@ -58,7 +58,6 @@ const HeaderButton = styled.button`
     cursor: pointer;
     color: #818181;
   }
-
   ${(props) =>
     ({
       logout: css`
