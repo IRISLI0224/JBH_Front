@@ -19,12 +19,15 @@ const Confirm = ({ formData }) => (
 );
 
 Confirm.propTypes = {
-  formData: PropTypes.shape({
-    name: PropTypes.string,
-    mobile: PropTypes.number,
-    booking: PropTypes.string,
-    price: PropTypes.number,
-  }).isRequired,
+  formData: PropTypes.oneOfType([
+    PropTypes.shape({
+      name: PropTypes.string,
+      mobile: PropTypes.number,
+      booking: PropTypes.string,
+      price: PropTypes.number,
+    }).isRequired,
+    PropTypes.oneOf([undefined]).isRequired,
+  ]).isRequired,
 };
 
 export default Confirm;

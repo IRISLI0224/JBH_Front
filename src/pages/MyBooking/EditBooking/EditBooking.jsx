@@ -249,7 +249,10 @@ EditBooking.propTypes = {
   lastName: PropTypes.string,
   phone: PropTypes.string,
   handleNextStep: PropTypes.func.isRequired,
-  formData: PropTypes.objectOf.isRequired,
+  formData: PropTypes.oneOfType([
+    PropTypes.objectOf.isRequired,
+    PropTypes.oneOf([undefined]).isRequired,
+  ]).isRequired,
   handleFormData: PropTypes.func.isRequired,
 };
 

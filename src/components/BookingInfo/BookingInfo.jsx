@@ -88,7 +88,11 @@ const BookingInfo = ({ date, id, guestAmount }) => {
 BookingInfo.propTypes = {
   date: PropTypes.string.isRequired,
   id: PropTypes.string.isRequired,
-  guestAmount: PropTypes.number.isRequired,
+  guestAmount: PropTypes.oneOfType([
+    PropTypes.PropTypes.string.isRequired,
+    PropTypes.PropTypes.number.isRequired,
+    PropTypes.oneOf([undefined]).isRequired,
+  ]).isRequired,
 };
 
 export default BookingInfo;

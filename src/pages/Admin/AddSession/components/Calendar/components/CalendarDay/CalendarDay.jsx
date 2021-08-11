@@ -49,10 +49,10 @@ const CalendarDay = ({ day, value, monthlySessions, history }) => {
 CalendarDay.propTypes = {
   day: PropTypes.instanceOf(moment).isRequired,
   value: PropTypes.instanceOf(moment).isRequired,
-  monthlySessions: PropTypes.arrayOf(PropTypes.string).isRequired,
   history: PropTypes.shape({
     push: PropTypes.func,
   }).isRequired,
+  monthlySessions: PropTypes.arrayOf(PropTypes.objectOf).isRequired,
 };
 
 export default withRouter(CalendarDay);
