@@ -7,14 +7,13 @@ const isToday = (day) => day.isSame(new Date(), 'day');
 const beforeToday = (day) => day.isBefore(new Date(), 'day');
 
 const dayStyles = (day, value, monthlySessions) => {
-  let bgColor = notCurrMonth(day, value)
+  // eslint-disable-next-line no-nested-ternary
+  const bgColor = notCurrMonth(day, value)
     ? '#fff'
-    : calendarColors[monthlySessions[day.format('D') * 1 - 1]];
-  bgColor = beforeToday(day)
+    : beforeToday(day)
     ? calendarColors.closed
     : calendarColors[monthlySessions[day.format('D') * 1 - 1]];
-  let numColor = notCurrMonth(day, value) ? '#fff' : '#0F5A3A';
-  numColor = isToday(day) ? '#0F5A3A' : '#000';
+  const numColor = notCurrMonth(day, value) ? '#fff' : isToday(day) ? '#0F5A3A' : '#000';//eslint-disable-line
   return { bgColor, numColor };
 };
 
