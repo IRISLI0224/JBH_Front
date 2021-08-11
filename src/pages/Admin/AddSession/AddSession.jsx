@@ -59,7 +59,7 @@ const AddSession = () => (
       <LegendImg color={calendarColor.available} />
       Available
       <LegendImg color={calendarColor.limited} />
-      limited
+      Limited
       <LegendImg color={calendarColor.fullyBooked} />
       Fully Booked
       <LegendImg color={calendarColor.closed} />
