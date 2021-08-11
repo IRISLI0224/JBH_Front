@@ -12,7 +12,6 @@ const Wrapper = styled.div`
   display: flex;
   justify-content: center;
   font-family: 'Poppins';
-  margin-bottom: 13%;
 `;
 
 class AdminBookingDetail extends React.Component {
