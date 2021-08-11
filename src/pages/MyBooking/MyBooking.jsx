@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import React from 'react';
 import PropTypes from 'prop-types';
 import moment from 'moment';
@@ -21,8 +22,7 @@ class MyBooking extends React.Component {
     this.handleFormData = this.handleFormData.bind(this);
     this.getBookingDetails = this.getBookingDetails.bind(this);
     const history = this.props;
-    const location = history;
-    this.state.email = location.email;
+    this.state.email = history.location.email;
     this.getBookingDetails();
     const myDate = new Date();
     const currentDate = `${myDate.getFullYear()}-${myDate.getMonth() + 1}-${myDate.getDate()}`;
@@ -82,10 +82,11 @@ class MyBooking extends React.Component {
   }
 }
 
-EditBooking.propTypes = {
+MyBooking.propTypes = {
   location: PropTypes.oneOfType([
     PropTypes.objectOf.isRequired,
     PropTypes.oneOf([undefined]).isRequired,
   ]).isRequired,
 };
 export default MyBooking;
+
