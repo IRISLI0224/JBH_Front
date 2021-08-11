@@ -52,7 +52,7 @@ class EditSession extends React.Component {
       visible: false,
       exist: false,
     };
-    const history = this.props;
+    const history = this.prop;
     this.state.date = history.location.date; //eslint-disable-line
     this.handleAddSession = this.handleAddSession.bind(this);
     this.handleDataChange = this.handleDataChange.bind(this);
