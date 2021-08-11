@@ -91,6 +91,7 @@ BookingInfo.propTypes = {
   guestAmount: PropTypes.oneOfType([
     PropTypes.PropTypes.string.isRequired,
     PropTypes.PropTypes.number.isRequired,
+    PropTypes.oneOf([undefined]).isRequired,
   ]).isRequired,
 };
 

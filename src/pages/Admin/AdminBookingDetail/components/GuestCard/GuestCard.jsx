@@ -90,7 +90,11 @@ const GuestCard = ({ bookingDetail }) => (
 );
 
 GuestCard.propTypes = {
-  bookingDetail: PropTypes.shape([]).isRequired,
+  bookingDetail: PropTypes.oneOfType([
+    PropTypes.shape([]).isRequired,
+    PropTypes.arrayOf(PropTypes.object).isRequired,
+    PropTypes.oneOf([undefined]).isRequired,
+  ]).isRequired,
 };
 
 export default GuestCard;

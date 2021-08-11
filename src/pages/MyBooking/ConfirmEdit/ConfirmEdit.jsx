@@ -45,8 +45,10 @@ class ConfirmEdit extends React.Component {
 ConfirmEdit.propTypes = {
   handleNextStep: PropTypes.func.isRequired,
   updateData: PropTypes.func.isRequired,
-  formData: PropTypes.oneOfType([PropTypes.objectOf.isRequired, PropTypes.oneOf([undefined])])
-    .isRequired,
+  formData: PropTypes.oneOfType([
+    PropTypes.objectOf.isRequired,
+    PropTypes.oneOf([undefined]).isRequired,
+  ]).isRequired,
 };
 
 export default ConfirmEdit;

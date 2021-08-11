@@ -26,7 +26,7 @@ Confirm.propTypes = {
       booking: PropTypes.string,
       price: PropTypes.number,
     }).isRequired,
-    PropTypes.oneOf([undefined]),
+    PropTypes.oneOf([undefined]).isRequired,
   ]).isRequired,
 };
 

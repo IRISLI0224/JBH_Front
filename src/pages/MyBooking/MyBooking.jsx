@@ -83,7 +83,9 @@ class MyBooking extends React.Component {
 }
 
 EditBooking.propTypes = {
-  location: PropTypes.oneOfType([PropTypes.objectOf.isRequired, PropTypes.oneOf([undefined])])
-    .isRequired,
+  location: PropTypes.oneOfType([
+    PropTypes.objectOf.isRequired,
+    PropTypes.oneOf([undefined]).isRequired,
+  ]).isRequired,
 };
 export default MyBooking;

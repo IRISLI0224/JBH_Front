@@ -51,8 +51,10 @@ const ConfirmPage = ({
 );
 
 ConfirmPage.propTypes = {
-  formData: PropTypes.oneOfType([PropTypes.objectOf.isRequired, PropTypes.oneOf([undefined])])
-    .isRequired,
+  formData: PropTypes.oneOfType([
+    PropTypes.objectOf.isRequired,
+    PropTypes.oneOf([undefined]).isRequired,
+  ]).isRequired,
   title: PropTypes.string.isRequired,
 };
 

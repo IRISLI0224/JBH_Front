@@ -117,7 +117,7 @@ const BookingCard = ({ bookingDetail }) => (
             <TopSub>
               <TopSubUp>
                 <IconWrapperSmall>
-                  <FontAwesomeIcon color="#8f8f8f" size="x" icon={faUser} />
+                  <FontAwesomeIcon color="#8f8f8f" size="1x" icon={faUser} />
                 </IconWrapperSmall>
                 <BookingNum>Number of Guest</BookingNum>
               </TopSubUp>
@@ -129,7 +129,7 @@ const BookingCard = ({ bookingDetail }) => (
             <TopSub>
               <TopSubUp>
                 <IconWrapperSmall>
-                  <FontAwesomeIcon color="#8f8f8f" size="x" icon={faBed} />
+                  <FontAwesomeIcon color="#8f8f8f" size="1x" icon={faBed} />
                 </IconWrapperSmall>
                 <BookingNum>Booking Date</BookingNum>
               </TopSubUp>
@@ -152,7 +152,11 @@ const BookingCard = ({ bookingDetail }) => (
 );
 
 BookingCard.propTypes = {
-  bookingDetail: PropTypes.shape([]).isRequired,
+  bookingDetail: PropTypes.oneOfType([
+    PropTypes.shape([]).isRequired,
+    PropTypes.arrayOf(PropTypes.object).isRequired,
+    PropTypes.oneOf([undefined]).isRequired,
+  ]).isRequired,
 };
 
 export default BookingCard;
