@@ -21,8 +21,9 @@ class AdminBookingDetail extends React.Component {
       bookingDetail: undefined,
       id: '',
     };
-    const history = this.props;//eslint-disable-line
-    this.state.id = history.location.id;//eslint-disable-line
+    const history = this.prop;
+    const { location } = history;
+    this.state.date = location.date;
     this.getBookingDetail();
   }
 

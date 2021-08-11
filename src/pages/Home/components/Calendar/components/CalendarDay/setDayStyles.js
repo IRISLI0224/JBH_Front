@@ -13,7 +13,8 @@ const dayStyles = (day, value, monthlySessions) => {
     : beforeToday(day)
     ? calendarColors.closed
     : calendarColors[monthlySessions[day.format('D') * 1 - 1]];
-  const numColor = notCurrMonth(day, value) ? '#fff' : isToday(day) ? '#0F5A3A' : '#000';//eslint-disable-line
+  let numColor = notCurrMonth(day, value) ? '#fff' : '#0F5A3A';
+  numColor = isToday(day) ? '#0F5A3A' : '#000';
   return { bgColor, numColor };
 };
 
