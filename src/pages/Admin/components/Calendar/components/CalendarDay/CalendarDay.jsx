@@ -45,7 +45,7 @@ const CalendarDay = ({ day, value, monthlySessions, getBookings }) => {
 CalendarDay.propTypes = {
   day: PropTypes.instanceOf(moment).isRequired,
   value: PropTypes.instanceOf(moment).isRequired,
-  monthlySessions: PropTypes.object.isRequired,//eslint-disable-line
+  monthlySessions: PropTypes.objectOf.isRequired,
   getBookings: PropTypes.func.isRequired,
 };
 

@@ -52,9 +52,8 @@ class EditSession extends React.Component {
       visible: false,
       exist: false,
     };
-    const history = this.prop;
-    const { location } = history;
-    this.state.date = location.date;
+    const { history } = this.props;
+    this.state.date = history.location.date;
     this.handleAddSession = this.handleAddSession.bind(this);
     this.handleDataChange = this.handleDataChange.bind(this);
   }

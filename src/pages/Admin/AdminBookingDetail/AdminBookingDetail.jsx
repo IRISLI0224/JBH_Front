@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import PropTypes from 'prop-types';
 import GuestCard from './components/GuestCard';
 import BookingCard from './components/BookingCard';
 import { getBookingById } from '../../../apis/getBookingById';
@@ -21,9 +22,8 @@ class AdminBookingDetail extends React.Component {
       bookingDetail: undefined,
       id: '',
     };
-    const history = this.prop;
-    const { location } = history;
-    this.state.date = location.date;
+    const { history } = this.props;
+    this.state.id = history.location.id;
     this.getBookingDetail();
   }
 
@@ -48,5 +48,11 @@ class AdminBookingDetail extends React.Component {
     );
   }
 }
+
+AdminBookingDetail.propTypes = {
+  history: PropTypes.shape({
+    location: PropTypes.shape,
+  }).isRequired,
+};
 
 export default AdminBookingDetail;

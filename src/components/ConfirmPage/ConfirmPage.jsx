@@ -52,7 +52,7 @@ const ConfirmPage = ({
 
 ConfirmPage.propTypes = {
   title: PropTypes.string.isRequired,
-  formData: PropTypes.object.isRequired,//eslint-disable-line
+  formData: PropTypes.objectOf.isRequired,
 };
 
 export default ConfirmPage;

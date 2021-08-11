@@ -123,7 +123,6 @@ class GuestList extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      chosenDate: '2021-07-29',//eslint-disable-line
       today: '',
       guestNum: 0,
       columnDefs: [
@@ -177,19 +176,20 @@ class GuestList extends React.Component {
     const myDate = new Date();
     const currentDate = `${myDate.getFullYear()}-${myDate.getMonth() + 1}-${myDate.getDate()}`;
     this.state.today = moment(currentDate).format('YYYY-MM-DD');
-    this.getBookingDetails(this.state.today);//eslint-disable-line
+    const { today } = this.state;
+    this.getBookingDetails(today);
   }
 
   async getBookingDetails(chosenDate) {
     const response = await getBookingByDate(chosenDate);
     if (typeof response !== 'string') {
       this.setState({
-        rowData: response,//eslint-disable-line
+        rowData: response,
         guestNum: response.length,
       });
     } else {
       this.setState({
-        rowData: [],//eslint-disable-line
+        rowData: [],
         guestNum: 0,
       });
     }

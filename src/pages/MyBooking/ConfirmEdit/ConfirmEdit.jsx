@@ -44,7 +44,7 @@ class ConfirmEdit extends React.Component {
 
 ConfirmEdit.propTypes = {
   handleNextStep: PropTypes.func.isRequired,
-  formData: PropTypes.object,//eslint-disable-line
+  formData: PropTypes.objectOf.isRequired,
   updateData: PropTypes.func.isRequired,
 };
 
