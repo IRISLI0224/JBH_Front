@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import moment from 'moment';
 import { withRouter } from 'react-router-dom';
 import setDayStyles from './setDayStyles';
+import calendarColors from '../../../../../../common/calendarColors';
 
 const DayItem = styled.span`
   display: inline-block;
@@ -18,7 +19,8 @@ const DayItem = styled.span`
   cursor: pointer;
   text-align: left;
   ${({ colorStyles }) =>
-    colorStyles.bgColor === '#bcff2e' || colorStyles.bgColor === '#ffab2e'
+    colorStyles.bgColor === calendarColors.available ||
+    colorStyles.bgColor === calendarColors.limited
       ? '&:hover {cursor: pointer;}'
       : ''}
 
@@ -29,7 +31,7 @@ const DayItem = styled.span`
 const CalendarDay = ({ day, value, monthlySessions, history }) => {
   const colorStyles = setDayStyles(day, value, monthlySessions);
   const handleDayClick = (date, style) => {
-    if (style.bgColor === '#8097B9' || style.bgColor === '#7A95A1') {
+    if (style.bgColor === calendarColors.available || style.bgColor === calendarColors.limited) {
       history.push('/booking', { date: date.format('YYYY-MM-DD').toString() });
     }
   };

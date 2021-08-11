@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import Calendar from './components/Calendar';
+import calendarColor from '../../common/calendarColors';
 
 const Container = styled.div`
   overflow: hidden;
@@ -55,13 +56,13 @@ const Home = () => (
     <Title>Day Pass Availability</Title>
     <Info>Please click on the date you wish to book</Info>
     <Legend>
-      <LegendImg color="#8097B9" />
+      <LegendImg color={calendarColor.available} />
       Available
-      <LegendImg color="#7A95A1" />
+      <LegendImg color={calendarColor.limited} />
       limited
-      <LegendImg color="#3894C5" />
+      <LegendImg color={calendarColor.fullyBooked} />
       Fully Booked
-      <LegendImg color="#D2E0E5" />
+      <LegendImg color={calendarColor.closed} />
       Closed
     </Legend>
     <Calendar />

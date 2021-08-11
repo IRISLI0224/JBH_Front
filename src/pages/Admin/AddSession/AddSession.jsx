@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import Calendar from './components/Calendar';
+import calendarColor from '../../../common/calendarColors';
 
 const Container = styled.div`
   overflow: hidden;
@@ -56,13 +57,13 @@ const AddSession = () => (
     <Title>Add Availability</Title>
     <Info>Please click on the date you wish to add availability in</Info>
     <Legend>
-      <LegendImg color="#127785" />
+      <LegendImg color={calendarColor.available} />
       Available
-      <LegendImg color="#AFAAC2" />
+      <LegendImg color={calendarColor.limited} />
       limited
-      <LegendImg color="#77AFCF" />
+      <LegendImg color={calendarColor.fullyBooked} />
       Fully Booked
-      <LegendImg color="#DCE9EF" />
+      <LegendImg color={calendarColor.closed} />
       Closed
     </Legend>
     <Calendar />
