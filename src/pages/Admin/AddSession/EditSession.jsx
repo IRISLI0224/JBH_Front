@@ -28,6 +28,7 @@ const Buttons = styled.div`
   justify-content: space-around;
   width: 32rem;
 `;
+
 const Button = styled.button`
   font-family: 'Roboto';
   letter-spacing: 0.46px;
@@ -45,7 +46,6 @@ const Button = styled.button`
 class EditSession extends React.Component {
   constructor(props) {
     super(props);
-
     this.state = {
       date: '',
       time: 0,
@@ -125,7 +125,6 @@ class EditSession extends React.Component {
               onClick={() => {
                 history.push({
                   pathname: '/admin/addsession',
-                  adminName: history.location.adminName,
                 });
               }}
             >
@@ -142,9 +141,7 @@ class EditSession extends React.Component {
 
 EditSession.propTypes = {
   history: PropTypes.shape({
-    location: PropTypes.shape({
-      adminName: PropTypes.string,
-    }),
+    location: PropTypes.shape,
     push: PropTypes.func,
   }).isRequired,
 };

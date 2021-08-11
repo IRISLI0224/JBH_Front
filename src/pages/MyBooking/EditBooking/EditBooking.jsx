@@ -30,10 +30,8 @@ const initialData = (data) => ({
 class EditBooking extends React.Component {
   constructor(props) {
     super(props);
-
     const { formData } = this.props;
     const { bookingNum, bookingDate, numOfGuests, firstName, lastName, email, phone } = formData[0];
-
     this.state = {
       data: {
         bookingDate: initialData(moment(bookingDate).format('YYYY-MM-DD')),

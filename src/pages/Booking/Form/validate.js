@@ -61,11 +61,9 @@ const validate = (name, data) => {
       const currentYear = new Date().getFullYear();
       const birthDate = value.split('-');
       const birthYear = birthDate[0];
-
       if (!value) {
         return 'Please enter your date of birth';
       }
-
       if (currentYear - birthYear < 18) {
         return 'Please make sure you are over 18 years of age';
       }
@@ -85,7 +83,6 @@ const validate = (name, data) => {
       }
       return '';
     }
-
     default:
       return '';
   }

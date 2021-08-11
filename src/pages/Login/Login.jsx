@@ -10,7 +10,7 @@ import FormTitle from '../../components/FormTitle';
 import FormSubTitle from '../../components/FormSubTitle';
 import FormWrapper from '../../components/FormWrapper';
 import { loginUser } from '../../apis/auth';
-import { setToken } from '../../utils/authentication';
+import { setToken, setUserEmail } from '../../utils/authentication';
 import ServerMsg from '../../components/ServerMsg';
 
 const Container = styled.div`
@@ -105,6 +105,7 @@ class Login extends React.Component {
         .then((data) => {
           this.setState({ isLoading: false }, () => {
             setToken(data.token);
+            setUserEmail(loginData.email.value);
             const { history } = this.props;
             history.replace({
               pathname: '/mybooking',
@@ -119,7 +120,6 @@ class Login extends React.Component {
   render() {
     const { data, error: authError, isLoading } = this.state;
     const error = this.getError(data);
-    const hasError = Object.keys(error).length > 0;
 
     return (
       <>
@@ -130,9 +130,6 @@ class Login extends React.Component {
             onSubmit={(e) => {
               e.preventDefault();
               this.handleIsFormSubmitChange(true);
-              if (!hasError) {
-                // console.log()
-              }
             }}
           >
             <FormItem label="Email" htmlFor="email">

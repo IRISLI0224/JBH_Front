@@ -3,7 +3,6 @@ import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import moment from 'moment';
 import { withRouter } from 'react-router-dom';
-
 import setDayStyles from './setDayStyles';
 
 const DayItem = styled.span`
@@ -31,7 +30,6 @@ const CalendarDay = ({ day, value, monthlySessions, history }) => {
   const handleDayClick = (date) => {
     history.push({
       pathname: '/admin/editsession',
-      adminName: history.location.adminName,
       date: date.format('YYYY-MM-DD').toString(),
     });
   };
@@ -53,9 +51,6 @@ CalendarDay.propTypes = {
   value: PropTypes.instanceOf(moment).isRequired,
   monthlySessions: PropTypes.arrayOf(PropTypes.string).isRequired,
   history: PropTypes.shape({
-    location: PropTypes.shape({
-      adminName: PropTypes.string,
-    }),
     push: PropTypes.func,
   }).isRequired,
 };

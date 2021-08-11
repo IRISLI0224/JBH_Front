@@ -7,7 +7,6 @@ import AdminSidebar from './components/AdminSidebar';
 
 const Main = styled.div`
   min-height: 400px;
-  height: 400px;
 `;
 
 const AdminLayout = ({ children }) => (

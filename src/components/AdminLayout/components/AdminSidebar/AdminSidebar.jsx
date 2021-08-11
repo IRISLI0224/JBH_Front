@@ -53,7 +53,6 @@ const AdminSidebar = ({ history }) => (
       onClick={() => {
         history.push({
           pathname: '/admin/guestlist',
-          adminName: history.location.adminName,
         });
       }}
     >
@@ -66,7 +65,6 @@ const AdminSidebar = ({ history }) => (
       onClick={() => {
         history.push({
           pathname: '/admin/addsession',
-          adminName: history.location.adminName,
         });
       }}
     >
@@ -80,9 +78,6 @@ const AdminSidebar = ({ history }) => (
 
 AdminSidebar.propTypes = {
   history: PropTypes.shape({
-    location: PropTypes.shape({
-      adminName: PropTypes.string,
-    }),
     push: PropTypes.func,
   }).isRequired,
 };

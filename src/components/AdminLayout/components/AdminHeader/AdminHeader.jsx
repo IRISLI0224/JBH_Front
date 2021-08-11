@@ -5,7 +5,7 @@ import { withRouter } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import Input from '../../../Input';
-import { removeToken } from '../../../../utils/authentication';
+import { getUserEmail, removeToken, removeUserEmail } from '../../../../utils/authentication';
 
 const Wrapper = styled.div`
   background-color: #ffffff;
@@ -112,10 +112,11 @@ const AdminHeader = ({ history }) => (
         src="http://s3.amazonaws.com/37assets/svn/765-default-avatar.png"
         alt="Avatar"
       />
-      <AdminName>{history.location.adminName}</AdminName>
+      <AdminName>{getUserEmail()}</AdminName>
       <LogoutButton
         onClick={() => {
           removeToken();
+          removeUserEmail();
           history.replace('/admin');
         }}
       >
@@ -127,9 +128,6 @@ const AdminHeader = ({ history }) => (
 
 AdminHeader.propTypes = {
   history: PropTypes.shape({
-    location: PropTypes.shape({
-      adminName: PropTypes.string,
-    }),
     replace: PropTypes.func,
   }).isRequired,
 };

@@ -64,6 +64,7 @@ const TabMenu = styled.div`
   align-items: center;
   font-family: 'Poppins';
 `;
+
 const EmployeeNum = styled.div`
   border-bottom: 2px solid #181b50;
   padding: 0.7rem 0.5rem;
@@ -106,7 +107,6 @@ const Container = styled.div`
   display: flex;
   align-items: flex-start;
   padding: 1rem 0 0 0;
-  /* background-color: #e8f0f8; */
   font-family: 'Poppins';
 `;
 
@@ -163,7 +163,6 @@ class GuestList extends React.Component {
                   history.push({
                     pathname: '/admin/bookingdetail',
                     id: params.data._id,//eslint-disable-line
-                    adminName: props.history.location.adminName,
                   });
                 }}
               >
@@ -246,9 +245,6 @@ class GuestList extends React.Component {
 
 GuestList.propTypes = {
   history: PropTypes.shape({
-    location: PropTypes.shape({
-      adminName: PropTypes.string,
-    }),
     push: PropTypes.func,
   }).isRequired,
 };

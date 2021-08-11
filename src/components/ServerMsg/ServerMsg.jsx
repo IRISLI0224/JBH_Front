@@ -10,14 +10,12 @@ const ServerMsg = styled.div`
   border-radius: 4px;
   font-family: 'Roboto';
   font-size: 13px;
-
   ${(props) =>
     ({
       error: css`
         color: red;
         background-color: #fdecea;
       `,
-
       success: css`
         color: green;
         background-color: #e5ffe5;

@@ -1,17 +1,16 @@
 import jwt from 'jsonwebtoken';
 
 const JWT_TOKEN_NAME = 'jr-hyperlink';
-const CLIENT_ID = 'clientId';
+const USER_EMAIL = 'email';
 
 export const getToken = () => localStorage.getItem(JWT_TOKEN_NAME);
-export const getClientId = () => localStorage.getItem(CLIENT_ID);
+export const getUserEmail = () => localStorage.getItem(USER_EMAIL);
 
 export const setToken = (token) => localStorage.setItem(JWT_TOKEN_NAME, token);
-
-export const setClientId = (clientId) => localStorage.setItem(CLIENT_ID, clientId);
+export const setUserEmail = (email) => localStorage.setItem(USER_EMAIL, email);
 
 export const removeToken = () => localStorage.removeItem(JWT_TOKEN_NAME);
-export const removeClientId = () => localStorage.removeItem(CLIENT_ID);
+export const removeUserEmail = () => localStorage.removeItem(USER_EMAIL);
 
 export const isLoggedIn = () => {
   const token = localStorage.getItem(JWT_TOKEN_NAME);

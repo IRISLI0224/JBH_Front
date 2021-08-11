@@ -30,7 +30,6 @@ const HeaderButton = styled.button`
     cursor: pointer;
     color: #818181;
   }
-
   position: absolute;
   right: 4rem;
   bottom: 1rem;

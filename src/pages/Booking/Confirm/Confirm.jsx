@@ -26,4 +26,5 @@ Confirm.propTypes = {
     price: PropTypes.number,
   }).isRequired,
 };
+
 export default Confirm;
