@@ -9,8 +9,8 @@ const dayStyles = (day, value, monthlySessions) => {
   const bgColor = notCurrMonth(day, value)
     ? '#fff'
     : calendarColor[monthlySessions[day.format('D') * 1 - 1]];
-    let numColor = notCurrMonth(day, value) ? '#fff' : '#0F5A3A';
-    numColor = isToday(day) ? '#0F5A3A' : '#000';
+  let numColor = notCurrMonth(day, value) ? '#fff' : '#0F5A3A';
+  numColor = isToday(day) ? '#0F5A3A' : '#000';
   return { bgColor, numColor };
 };
 
