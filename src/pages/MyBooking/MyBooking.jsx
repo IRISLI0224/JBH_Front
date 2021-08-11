@@ -89,4 +89,3 @@ MyBooking.propTypes = {
   ]).isRequired,
 };
 export default MyBooking;
-
