@@ -20,8 +20,9 @@ class MyBooking extends React.Component {
     this.handleNextStep = this.handleNextStep.bind(this);
     this.handleFormData = this.handleFormData.bind(this);
     this.getBookingDetails = this.getBookingDetails.bind(this);
-    const { history } = this.props;
-    this.state.email = history.location.email;
+    const history = this.props;
+    const location = history;
+    this.state.email = location.email;
     this.getBookingDetails();
     const myDate = new Date();
     const currentDate = `${myDate.getFullYear()}-${myDate.getMonth() + 1}-${myDate.getDate()}`;
@@ -81,10 +82,8 @@ class MyBooking extends React.Component {
   }
 }
 
-MyBooking.propTypes = {
-  history: PropTypes.shape({
-    location: PropTypes.shape,
-  }).isRequired,
+EditBooking.propTypes = {
+  location: PropTypes.oneOfType([PropTypes.objectOf.isRequired, PropTypes.oneOf([undefined])])
+    .isRequired,
 };
-
 export default MyBooking;

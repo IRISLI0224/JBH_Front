@@ -45,7 +45,10 @@ const CalendarDay = ({ day, value, monthlySessions, getBookings }) => {
 CalendarDay.propTypes = {
   day: PropTypes.instanceOf(moment).isRequired,
   value: PropTypes.instanceOf(moment).isRequired,
-  monthlySessions: PropTypes.objectOf.isRequired,
+  monthlySessions: PropTypes.oneOfType([
+    PropTypes.objectOf.isRequired,
+    PropTypes.oneOf([undefined]),
+  ]).isRequired,
   getBookings: PropTypes.func.isRequired,
 };
 
