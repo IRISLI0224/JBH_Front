@@ -5,7 +5,6 @@ const notCurrMonth = (day, value) =>
   day.isAfter(value.clone().endOf('month'), 'day');
 const isToday = (day) => day.isSame(new Date(), 'day');
 const dayStyles = (day, value, monthlySessions) => {
-  // eslint-disable-next-line no-nested-ternary
   const bgColor = notCurrMonth(day, value)
     ? '#fff'
     : calendarColor[monthlySessions[day.format('D') * 1 - 1]];
