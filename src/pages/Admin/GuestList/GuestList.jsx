@@ -127,12 +127,12 @@ class GuestList extends React.Component {
       guestNum: 0,
       columnDefs: [
         {
-          headerName: 'FirstName',
+          headerName: 'First Name',
           field: 'firstName',
           sortable: true,
         },
         {
-          headerName: 'LastName',
+          headerName: 'Last Name',
           field: 'lastName',
           sortable: true,
         },
