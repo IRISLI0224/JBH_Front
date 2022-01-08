@@ -1,7 +1,7 @@
 pipeline {
-    agent {
-       any
-    }
+    agent any
+       
+    
 
     environment {
         BUCKET_NAME = 's3://jrproject3web'
