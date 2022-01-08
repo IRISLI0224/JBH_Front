@@ -5,7 +5,7 @@ module.exports = {
   devtool: 'source-map',
   plugins: [
     new webpack.DefinePlugin({
-      'process.env.BASE_URL': JSON.stringify('http://3.25.70.196:3000'),
+      'process.env.BASE_URL': JSON.stringify('http://3.106.127.147:3000'),
     }),
   ],
 };
