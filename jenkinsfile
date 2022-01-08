@@ -36,7 +36,7 @@ pipeline {
         
         stage('Deploy to S3') {
             steps {
-            withAWS(credentials: '06b5a459-1c49-47fe-ae48-cbec3c35b6c7', region: 'ap-southeast-2') {
+            withAWS(credentials: '7b41b199-5561-4ce1-8cd1-2ffda8347ae9', region: 'ap-southeast-2') {
                     sh 'aws s3 rm "${BUCKET_NAME}" --recursive'
                     sh 'aws s3 cp "${WORKSPACE_PATH}" "${BUCKET_NAME}" --recursive --acl public-read'
                 }
