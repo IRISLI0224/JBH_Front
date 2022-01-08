@@ -1,7 +1,9 @@
 pipeline {
      agent {
-       node
-    }
+		docker {
+			image 'node:12.13.0'
+		}
+	}
        
     
 
