@@ -10,7 +10,7 @@ module.exports = {
   devtool: 'cheap-module-source-map',
   plugins: [
     new webpack.DefinePlugin({
-      'process.env.BASE_URL': JSON.stringify('http://3.106.127.147:3000'),
+      'process.env.BASE_URL': JSON.stringify('https://fathomless-stream-47517.herokuapp.com'),
     }),
   ],
 };
